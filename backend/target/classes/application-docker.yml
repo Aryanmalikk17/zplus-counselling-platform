@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: zplus-counselling-backend
+  
+  main:
+    allow-bean-definition-overriding: true
+  
+  datasource:
+    url: jdbc:postgresql://postgres:5432/zplus_counselling
+    username: zplus_user
+    password: secure_password
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  
+  data:
+    mongodb:
+      uri: mongodb://admin:secure_password@mongodb:27017/zplus_content?authSource=admin
+  
+  redis:
+    host: redis
+    port: 6379
+    password: secure_password
+  
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    secret: mySecretKey123456789012345678901234567890
+    expiration: 604800000
+    refresh-expiration: 2592000000
+  
+  cors:
+    allowed-origins: http://localhost:3000,http://localhost:5173,http://localhost:8080
+
+logging:
+  level:
+    com.zplus.counselling: INFO
+    org.springframework.security: WARN
+    org.springframework.web: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"

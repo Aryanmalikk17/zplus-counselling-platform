@@ -1,0 +1,81 @@
+spring:
+  # Use H2 in-memory database for testing
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL;INIT=CREATE SCHEMA IF NOT EXISTS PUBLIC
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        default_schema: PUBLIC
+        globally_quoted_identifiers: false
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  # Disable Thymeleaf since this is a REST API
+  thymeleaf:
+    check-template-location: false
+
+  # Disable MongoDB completely
+  data:
+    mongodb:
+      uri: ""
+      database: ""
+    redis:
+      host: ""
+      port: 0
+  
+  # Disable RabbitMQ
+  rabbitmq:
+    host: ""
+    port: 0
+  
+  # Disable mail
+  mail:
+    host: ""
+    port: 0
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+app:
+  jwt:
+    secret: dGVzdFNlY3JldEtleUZvclRlc3RpbmdQdXJwb3Nlc09ubHlUaGlzSXNBVmVyeUxvbmdTZWNyZXRLZXk=
+    expiration: 3600000
+    refresh-expiration: 86400000
+  
+  cors:
+    allowed-origins: http://localhost:5173,http://localhost:3000
+    allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+    allowed-headers: "*"
+    allow-credentials: true
+
+# Override environment variables for test profile
+DATABASE_DRIVER: org.h2.Driver
+DATABASE_URL: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+DATABASE_USERNAME: sa
+DATABASE_PASSWORD: password
+HIBERNATE_DIALECT: org.hibernate.dialect.H2Dialect
+HIBERNATE_DDL_AUTO: create-drop
+
+logging:
+  level:
+    com.zplus.counselling: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: INFO
+    org.springframework.boot.autoconfigure: INFO
+    org.springframework.data.mongodb: OFF
+    org.mongodb: OFF

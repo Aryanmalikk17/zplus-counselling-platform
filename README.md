@@ -1,384 +1,240 @@
 # Z Plus Counselling Platform
 
-A comprehensive web application for psychological assessments, personality tests, career guidance, and educational counselling. Built with React, TypeScript, and Vite for a modern, fast, and responsive user experience.
+A comprehensive web-based counselling and psychological assessment platform built with Spring Boot and React.
 
-## 🌟 Features Overview
+## 🎯 Overview
 
-### 🧠 Core Assessment Platform
-- **30+ Professional Tests**: Scientifically validated psychological and educational assessments
-- **Real-time Results**: Instant scoring and detailed analysis
-- **Personalized Insights**: AI-driven recommendations based on test outcomes
-- **Progress Tracking**: Historical data and improvement monitoring
-- **PDF Reports**: Downloadable comprehensive assessment reports
+Z Plus Counselling Platform provides:
+- **30+ Psychological Assessments** (MBTI, Big Five, IQ, Career Tests)
+- **Expert Counselling Services** with certified professionals
+- **Career Guidance** and recommendations
+- **Comprehensive User Management** with JWT authentication
+- **Real-time Analytics** and progress tracking
 
-### 📚 Knowledge Hub & Blog
-- **30+ Expert Articles**: Comprehensive library covering mental health, career development, and psychology
-- **Advanced Search & Filter**: Find articles by category, author, or keywords
-- **Expert Contributors**: Content from licensed psychologists and career counselors
-- **Categories Include**:
-  - Mental Health (8 articles)
-  - Career Development (3 articles)
-  - Self-Development (3 articles)
-  - Relationship Psychology (3 articles)
-  - Stress Management & Mindfulness (4 articles)
-  - Leadership & Team Dynamics (2 articles)
-  - Family Psychology (1 article)
-  - Research & Science (6 articles)
+## 🛠️ Technology Stack
 
-### 🎯 Specialized Test Categories
+### Backend
+- **Framework**: Spring Boot 3.2+
+- **Language**: Java 17+
+- **Database**: PostgreSQL 15+ (primary), MongoDB 6.0+ (assessments)
+- **Cache**: Redis 7.0+
+- **Security**: Spring Security 6 + JWT
+- **Build Tool**: Maven
 
-#### Personality Assessments
-- **MBTI (Myers-Briggs Type Indicator)**: 16 personality types with detailed profiles
-- **Big Five Traits**: Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism
-- **Enneagram Test**: 9 personality types with growth paths and motivations
-- **DISC Assessment**: Dominance, Influence, Steadiness, Conscientiousness work styles
+### Frontend
+- **Framework**: React 18 + TypeScript
+- **UI Library**: Tailwind CSS
+- **Build Tool**: Vite
+- **State Management**: React Context
+- **HTTP Client**: Fetch API
 
-#### Psychological Evaluations
-- **IQ Assessment**: Comprehensive cognitive ability testing with multiple intelligence types
-- **Memory Tests**: 
-  - Visual Memory Assessment
-  - Verbal Memory Evaluation
-  - Working Memory Tests
-- **Attention & Focus Tests**: Concentration span and attention deficit screening
-- **Cognitive Flexibility**: Problem-solving and adaptability assessment
+### Infrastructure
+- **Containerization**: Docker & Docker Compose
+- **Database**: PostgreSQL + MongoDB
+- **Caching**: Redis
 
-#### SSB (Services Selection Board) Tests
-- **TAT (Thematic Apperception Test)**: Story-based personality assessment
-- **WAT (Word Association Test)**: Subconscious thought pattern analysis
-- **SRT (Situation Reaction Test)**: Decision-making under pressure
-- **SDT (Self Description Test)**: Comprehensive self-evaluation
-- **GPE (Group Planning Exercise)**: Strategic planning and leadership assessment
+## 🚀 Quick Start
 
-#### Career & Educational Guidance
-- **Career Aptitude Tests**: Match personality to ideal career paths
-- **Leadership Style Assessment**: Discover your leadership approach
-- **Entrepreneurship Potential**: Evaluate business acumen and startup readiness
-- **Educational Stream Tests**:
-  - Science Stream Aptitude
-  - Commerce Stream Assessment
-  - Arts & Humanities Evaluation
-  - Primary Education Guidance
-  - Secondary Education Planning
+### Prerequisites
+- Docker & Docker Compose
+- Java 17+ (for local development)
+- Node.js 18+ (for frontend development)
 
-#### Wellness & Emotional Intelligence
-- **Emotional Intelligence (EQ)**: Self-awareness, empathy, and social skills
-- **Stress Assessment**: Identify stress levels and coping mechanisms
-- **Anxiety Screening**: Early detection and management strategies
-- **Overall Wellness Check**: Holistic mental and emotional health evaluation
-- **Mindfulness Assessment**: Present-moment awareness and meditation readiness
-
-### 🔐 User Management & Security
-- **Secure Authentication**: Protected login system with data encryption
-- **User Profiles**: Personalized dashboards with test history
-- **Progress Tracking**: Visual charts and improvement metrics
-- **Test History**: Complete record of all assessments taken
-- **Privacy Protection**: GDPR-compliant data handling
-
-### 📱 Technical Features
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **Fast Performance**: Vite-powered build system for lightning-fast loading
-- **Modern UI/UX**: Clean interface with smooth animations using Framer Motion
-- **Accessibility**: WCAG-compliant design for users with disabilities
-- **Cross-browser Support**: Compatible with all modern web browsers
-
-## 🚀 Advanced Tech Stack
-
-### Frontend Technologies
-- **React 18**: Latest version with concurrent features and hooks
-- **TypeScript**: Full type safety and enhanced developer experience
-- **Vite**: Next-generation frontend build tool for fast development
-- **Tailwind CSS**: Utility-first CSS framework for rapid styling
-- **Framer Motion**: Production-ready motion library for React
-
-### UI & Design
-- **Lucide React**: Beautiful, customizable SVG icons
-- **Responsive Grid System**: Mobile-first responsive design
-- **Dark/Light Mode Support**: User preference-based theming
-- **Modern Color Palette**: Psychology-inspired color schemes
-
-### State Management & Routing
-- **React Context API**: Centralized state management
-- **React Router DOM**: Client-side routing with lazy loading
-- **Custom Hooks**: Reusable logic for common operations
-
-### Development Tools
-- **ESLint**: Code quality and consistency enforcement
-- **TypeScript Compiler**: Static type checking
-- **PostCSS**: CSS processing and optimization
-- **Hot Module Replacement**: Instant development feedback
-
-## 📋 System Requirements
-
-### Minimum Requirements
-- **Node.js**: Version 16.0 or higher
-- **RAM**: 4GB minimum, 8GB recommended
-- **Storage**: 500MB free space
-- **Browser**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
-
-### Recommended Setup
-- **Node.js**: Version 18 LTS or latest
-- **Package Manager**: npm 9+ or yarn 1.22+
-- **IDE**: VS Code with TypeScript extensions
-- **Git**: For version control
-
-## 🛠️ Installation & Development Setup
-
-### Quick Start
+### 1. Clone Repository
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd zpluscouncelling-project
+git clone https://github.com/your-username/zplus-counselling-platform.git
+cd zplus-counselling-platform
+```
 
-# Install dependencies
+### 2. Start with Docker (Recommended)
+```bash
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+```
+
+### 3. Access Applications
+- **Frontend**: http://localhost:5173
+- **Backend API**: http://localhost:8080/api/v1
+- **API Documentation**: http://localhost:8080/swagger-ui.html
+
+## 🏗️ Project Structure
+
+```
+zplus-counselling-platform/
+├── backend/                 # Spring Boot API
+│   ├── src/main/java/      # Java source code
+│   ├── src/main/resources/ # Configuration files
+│   ├── docker-compose.yml  # Docker services
+│   └── pom.xml             # Maven dependencies
+├── my-frontend-app/        # React frontend
+│   ├── src/                # React source code
+│   ├── public/             # Static assets
+│   └── package.json        # npm dependencies
+├── backend-architecture/   # Documentation
+│   ├── API_IMPLEMENTATION_GUIDE.md
+│   ├── DATABASE_IMPLEMENTATION.md
+│   └── SPRING_BOOT_ARCHITECTURE.md
+└── README.md              # This file
+```
+
+## 🔧 Development Setup
+
+### Backend Development
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+### Frontend Development
+```bash
+cd my-frontend-app
 npm install
-
-# Start development server
 npm run dev
-
-# Open browser to http://localhost:5173
 ```
 
-### Environment Configuration
+### Database Access
 ```bash
-# Create environment file
-cp .env.example .env.local
+# PostgreSQL
+docker exec -it zplus-postgres psql -U zplus_user -d zplus_counselling
 
-# Configure environment variables
-VITE_API_URL=your_api_endpoint
-VITE_APP_NAME="Z Plus Counselling"
+# MongoDB
+docker exec -it zplus-mongodb mongosh zplus_content
 ```
 
-### Development Commands
+## 📊 Features
+
+### ✅ Implemented
+- [x] User Authentication (Register, Login, JWT)
+- [x] User Profile Management
+- [x] Database Integration (PostgreSQL + MongoDB)
+- [x] Docker Containerization
+- [x] CORS Configuration
+- [x] Security Configuration
+- [x] API Documentation (Swagger)
+
+### 🚧 In Development
+- [ ] Psychology Assessment Engine
+- [ ] Expert Counselling System
+- [ ] Career Guidance Module
+- [ ] Payment Integration (Razorpay)
+- [ ] Email Notifications
+- [ ] Real-time Chat
+
+## 🔐 Security Features
+
+- JWT-based authentication
+- Password encryption (BCrypt)
+- CORS protection
+- Request validation
+- SQL injection prevention
+- XSS protection
+
+## 📱 API Endpoints
+
+### Authentication
+- `POST /api/v1/auth/register` - User registration
+- `POST /api/v1/auth/login` - User login
+- `GET /api/v1/auth/me` - Get current user
+- `POST /api/v1/auth/refresh` - Refresh token
+- `POST /api/v1/auth/logout` - Logout
+
+### User Management
+- `GET /api/v1/users/profile` - Get user profile
+- `PUT /api/v1/users/profile` - Update profile
+- `GET /api/v1/users/dashboard` - User dashboard
+
+### Assessments
+- `GET /api/v1/assessments/available` - Get available tests
+- `POST /api/v1/assessments/{testType}/start` - Start assessment
+- `PUT /api/v1/assessments/{testType}/answer` - Submit answer
+- `POST /api/v1/assessments/{testType}/submit` - Complete assessment
+
+## 🗄️ Database Schema
+
+### PostgreSQL (Relational Data)
+- `users` - User accounts and profiles
+- `test_results` - Assessment results
+- `counseling_sessions` - Counselling appointments
+- `assessment_sessions` - Active test sessions
+
+### MongoDB (Document Data)
+- `assessmentTemplates` - Test questions and templates
+- `userAnalytics` - User behavior analytics
+- `blogArticles` - Content management
+
+## 🐳 Docker Services
+
+- **zplus-postgres** - PostgreSQL database
+- **zplus-mongodb** - MongoDB database  
+- **zplus-redis** - Redis cache
+- **zplus-backend** - Spring Boot API
+- **zplus-frontend** - React application
+
+## 🧪 Testing
+
+### Backend Tests
 ```bash
-npm run dev          # Start development server with HMR
-npm run build        # Build optimized production bundle
-npm run preview      # Preview production build locally
-npm run lint         # Run ESLint for code quality
-npm run lint:fix     # Auto-fix ESLint issues
-npm run type-check   # Run TypeScript type checking
-npm run clean        # Clean build artifacts
+cd backend
+./mvnw test
 ```
 
-## 📁 Detailed Project Architecture
-
-```
-zpluscouncelling-project/
-├── public/                     # Static assets
-│   ├── images/                # Image assets
-│   │   └── tat/              # TAT test images
-│   └── vite.svg              # Vite logo
-├── src/
-│   ├── components/            # Reusable UI components
-│   │   ├── auth/             # Authentication components
-│   │   │   └── ProtectedRoute.tsx
-│   │   ├── common/           # Shared UI components
-│   │   │   └── Navbar.tsx
-│   │   ├── dashboard/        # Dashboard widgets
-│   │   ├── profile/          # Profile-related components
-│   │   │   ├── TestHistoryComponent.tsx
-│   │   │   └── TestStatsDashboard.tsx
-│   │   ├── results/          # Result display components
-│   │   │   └── TestResultDashboard.tsx
-│   │   └── tests/            # Test interface components
-│   │       ├── CommonTest.tsx
-│   │       └── CommonTestComponent.tsx
-│   ├── pages/                # Main application pages
-│   │   ├── auth/             # Authentication pages
-│   │   │   ├── LoginPage.tsx
-│   │   │   └── RegisterPage.tsx
-│   │   ├── blog/             # Blog and articles
-│   │   │   └── BlogPage.tsx  # 30+ articles with search/filter
-│   │   ├── career/           # Career guidance
-│   │   │   └── CareerPage.tsx
-│   │   ├── home/             # Landing page
-│   │   │   └── HomePage.tsx
-│   │   ├── profile/          # User profile management
-│   │   │   └── ProfilePage.tsx
-│   │   ├── results/          # Test results viewing
-│   │   │   └── ResultsPage.tsx
-│   │   └── tests/            # All test pages
-│   │       ├── EducationTestPage.tsx
-│   │       ├── PersonalityTestPage.tsx
-│   │       ├── PsychologyTestPage.tsx
-│   │       ├── ReasoningTestPage.tsx
-│   │       ├── TestPage.tsx
-│   │       └── TestsPage.tsx
-│   ├── context/              # React Context providers
-│   │   └── AuthContext.tsx   # Authentication state management
-│   ├── services/             # External service integrations
-│   │   ├── authService.ts    # Authentication API calls
-│   │   ├── pdfReportService.ts # PDF generation service
-│   │   └── testHistoryService.ts # Test data management
-│   ├── types/                # TypeScript type definitions
-│   │   ├── index.ts          # Common types
-│   │   └── testTypes.ts      # Test-specific types
-│   ├── utils/                # Utility functions
-│   ├── hooks/                # Custom React hooks
-│   ├── data/                 # Static data and configurations
-│   └── assets/               # Static assets
-│       └── react.svg
-├── config files              # Build and development configuration
-│   ├── eslint.config.js      # ESLint configuration
-│   ├── postcss.config.js     # PostCSS configuration
-│   ├── tailwind.config.js    # Tailwind CSS configuration
-│   ├── tsconfig.json         # TypeScript configuration
-│   ├── tsconfig.app.json     # App-specific TypeScript config
-│   ├── tsconfig.node.json    # Node.js TypeScript config
-│   └── vite.config.ts        # Vite build configuration
-└── package.json              # Project dependencies and scripts
-```
-
-## 🎯 User Journey & Experience
-
-### For Test Takers
-1. **Registration**: Quick sign-up with email verification
-2. **Dashboard**: Personalized homepage with recommended tests
-3. **Test Selection**: Browse tests by category or search
-4. **Assessment**: Interactive, timed tests with progress indicators
-5. **Results**: Immediate scoring with detailed explanations
-6. **History**: Track progress and compare past results
-7. **Resources**: Access related articles and guidance
-
-### For Content Consumers
-1. **Blog Access**: Browse 30+ expert articles
-2. **Search & Filter**: Find specific topics easily
-3. **Expert Insights**: Read evidence-based psychological content
-4. **Categories**: Explore Mental Health, Career, Relationships, etc.
-5. **Learning Path**: Structured content for personal development
-
-## 🔧 Advanced Configuration
-
-### Performance Optimization
-- **Code Splitting**: Automatic route-based code splitting
-- **Lazy Loading**: Components loaded on demand
-- **Tree Shaking**: Unused code elimination
-- **Asset Optimization**: Compressed images and minified CSS/JS
-- **Caching Strategy**: Browser and CDN caching headers
-
-### SEO & Accessibility
-- **Meta Tags**: Dynamic meta descriptions and titles
-- **Open Graph**: Social media sharing optimization
-- **Schema Markup**: Structured data for search engines
-- **ARIA Labels**: Screen reader accessibility
-- **Keyboard Navigation**: Full keyboard support
-
-### Security Features
-- **Input Validation**: Client and server-side validation
-- **XSS Protection**: Cross-site scripting prevention
-- **CSRF Tokens**: Cross-site request forgery protection
-- **Secure Headers**: Content Security Policy implementation
-- **Data Encryption**: Sensitive data encryption at rest
-
-## 🌐 Deployment & Production
-
-### Build Process
+### Frontend Tests
 ```bash
-# Production build
-npm run build
-
-# Build analysis
-npm run build:analyze
-
-# Performance testing
-npm run lighthouse
+cd my-frontend-app
+npm test
 ```
 
-### Deployment Platforms
-- **Vercel**: Automatic deployments with Git integration
-- **Netlify**: Continuous deployment from repository
-- **AWS Amplify**: Full-stack cloud deployment
-- **Azure Static Web Apps**: Microsoft cloud hosting
-- **Firebase Hosting**: Google cloud platform
+## 📈 Monitoring
 
-### Environment Variables
-```bash
-# Production environment
-VITE_API_URL=https://api.zpluscouncelling.com
-VITE_ANALYTICS_ID=your_analytics_id
-VITE_SENTRY_DSN=your_sentry_dsn
+- **Health Checks**: `/api/v1/actuator/health`
+- **Metrics**: `/api/v1/actuator/metrics`
+- **Application Logs**: `backend/logs/`
+
+## 🔒 Environment Variables
+
+### Backend (.env)
+```env
+DATABASE_URL=jdbc:postgresql://localhost:5432/zplus_counselling
+DATABASE_USERNAME=zplus_user
+DATABASE_PASSWORD=secure_password
+JWT_SECRET=your-jwt-secret-key
+MONGODB_URI=mongodb://localhost:27017/zplus_content
+REDIS_HOST=localhost
+REDIS_PORT=6379
 ```
 
-## 📊 Analytics & Monitoring
+### Frontend (.env)
+```env
+VITE_API_URL=http://localhost:8080/api/v1
+```
 
-### User Analytics
-- **Test Completion Rates**: Track assessment engagement
-- **Popular Content**: Most accessed articles and tests
-- **User Behavior**: Navigation patterns and preferences
-- **Performance Metrics**: Page load times and user satisfaction
+## 📝 License
 
-### Error Monitoring
-- **Crash Reporting**: Automatic error capture and reporting
-- **Performance Monitoring**: Real-time performance tracking
-- **User Feedback**: In-app feedback collection
-- **A/B Testing**: Feature experimentation capabilities
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing Guidelines
+## 👥 Contributing
 
-### Development Workflow
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Follow** coding standards and conventions
-4. **Write** tests for new features
-5. **Update** documentation as needed
-6. **Commit** with descriptive messages
-7. **Push** to your branch (`git push origin feature/amazing-feature`)
-8. **Create** a Pull Request with detailed description
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Code Standards
-- **TypeScript**: All new code must be properly typed
-- **ESLint**: Follow the configured linting rules
-- **Comments**: Document complex logic and APIs
-- **Testing**: Write unit tests for business logic
-- **Accessibility**: Ensure WCAG 2.1 AA compliance
+## 📞 Support
 
-## 📄 License & Legal
+For support and questions:
+- Email: support@zpluscounselling.com
+- Issues: [GitHub Issues](https://github.com/your-username/zplus-counselling-platform/issues)
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for complete details.
+## 🙏 Acknowledgments
 
-### Third-party Licenses
-- React (MIT License)
-- TypeScript (Apache 2.0 License)
-- Tailwind CSS (MIT License)
-- Framer Motion (MIT License)
-
-## 📞 Support & Community
-
-### Getting Help
-- **Documentation**: Check the `/docs` folder for detailed guides
-- **Issues**: Create GitHub issues for bugs and feature requests
-- **Discussions**: Join community discussions for general questions
-- **Email Support**: contact@zpluscouncelling.com
-
-### Community Resources
-- **Discord Server**: Real-time chat with developers
-- **Newsletter**: Monthly updates and psychology insights
-- **Blog**: Regular articles on psychology and career development
-- **Social Media**: Follow us for updates and tips
-
-## 🚀 Roadmap & Future Features
-
-### Upcoming Features (Q4 2024)
-- [ ] **AI-Powered Recommendations**: Machine learning test suggestions
-- [ ] **Group Assessments**: Team and organizational testing
-- [ ] **Advanced Analytics**: Detailed progress tracking and insights
-- [ ] **Mobile App**: React Native mobile application
-- [ ] **API Integration**: RESTful API for third-party integrations
-
-### Long-term Vision (2025)
-- [ ] **Multi-language Support**: Internationalization for global reach
-- [ ] **Live Counselling**: Integration with professional counselors
-- [ ] **VR/AR Tests**: Immersive assessment experiences
-- [ ] **Blockchain Certificates**: Secure, verifiable test credentials
-- [ ] **Enterprise Edition**: White-label solution for institutions
-
-### Research & Development
-- [ ] **New Test Development**: Additional psychological assessments
-- [ ] **Scientific Validation**: Research partnerships with universities
-- [ ] **Accessibility Improvements**: Enhanced support for diverse users
-- [ ] **Performance Optimization**: Faster loading and better UX
+- Spring Boot Team for the excellent framework
+- React Team for the powerful frontend library
+- Contributors and testers
 
 ---
 
-**Z Plus Counselling Platform** - Empowering personal growth through comprehensive psychological assessments, expert guidance, and evidence-based insights.
-
-*Built with ❤️ using React, TypeScript, and modern web technologies.*
+**Built with ❤️ for mental health and career guidance**

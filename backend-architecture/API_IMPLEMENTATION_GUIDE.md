@@ -1,5 +1,64 @@
 # API Specification & Implementation Roadmap
 
+## 🐳 Docker Setup Instructions
+
+### Prerequisites
+```bash
+# Install Docker Desktop for macOS
+brew install --cask docker
+
+# Start Docker Desktop
+open -a Docker
+
+# Verify installation
+docker --version
+docker-compose --version
+```
+
+### Local Development Setup
+```bash
+# Clone the repository
+git clone <repository-url>
+cd zpluscouncelling-project/backend
+
+# Create required directories
+mkdir -p scripts logs
+
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f app
+
+# Access services
+# Application: http://localhost:8080
+# PostgreSQL: localhost:5432
+# MongoDB: localhost:27017
+# Redis: localhost:6379
+# RabbitMQ Management: http://localhost:15672 (guest/guest)
+```
+
+### Useful Docker Commands
+```bash
+# Stop all services
+docker-compose down
+
+# Rebuild application container
+docker-compose build app
+
+# View service status
+docker-compose ps
+
+# Execute commands in containers
+docker-compose exec postgres psql -U zplus_user -d zplus_counselling
+docker-compose exec mongodb mongosh --username admin --password secure_password
+docker-compose exec redis redis-cli -a secure_password
+
+# View container logs
+docker-compose logs postgres
+docker-compose logs mongodb
+```
+
 ## 🚀 Implementation Phases
 
 ### Phase 1: Core Backend Setup (Week 1-2)
