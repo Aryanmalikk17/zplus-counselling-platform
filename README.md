@@ -1,240 +1,374 @@
-# Z Plus Counselling Platform
+# Z Plus Counselling Platform 🧠💼
 
-A comprehensive web-based counselling and psychological assessment platform built with Spring Boot and React.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2+-6DB33F.svg)](https://spring.io/projects/spring-boot)
+[![React](https://img.shields.io/badge/React-18.3+-61DAFB.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-3178C6.svg)](https://www.typescriptlang.org/)
+[![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED.svg)](https://www.docker.com/)
 
-## 🎯 Overview
+> **A comprehensive web-based counselling and psychological assessment platform designed to provide professional mental health services, career guidance, and psychological testing.**
 
-Z Plus Counselling Platform provides:
-- **30+ Psychological Assessments** (MBTI, Big Five, IQ, Career Tests)
-- **Expert Counselling Services** with certified professionals
-- **Career Guidance** and recommendations
-- **Comprehensive User Management** with JWT authentication
-- **Real-time Analytics** and progress tracking
+## 🎯 Platform Overview
 
-## 🛠️ Technology Stack
+Z Plus Counselling Platform is a full-stack web application that bridges the gap between individuals seeking mental health support and professional counselling services. Our platform offers:
 
-### Backend
-- **Framework**: Spring Boot 3.2+
-- **Language**: Java 17+
-- **Database**: PostgreSQL 15+ (primary), MongoDB 6.0+ (assessments)
-- **Cache**: Redis 7.0+
-- **Security**: Spring Security 6 + JWT
-- **Build Tool**: Maven
+- **30+ Psychological Assessments** (MBTI, Big Five, IQ Tests, Career Assessments)
+- **Professional Counselling Services** with certified experts
+- **Career Guidance & Recommendations** based on assessment results
+- **Comprehensive User Management** with secure authentication
+- **Real-time Analytics & Progress Tracking**
+- **Mobile-Responsive Design** for accessibility across devices
 
-### Frontend
-- **Framework**: React 18 + TypeScript
-- **UI Library**: Tailwind CSS
-- **Build Tool**: Vite
-- **State Management**: React Context
-- **HTTP Client**: Fetch API
+## 🏗️ Architecture Overview
 
-### Infrastructure
-- **Containerization**: Docker & Docker Compose
-- **Database**: PostgreSQL + MongoDB
-- **Caching**: Redis
+```mermaid
+graph TB
+    subgraph "Frontend Layer"
+        A[React + TypeScript] --> B[Tailwind CSS]
+        A --> C[React Router]
+        A --> D[React Query]
+    end
+    
+    subgraph "API Gateway"
+        E[Spring Boot 3.2+] --> F[JWT Security]
+        E --> G[REST Controllers]
+        E --> H[Service Layer]
+    end
+    
+    subgraph "Data Layer"
+        I[(PostgreSQL)] --> J[User Data]
+        I --> K[Test Results]
+        L[(MongoDB)] --> M[Assessment Templates]
+        L --> N[Content Management]
+        O[(Redis)] --> P[Caching]
+        O --> Q[Session Management]
+    end
+    
+    subgraph "Infrastructure"
+        R[Docker Compose] --> S[Containerization]
+        T[Nginx] --> U[Load Balancing]
+        V[SSL/TLS] --> W[Security]
+    end
+    
+    A --> E
+    E --> I
+    E --> L
+    E --> O
+    E --> R
+```
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Docker & Docker Compose
-- Java 17+ (for local development)
-- Node.js 18+ (for frontend development)
+- **Java 17+** (for backend development)
+- **Node.js 18+** (for frontend development)
+- **Docker & Docker Compose** (for containerized deployment)
+- **Git** (for version control)
 
-### 1. Clone Repository
-```bash
-git clone https://github.com/your-username/zplus-counselling-platform.git
-cd zplus-counselling-platform
-```
+### 🔧 Local Development Setup
 
-### 2. Start with Docker (Recommended)
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Aryaanmalikk17/zpluscouncelling-project.git
+   cd zpluscouncelling-project
+   ```
+
+2. **Start Backend Services**
+   ```bash
+   cd backend
+   docker-compose up -d postgres mongodb redis
+   ./mvnw spring-boot:run
+   ```
+
+3. **Start Frontend Development Server**
+   ```bash
+   cd my-frontend-app
+   npm install
+   npm run dev
+   ```
+
+4. **Access Applications**
+   - **Frontend**: http://localhost:5173
+   - **Backend API**: http://localhost:8080/api/v1
+   - **API Documentation**: http://localhost:8080/swagger-ui.html
+
+### 🐳 Docker Deployment
+
 ```bash
-# Start all services
+# Development Environment
+cd backend
 docker-compose up -d
 
-# View logs
-docker-compose logs -f
+# Production Environment
+docker-compose -f docker-compose.prod.yml up -d
 ```
 
-### 3. Access Applications
-- **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:8080/api/v1
-- **API Documentation**: http://localhost:8080/swagger-ui.html
-
-## 🏗️ Project Structure
+## 📁 Project Structure
 
 ```
-zplus-counselling-platform/
-├── backend/                 # Spring Boot API
-│   ├── src/main/java/      # Java source code
-│   ├── src/main/resources/ # Configuration files
-│   ├── docker-compose.yml  # Docker services
-│   └── pom.xml             # Maven dependencies
-├── my-frontend-app/        # React frontend
-│   ├── src/                # React source code
-│   ├── public/             # Static assets
-│   └── package.json        # npm dependencies
-├── backend-architecture/   # Documentation
-│   ├── API_IMPLEMENTATION_GUIDE.md
-│   ├── DATABASE_IMPLEMENTATION.md
-│   └── SPRING_BOOT_ARCHITECTURE.md
-└── README.md              # This file
+zpluscouncelling-project/
+├── 📄 README.md                    # Main documentation
+├── 📄 LICENSE                      # MIT License
+├── 📄 netlify.toml                 # Netlify deployment config
+├── 📁 backend/                     # Spring Boot Backend
+│   ├── 📄 pom.xml                  # Maven dependencies
+│   ├── 📄 Dockerfile               # Backend container config
+│   ├── 📄 docker-compose.yml       # Development services
+│   ├── 📄 docker-compose.prod.yml  # Production services
+│   ├── 📁 src/main/java/           # Java source code
+│   │   └── com/zplus/counselling/  # Main package
+│   │       ├── 📁 controller/      # REST Controllers
+│   │       ├── 📁 service/         # Business Logic
+│   │       ├── 📁 entity/          # Database Entities
+│   │       ├── 📁 repository/      # Data Access Layer
+│   │       ├── 📁 dto/             # Data Transfer Objects
+│   │       ├── 📁 config/          # Configuration Classes
+│   │       └── 📁 security/        # Security Components
+│   ├── 📁 src/main/resources/      # Configuration files
+│   └── 📁 scripts/                 # Database initialization
+├── 📁 my-frontend-app/             # React Frontend
+│   ├── 📄 package.json             # npm dependencies
+│   ├── 📄 vite.config.ts           # Vite configuration
+│   ├── 📄 tailwind.config.js       # Tailwind CSS config
+│   ├── 📁 src/                     # React source code
+│   │   ├── 📁 components/          # Reusable components
+│   │   ├── 📁 pages/               # Page components
+│   │   ├── 📁 services/            # API services
+│   │   ├── 📁 context/             # React contexts
+│   │   ├── 📁 hooks/               # Custom hooks
+│   │   ├── 📁 types/               # TypeScript types
+│   │   └── 📁 utils/               # Utility functions
+│   └── 📁 public/                  # Static assets
+└── 📁 backend-architecture/        # Documentation
+    ├── 📄 API_IMPLEMENTATION_GUIDE.md
+    ├── 📄 DATABASE_IMPLEMENTATION.md
+    ├── 📄 SPRING_BOOT_ARCHITECTURE.md
+    └── 📄 ADMIN_PANEL_ARCHITECTURE.md
 ```
 
-## 🔧 Development Setup
+## 🛠️ Technology Stack
 
-### Backend Development
-```bash
-cd backend
-./mvnw spring-boot:run
-```
+### **Backend Technologies**
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Spring Boot** | 3.2+ | Core Framework |
+| **Java** | 17+ | Programming Language |
+| **PostgreSQL** | 15+ | Primary Database |
+| **MongoDB** | 6.0+ | Document Store |
+| **Redis** | 7.0+ | Caching & Sessions |
+| **Spring Security** | 6.0+ | Authentication & Authorization |
+| **JWT** | - | Token-based Authentication |
+| **Docker** | - | Containerization |
+| **Maven** | - | Build & Dependency Management |
 
-### Frontend Development
-```bash
-cd my-frontend-app
-npm install
-npm run dev
-```
+### **Frontend Technologies**
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **React** | 18.3+ | UI Framework |
+| **TypeScript** | 5.5+ | Type Safety |
+| **Vite** | 5.4+ | Build Tool |
+| **Tailwind CSS** | 3.4+ | Styling Framework |
+| **React Query** | 5.85+ | Server State Management |
+| **React Router** | 6.26+ | Client-side Routing |
+| **Recharts** | 3.1+ | Data Visualization |
 
-### Database Access
-```bash
-# PostgreSQL
-docker exec -it zplus-postgres psql -U zplus_user -d zplus_counselling
-
-# MongoDB
-docker exec -it zplus-mongodb mongosh zplus_content
-```
-
-## 📊 Features
-
-### ✅ Implemented
-- [x] User Authentication (Register, Login, JWT)
-- [x] User Profile Management
-- [x] Database Integration (PostgreSQL + MongoDB)
-- [x] Docker Containerization
-- [x] CORS Configuration
-- [x] Security Configuration
-- [x] API Documentation (Swagger)
-
-### 🚧 In Development
-- [ ] Psychology Assessment Engine
-- [ ] Expert Counselling System
-- [ ] Career Guidance Module
-- [ ] Payment Integration (Razorpay)
-- [ ] Email Notifications
-- [ ] Real-time Chat
+### **DevOps & Infrastructure**
+| Technology | Purpose |
+|------------|---------|
+| **Docker Compose** | Multi-container orchestration |
+| **Nginx** | Reverse proxy & Load balancing |
+| **Let's Encrypt** | SSL/TLS certificates |
+| **GitHub Actions** | CI/CD Pipeline |
+| **Netlify** | Frontend hosting |
 
 ## 🔐 Security Features
 
-- JWT-based authentication
-- Password encryption (BCrypt)
-- CORS protection
-- Request validation
-- SQL injection prevention
-- XSS protection
+- **JWT-based Authentication** with refresh tokens
+- **BCrypt Password Encryption** for secure password storage
+- **Role-based Access Control** (USER, ADMIN)
+- **CORS Protection** configured for cross-origin requests
+- **Input Validation** using Bean Validation API
+- **SQL Injection Prevention** through JPA/Hibernate
+- **XSS Protection** with security headers
+- **HTTPS Enforcement** in production
 
-## 📱 API Endpoints
+## 📊 Key Features
 
-### Authentication
-- `POST /api/v1/auth/register` - User registration
-- `POST /api/v1/auth/login` - User login
-- `GET /api/v1/auth/me` - Get current user
-- `POST /api/v1/auth/refresh` - Refresh token
-- `POST /api/v1/auth/logout` - Logout
+### ✅ **Implemented Features**
+- [x] **User Authentication System** (Register, Login, JWT)
+- [x] **User Profile Management** 
+- [x] **Database Integration** (PostgreSQL + MongoDB + Redis)
+- [x] **RESTful API Design** with comprehensive endpoints
+- [x] **Responsive Frontend** with modern UI/UX
+- [x] **Docker Containerization** for easy deployment
+- [x] **Security Implementation** with Spring Security
+- [x] **API Documentation** with Swagger/OpenAPI
 
-### User Management
-- `GET /api/v1/users/profile` - Get user profile
-- `PUT /api/v1/users/profile` - Update profile
-- `GET /api/v1/users/dashboard` - User dashboard
+### 🚧 **In Development**
+- [ ] **Psychology Assessment Engine** with scoring algorithms
+- [ ] **Expert Counselling Booking System**
+- [ ] **Career Guidance Module** with AI recommendations
+- [ ] **Payment Integration** (Razorpay)
+- [ ] **Email Notification System**
+- [ ] **Real-time Chat** for counselling sessions
+- [ ] **Admin Panel** for platform management
+- [ ] **Mobile Application** (React Native)
 
-### Assessments
-- `GET /api/v1/assessments/available` - Get available tests
-- `POST /api/v1/assessments/{testType}/start` - Start assessment
-- `PUT /api/v1/assessments/{testType}/answer` - Submit answer
-- `POST /api/v1/assessments/{testType}/submit` - Complete assessment
+## 📚 API Documentation
+
+### **Authentication Endpoints**
+```
+POST   /api/v1/auth/register     # User registration
+POST   /api/v1/auth/login        # User login
+GET    /api/v1/auth/me           # Get current user
+POST   /api/v1/auth/refresh      # Refresh access token
+POST   /api/v1/auth/logout       # User logout
+```
+
+### **User Management Endpoints**
+```
+GET    /api/v1/users/profile     # Get user profile
+PUT    /api/v1/users/profile     # Update user profile
+GET    /api/v1/users/dashboard   # User dashboard data
+```
+
+### **Assessment Endpoints**
+```
+GET    /api/v1/assessments/available              # List available tests
+POST   /api/v1/assessments/{testType}/start       # Start new assessment
+PUT    /api/v1/assessments/{testType}/answer      # Submit answer
+POST   /api/v1/assessments/{testType}/submit      # Complete assessment
+GET    /api/v1/assessments/{testType}/result/{id} # Get test results
+```
+
+For complete API documentation, visit: `/swagger-ui.html` when running the application.
 
 ## 🗄️ Database Schema
 
-### PostgreSQL (Relational Data)
-- `users` - User accounts and profiles
-- `test_results` - Assessment results
-- `counseling_sessions` - Counselling appointments
-- `assessment_sessions` - Active test sessions
+### **PostgreSQL Schema (Relational Data)**
+- **users** - User accounts and profiles
+- **test_results** - Assessment results and scores
+- **counseling_sessions** - Counselling appointments
+- **assessment_sessions** - Active test sessions
+- **user_answers** - Individual question responses
 
-### MongoDB (Document Data)
-- `assessmentTemplates` - Test questions and templates
-- `userAnalytics` - User behavior analytics
-- `blogArticles` - Content management
+### **MongoDB Schema (Document Data)**
+- **assessment_templates** - Test questions and templates
+- **user_analytics** - User behavior and analytics
+- **blog_articles** - Content management
+- **system_configurations** - Application settings
 
-## 🐳 Docker Services
+### **Redis Schema (Cache Data)**
+- **session:{userId}** - User session data
+- **auth:refresh:{token}** - Refresh token storage
+- **cache:user:{userId}** - User data cache
 
-- **zplus-postgres** - PostgreSQL database
-- **zplus-mongodb** - MongoDB database  
-- **zplus-redis** - Redis cache
-- **zplus-backend** - Spring Boot API
-- **zplus-frontend** - React application
+## 🚀 Deployment Guide
+
+### **Development Deployment**
+```bash
+# Start all services locally
+cd backend
+docker-compose up -d
+./mvnw spring-boot:run
+
+# In another terminal
+cd my-frontend-app
+npm run dev
+```
+
+### **Production Deployment**
+
+#### **Option 1: Netlify + DigitalOcean**
+1. **Frontend**: Deploy to Netlify (automatic from GitHub)
+2. **Backend**: Deploy to DigitalOcean Droplet
+3. **Database**: Use managed databases or Docker containers
+
+#### **Option 2: Full Docker Deployment**
+```bash
+# Clone repository on production server
+git clone https://github.com/Aryaanmalikk17/zpluscouncelling-project.git
+cd zpluscouncelling-project/backend
+
+# Set environment variables
+cp .env.production .env
+# Edit .env with production values
+
+# Deploy with Docker Compose
+docker-compose -f docker-compose.prod.yml up -d
+```
 
 ## 🧪 Testing
 
-### Backend Tests
+### **Backend Testing**
 ```bash
 cd backend
-./mvnw test
+./mvnw test                    # Run unit tests
+./mvnw verify                  # Run integration tests
+./mvnw spring-boot:run -Dspring-boot.run.profiles=test
 ```
 
-### Frontend Tests
+### **Frontend Testing**
 ```bash
 cd my-frontend-app
-npm test
+npm test                       # Run component tests
+npm run build                  # Test production build
+npm run preview                # Preview production build
 ```
 
-## 📈 Monitoring
+## 📈 Performance & Monitoring
 
+### **Application Metrics**
 - **Health Checks**: `/api/v1/actuator/health`
-- **Metrics**: `/api/v1/actuator/metrics`
-- **Application Logs**: `backend/logs/`
+- **Application Metrics**: `/api/v1/actuator/metrics`
+- **Database Connection Pool**: HikariCP monitoring
+- **API Response Times**: Built-in Spring Boot metrics
 
-## 🔒 Environment Variables
+### **Performance Optimizations**
+- **Database Indexing** on frequently queried columns
+- **Redis Caching** for session and user data
+- **Connection Pooling** for database connections
+- **Lazy Loading** for JPA entities
+- **Frontend Code Splitting** with Vite
+- **Image Optimization** and compression
 
-### Backend (.env)
-```env
-DATABASE_URL=jdbc:postgresql://localhost:5432/zplus_counselling
-DATABASE_USERNAME=zplus_user
-DATABASE_PASSWORD=secure_password
-JWT_SECRET=your-jwt-secret-key
-MONGODB_URI=mongodb://localhost:27017/zplus_content
-REDIS_HOST=localhost
-REDIS_PORT=6379
-```
+## 🤝 Contributing
 
-### Frontend (.env)
-```env
-VITE_API_URL=http://localhost:8080/api/v1
-```
+We welcome contributions! Please follow these steps:
+
+1. **Fork the repository**
+2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
+3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
+4. **Push to the branch** (`git push origin feature/amazing-feature`)
+5. **Open a Pull Request**
+
+### **Development Guidelines**
+- Follow **Java coding standards** for backend
+- Use **TypeScript best practices** for frontend
+- Write **unit tests** for new features
+- Update **documentation** for API changes
+- Follow **commit message conventions**
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Contributing
+## 📞 Support & Contact
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📞 Support
-
-For support and questions:
-- Email: support@zpluscounselling.com
-- Issues: [GitHub Issues](https://github.com/your-username/zplus-counselling-platform/issues)
+- **GitHub Issues**: [Report bugs or request features](https://github.com/Aryaanmalikk17/zpluscouncelling-project/issues)
+- **Documentation**: Check the `/backend-architecture/` folder for detailed guides
+- **Email**: support@zpluscounselling.com
 
 ## 🙏 Acknowledgments
 
-- Spring Boot Team for the excellent framework
-- React Team for the powerful frontend library
-- Contributors and testers
+- **Spring Boot Team** for the excellent framework
+- **React Team** for the powerful frontend library
+- **Tailwind CSS** for the utility-first CSS framework
+- **Docker** for containerization technology
+- **PostgreSQL & MongoDB** communities for robust databases
 
 ---
 
 **Built with ❤️ for mental health and career guidance**
+
+*Making professional counselling and psychological assessment accessible to everyone.*
