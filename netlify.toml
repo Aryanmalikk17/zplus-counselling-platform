@@ -3,7 +3,7 @@
   base = "my-frontend-app/"
   
   # Directory that contains the deploy-ready HTML files and assets
-  publish = "my-frontend-app/dist"
+  publish = "dist"
   
   # Default build command
   command = "npm run build"
