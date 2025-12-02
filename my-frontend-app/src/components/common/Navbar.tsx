@@ -48,7 +48,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <Brain className="h-8 w-8 text-primary-500" />
-            <span className="text-2xl font-bold text-gray-900">ZPlus Counselling</span>
+            <span className="text-2xl font-bold text-gray-900">ZPluse Counselling</span>
           </Link>
 
           {/* Desktop Navigation */}

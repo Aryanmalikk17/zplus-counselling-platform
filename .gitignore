@@ -43,3 +43,9 @@ mongo_data/
 *.backup
 *.bak
 *.tmp
+# Local Netlify folder
+.netlify
+# Backend build files
+backend/target/
+backend/*.log
+backend/logs/

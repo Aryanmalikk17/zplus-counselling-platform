@@ -146,7 +146,7 @@ public class AuthService {
         user.setPasswordResetTokenExpiresAt(LocalDateTime.now().plusHours(1));
         userService.save(user);
 
-        // TODO: Send email with reset link
+        
         // emailService.sendPasswordResetEmail(user.getEmail(), resetToken);
     }
 
