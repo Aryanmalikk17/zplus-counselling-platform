@@ -11,6 +11,9 @@ import org.springframework.cache.annotation.EnableCaching;
 public class ZPlusCounsellingApplication {
 
 	public static void main(String[] args) {
+		System.out.println("🚀 Starting ZPluse Counselling Platform...");
+		System.out.println("📊 Initializing Spring Boot Application");
 		SpringApplication.run(ZPlusCounsellingApplication.class, args);
+		System.out.println("✅ ZPluse Counselling Platform Started Successfully!");
 	}
 }

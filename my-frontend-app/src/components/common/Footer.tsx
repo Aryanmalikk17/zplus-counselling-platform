@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
     {
       name: 'LinkedIn',
       icon: Linkedin,
-      url: 'https://www.linkedin.com/company/zplusecounselling',
+      url: 'https://www.linkedin.com/in/zpluse-counseling-5745a1398?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       color: 'hover:text-blue-700'
     },
     {

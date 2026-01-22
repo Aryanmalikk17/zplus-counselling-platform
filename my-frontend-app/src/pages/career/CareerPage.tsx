@@ -204,7 +204,7 @@ const CareerPage: React.FC = () => {
     {
       name: 'Priya Patel',
       role: 'Marketing Manager at Unilever',
-      content: 'Thanks to ZPlus Counselling, I found the perfect career that matches my personality and interests. The interview prep was excellent.',
+      content: 'Thanks to ZPluse Counselling, I found the perfect career that matches my personality and interests. The interview prep was excellent.',
       rating: 5,
       image: '👩‍💼',
       salary: '₹15L',
