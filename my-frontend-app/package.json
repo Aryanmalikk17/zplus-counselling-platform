@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.85.5",
+    "@types/uuid": "^11.0.0",
     "axios": "^1.11.0",
     "clsx": "^2.1.1",
+    "firebase": "^12.9.0",
     "framer-motion": "^11.3.28",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.2",
@@ -23,7 +25,8 @@
     "react-is": "^19.1.1",
     "react-router-dom": "^6.26.1",
     "recharts": "^3.1.2",
-    "tailwind-merge": "^2.5.2"
+    "tailwind-merge": "^2.5.2",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

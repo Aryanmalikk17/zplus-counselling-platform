@@ -7,7 +7,6 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
 public class CounselingSessionRequest {
     
     @NotNull(message = "Counselor ID is required")
@@ -30,4 +29,28 @@ public class CounselingSessionRequest {
     private String platform; // ZOOM, TEAMS, IN_PERSON
     
     private String meetingLink;
+
+    public UUID getCounselorId() { return counselorId; }
+    public void setCounselorId(UUID counselorId) { this.counselorId = counselorId; }
+
+    public LocalDateTime getScheduledAt() { return scheduledAt; }
+    public void setScheduledAt(LocalDateTime scheduledAt) { this.scheduledAt = scheduledAt; }
+
+    public String getSessionType() { return sessionType; }
+    public void setSessionType(String sessionType) { this.sessionType = sessionType; }
+
+    public String getSessionNotes() { return sessionNotes; }
+    public void setSessionNotes(String sessionNotes) { this.sessionNotes = sessionNotes; }
+
+    public String getSpecialRequirements() { return specialRequirements; }
+    public void setSpecialRequirements(String specialRequirements) { this.specialRequirements = specialRequirements; }
+
+    public Integer getDurationMinutes() { return durationMinutes; }
+    public void setDurationMinutes(Integer durationMinutes) { this.durationMinutes = durationMinutes; }
+
+    public String getPlatform() { return platform; }
+    public void setPlatform(String platform) { this.platform = platform; }
+
+    public String getMeetingLink() { return meetingLink; }
+    public void setMeetingLink(String meetingLink) { this.meetingLink = meetingLink; }
 }

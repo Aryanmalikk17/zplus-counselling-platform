@@ -3,6 +3,7 @@ package com.zplus.counselling.service.auth;
 import com.zplus.counselling.dto.request.LoginRequest;
 import com.zplus.counselling.dto.request.RegisterRequest;
 import com.zplus.counselling.dto.response.AuthResponse;
+import com.zplus.counselling.dto.response.UserProfileResponse;
 import com.zplus.counselling.entity.postgres.User;
 import com.zplus.counselling.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +50,7 @@ public class AuthService {
             .accessToken(jwt)
             .refreshToken(refreshToken)
             .tokenType("Bearer")
-            .user(user)
+            .user(toProfileResponse(user))
             .build();
     }
 
@@ -82,7 +83,7 @@ public class AuthService {
             .accessToken(jwt)
             .refreshToken(refreshToken)
             .tokenType("Bearer")
-            .user(savedUser)
+            .user(toProfileResponse(savedUser))
             .build();
     }
 
@@ -106,7 +107,7 @@ public class AuthService {
             .accessToken(newAccessToken)
             .refreshToken(newRefreshToken)
             .tokenType("Bearer")
-            .user(user)
+            .user(toProfileResponse(user))
             .build();
     }
 
@@ -168,5 +169,26 @@ public class AuthService {
         user.setPasswordResetTokenExpiresAt(null);
         user.setPasswordChangedAt(LocalDateTime.now());
         userService.save(user);
+    }
+    /**
+     * Maps a User entity to the safe public-facing UserProfileResponse DTO.
+     * This is the single authoritative conversion point — no raw User entity
+     * should ever be placed directly into an API response.
+     */
+    private UserProfileResponse toProfileResponse(User user) {
+        return UserProfileResponse.builder()
+            .id(user.getId() != null ? user.getId().toString() : null)
+            .email(user.getEmail())
+            .fullName(user.getFullName())
+            .phone(user.getPhone())
+            .location(user.getLocation())
+            .profilePictureUrl(user.getProfilePictureUrl())
+            .subscriptionType(user.getSubscriptionType())
+            .isEmailVerified(user.getIsEmailVerified())
+            .isPhoneVerified(user.getIsPhoneVerified())
+            .isActive(user.getIsActive())
+            .createdAt(user.getCreatedAt())
+            .lastLoginAt(user.getLastLoginAt())
+            .build();
     }
 }

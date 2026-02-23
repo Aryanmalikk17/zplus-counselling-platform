@@ -88,7 +88,7 @@ public class UserService implements UserDetailsService {
 
     private UserProfileResponse convertToUserProfileResponse(User user) {
         return UserProfileResponse.builder()
-            .id(user.getId())
+            .id(user.getId() != null ? user.getId().toString() : null)
             .email(user.getEmail())
             .fullName(user.getFullName())
             .phone(user.getPhone())

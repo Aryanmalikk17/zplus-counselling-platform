@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Mail, 
   Phone, 
@@ -13,7 +13,8 @@ import {
   Shield,
   Award,
   Users,
-  Brain
+  Brain,
+  Lock
 } from 'lucide-react';
 
 // Custom X (Twitter) Icon Component
@@ -25,6 +26,7 @@ const XIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
 
   const legalLinks = [
     { name: 'Privacy Policy', path: '/privacy' },
@@ -225,6 +227,18 @@ const Footer: React.FC = () => {
                     {link.name}
                   </button>
                 ))}
+                {/* Admin Access Button */}
+                <button
+                  onClick={() => {
+                    console.log('Navigating to admin panel...');
+                    window.scrollTo(0, 0);
+                    navigate('/admin/assessments');
+                  }}
+                  className="mt-6 flex items-center justify-center w-full px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-sm text-gray-300 hover:bg-gray-700 hover:text-white hover:border-yellow-500/50 transition-all duration-200 group cursor-pointer relative z-10"
+                >
+                  <Lock className="w-4 h-4 mr-2 text-gray-500 group-hover:text-yellow-400 transition-colors" />
+                  Admin Panel
+                </button>
               </div>
             </div>
 

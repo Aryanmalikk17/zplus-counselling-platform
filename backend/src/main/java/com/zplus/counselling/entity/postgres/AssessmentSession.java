@@ -76,4 +76,29 @@ public class AssessmentSession extends BaseEntity {
         answers.add(answer);
         answer.setSession(this);
     }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+
+    public String getTemplateId() { return templateId; }
+    public void setTemplateId(String templateId) { this.templateId = templateId; }
+
+    public SessionStatus getStatus() { return status; }
+    public void setStatus(SessionStatus status) { this.status = status; }
+
+    public Integer getCurrentQuestionIndex() { return currentQuestionIndex; }
+    public void setCurrentQuestionIndex(Integer currentQuestionIndex) { this.currentQuestionIndex = currentQuestionIndex; }
+
+    public LocalDateTime getStartedAt() { return startedAt; }
+    public void setStartedAt(LocalDateTime startedAt) { this.startedAt = startedAt; }
+
+    public LocalDateTime getCompletedAt() { return completedAt; }
+    public void setCompletedAt(LocalDateTime completedAt) { this.completedAt = completedAt; }
+
+    public Long getTimeSpentSeconds() { return timeSpentSeconds; }
+    public void setTimeSpentSeconds(Long timeSpentSeconds) { this.timeSpentSeconds = timeSpentSeconds; }
+
+    public List<UserAnswer> getAnswers() { return answers; }
+    public void setAnswers(List<UserAnswer> answers) { this.answers = answers; }
+
 }

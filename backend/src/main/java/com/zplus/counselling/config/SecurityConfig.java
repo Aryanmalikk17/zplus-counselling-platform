@@ -19,8 +19,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.zplus.counselling.security.FirebaseTokenFilter;
 import com.zplus.counselling.security.JwtAuthenticationEntryPoint;
-import com.zplus.counselling.security.JwtAuthenticationFilter;
 import com.zplus.counselling.service.auth.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,16 +36,16 @@ public class SecurityConfig {
 
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     @Lazy
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final FirebaseTokenFilter firebaseTokenFilter;
+    @Lazy
     private final UserService userService;
 
-    @Value("${app.cors.allowed-origins}")
-    private String allowedOrigins;
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    /**
+     * The frontend URL allowed for CORS. Must be set as an environment variable (e.g., your Netlify URL).
+     * Defaults to localhost:5173 for local development only.
+     */
+    @Value("${FRONTEND_URL:http://localhost:5173}")
+    private String frontendUrl;
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
@@ -56,45 +56,54 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            // CSRF is intentionally disabled: this is a fully stateless API secured via
+            // Firebase tokens / JWT Bearer tokens. There are no session cookies to exploit.
             .csrf(csrf -> csrf.disable())
             .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                // Public endpoints - MOST SPECIFIC FIRST
-                .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/public/**").permitAll()
-                .requestMatchers("/actuator/**").permitAll()
-                .requestMatchers("/swagger-ui/**").permitAll()
-                .requestMatchers("/v3/api-docs/**").permitAll()
-                .requestMatchers("/h2-console/**").permitAll()
-                // Admin endpoints
+                .requestMatchers(
+                    "/auth/**",
+                    "/public/**",
+                    "/actuator/health",
+                    "/swagger-ui/**",
+                    "/v3/api-docs/**",
+                    "/error"
+                ).permitAll()
+                .requestMatchers("/actuator/**").hasRole("ADMIN")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                // Counselor endpoints  
                 .requestMatchers("/counselor/**").hasAnyRole("COUNSELOR", "ADMIN")
-                // All other requests need authentication
                 .anyRequest().authenticated()
             )
             .authenticationProvider(authenticationProvider())
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(firebaseTokenFilter, UsernamePasswordAuthenticationFilter.class)
             .build();
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Arrays.asList(allowedOrigins.split(",")));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
+        // Restrict to the specific frontend origin — never use "*" in production.
+        configuration.setAllowedOrigins(List.of(frontendUrl));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Requested-With"));
+        configuration.setExposedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
-        
+        configuration.setMaxAge(3600L);
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

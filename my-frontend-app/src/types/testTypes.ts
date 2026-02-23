@@ -64,8 +64,10 @@ export interface CategoryResult {
 export interface TestResult {
   testId: string;
   testName: string;
+  testType?: string;
   score: number;
   percentage: number;
+  percentile?: number;
   totalQuestions: number;
   correctAnswers: number;
   incorrectAnswers: number;

@@ -2,7 +2,6 @@ package com.zplus.counselling.entity.postgres;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "counseling_sessions")
-@Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -98,4 +96,55 @@ public class CounselingSession extends BaseEntity {
         REFUNDED,
         WAIVED
     }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+
+    public User getCounselor() { return counselor; }
+    public void setCounselor(User counselor) { this.counselor = counselor; }
+
+    public SessionType getSessionType() { return sessionType; }
+    public void setSessionType(SessionType sessionType) { this.sessionType = sessionType; }
+
+    public SessionStatus getStatus() { return status; }
+    public void setStatus(SessionStatus status) { this.status = status; }
+
+    public LocalDateTime getScheduledAt() { return scheduledAt; }
+    public void setScheduledAt(LocalDateTime scheduledAt) { this.scheduledAt = scheduledAt; }
+
+    public LocalDateTime getStartedAt() { return startedAt; }
+    public void setStartedAt(LocalDateTime startedAt) { this.startedAt = startedAt; }
+
+    public LocalDateTime getEndedAt() { return endedAt; }
+    public void setEndedAt(LocalDateTime endedAt) { this.endedAt = endedAt; }
+
+    public Integer getDurationMinutes() { return durationMinutes; }
+    public void setDurationMinutes(Integer durationMinutes) { this.durationMinutes = durationMinutes; }
+
+    public String getMeetingLink() { return meetingLink; }
+    public void setMeetingLink(String meetingLink) { this.meetingLink = meetingLink; }
+
+    public String getSessionNotes() { return sessionNotes; }
+    public void setSessionNotes(String sessionNotes) { this.sessionNotes = sessionNotes; }
+
+    public String getClientFeedback() { return clientFeedback; }
+    public void setClientFeedback(String clientFeedback) { this.clientFeedback = clientFeedback; }
+
+    public String getCounselorFeedback() { return counselorFeedback; }
+    public void setCounselorFeedback(String counselorFeedback) { this.counselorFeedback = counselorFeedback; }
+
+    public Integer getSessionRating() { return sessionRating; }
+    public void setSessionRating(Integer sessionRating) { this.sessionRating = sessionRating; }
+
+    public BigDecimal getFeeAmount() { return feeAmount; }
+    public void setFeeAmount(BigDecimal feeAmount) { this.feeAmount = feeAmount; }
+
+    public PaymentStatus getPaymentStatus() { return paymentStatus; }
+    public void setPaymentStatus(PaymentStatus paymentStatus) { this.paymentStatus = paymentStatus; }
+
+    public String getCancelledReason() { return cancelledReason; }
+    public void setCancelledReason(String cancelledReason) { this.cancelledReason = cancelledReason; }
+
+    public String getRescheduledFromSessionId() { return rescheduledFromSessionId; }
+    public void setRescheduledFromSessionId(String rescheduledFromSessionId) { this.rescheduledFromSessionId = rescheduledFromSessionId; }
 }

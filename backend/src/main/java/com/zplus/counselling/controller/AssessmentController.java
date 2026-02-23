@@ -2,6 +2,7 @@ package com.zplus.counselling.controller;
 
 import com.zplus.counselling.dto.*;
 import com.zplus.counselling.dto.response.ApiResponse;
+import com.zplus.counselling.entity.mongodb.AssessmentTemplate;
 import com.zplus.counselling.security.UserPrincipal;
 import com.zplus.counselling.service.AssessmentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/assessments")
+@RequestMapping("/assessments")
 @RequiredArgsConstructor
 @Slf4j
 @Tag(name = "Assessment APIs", description = "Dynamic assessment and testing endpoints")
@@ -26,6 +27,18 @@ import java.util.List;
 public class AssessmentController {
 
     private final AssessmentService assessmentService;
+
+    @GetMapping("/{testType}")
+    @Operation(summary = "Get assessment template by test type", 
+               description = "Retrieve the full assessment template structure for the given test type")
+    public ResponseEntity<ApiResponse<AssessmentTemplate>> getAssessmentTemplate(
+            @Parameter(description = "Assessment test type (e.g., iq-test, tat-test)") 
+            @PathVariable String testType) {
+        log.info("Getting assessment template for type: {}", testType);
+        
+        AssessmentTemplate template = assessmentService.getAssessmentTemplateByType(testType);
+        return ResponseEntity.ok(ApiResponse.success(template));
+    }
 
     @GetMapping("/available")
     @Operation(summary = "Get available assessments", 

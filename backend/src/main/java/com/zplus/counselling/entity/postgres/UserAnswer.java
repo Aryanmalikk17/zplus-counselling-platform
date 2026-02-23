@@ -47,4 +47,28 @@ public class UserAnswer extends BaseEntity {
     public boolean isAnswered() {
         return selectedOptionId != null || selectedOptionText != null;
     }
+
+    public AssessmentSession getSession() { return session; }
+    public void setSession(AssessmentSession session) { this.session = session; }
+
+    public String getQuestionId() { return questionId; }
+    public void setQuestionId(String questionId) { this.questionId = questionId; }
+
+    public Integer getQuestionNumber() { return questionNumber; }
+    public void setQuestionNumber(Integer questionNumber) { this.questionNumber = questionNumber; }
+
+    public String getSelectedOptionId() { return selectedOptionId; }
+    public void setSelectedOptionId(String selectedOptionId) { this.selectedOptionId = selectedOptionId; }
+
+    public String getSelectedOptionText() { return selectedOptionText; }
+    public void setSelectedOptionText(String selectedOptionText) { this.selectedOptionText = selectedOptionText; }
+
+    public Double getScoreValue() { return scoreValue; }
+    public void setScoreValue(Double scoreValue) { this.scoreValue = scoreValue; }
+
+    public Long getTimeSpentSeconds() { return timeSpentSeconds; }
+    public void setTimeSpentSeconds(Long timeSpentSeconds) { this.timeSpentSeconds = timeSpentSeconds; }
+
+    public Boolean getIsCorrect() { return isCorrect; }
+    public void setIsCorrect(Boolean isCorrect) { this.isCorrect = isCorrect; }
 }

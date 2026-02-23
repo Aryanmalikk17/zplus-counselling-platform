@@ -10,10 +10,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  server: {
-    port: 5173,
-    open: true,
-  },
+  // The dev server proxy is intentionally removed.
+  // In development, set VITE_API_URL=http://localhost:8080/api/v1 in your .env file.
+  // In production (Netlify), set VITE_API_URL to your Render backend URL.
   optimizeDeps: {
     include: ['react-is']
   },
