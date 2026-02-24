@@ -4,40 +4,37 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 @Configuration
 public class FirebaseConfig {
+
+    @Value("${firebase.credential.json}")
+    private String firebaseCredentialsJson;
 
     @PostConstruct
     public void initialize() {
         try {
             if (FirebaseApp.getApps().isEmpty()) {
-                // Try to load from classpath first (for production/docker)
-                InputStream serviceAccount = null;
-                try {
-                    serviceAccount = new ClassPathResource("serviceAccountKey.json").getInputStream();
-                } catch (IOException e) {
-                    // Fallback to local file system (for local dev)
-                    // You might want to make this path configurable via properties
-                    serviceAccount = new FileInputStream("serviceAccountKey.json");
+                if (firebaseCredentialsJson == null || firebaseCredentialsJson.trim().isEmpty()) {
+                    System.err.println("Failed to load Firebase credentials. FIREBASE_CREDENTIALS environment variable is missing or empty.");
+                    return;
                 }
 
-                if (serviceAccount != null) {
-                    FirebaseOptions options = FirebaseOptions.builder()
-                            .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                            .build();
+                InputStream serviceAccount = new ByteArrayInputStream(firebaseCredentialsJson.getBytes(StandardCharsets.UTF_8));
 
-                    FirebaseApp.initializeApp(options);
-                    System.out.println("Firebase Admin SDK initialized successfully.");
-                } else {
-                    System.err.println("Failed to load serviceAccountKey.json. Firebase features will not work.");
-                }
+                FirebaseOptions options = FirebaseOptions.builder()
+                        .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                        .build();
+
+                FirebaseApp.initializeApp(options);
+                System.out.println("Firebase Admin SDK initialized successfully.");
             }
         } catch (IOException e) {
             System.err.println("Error initializing Firebase: " + e.getMessage());

@@ -22,11 +22,8 @@ spring:
   data:
     mongodb:
       uri: ${MONGODB_URI}
-
-  redis:
-    host: ${REDIS_HOST}
-    port: ${REDIS_PORT:6379}
-    password: ${REDIS_PASSWORD}
+    redis:
+      url: ${REDIS_URL}
 
   rabbitmq:
     host: ${RABBITMQ_HOST}
@@ -44,7 +41,7 @@ app:
     refresh-expiration: ${JWT_REFRESH_EXPIRATION:2592000000}
 
   cors:
-    allowed-origins: ${FRONTEND_URL}
+    allowed-origins: ${CORS_ALLOWED_ORIGINS}
 
 logging:
   level:
@@ -53,3 +50,7 @@ logging:
     org.springframework.web: WARN
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+firebase:
+  credential:
+    json: ${FIREBASE_CREDENTIALS:}

@@ -40,12 +40,17 @@ public class SecurityConfig {
     @Lazy
     private final UserService userService;
 
-    /**
-     * The frontend URL allowed for CORS. Must be set as an environment variable (e.g., your Netlify URL).
-     * Defaults to localhost:5173 for local development only.
-     */
-    @Value("${FRONTEND_URL:http://localhost:5173}")
-    private String frontendUrl;
+    @Value("${app.cors.allowed-origins}")
+    private List<String> allowedOrigins;
+
+    @Value("${app.cors.allowed-methods}")
+    private List<String> allowedMethods;
+
+    @Value("${app.cors.allowed-headers}")
+    private List<String> allowedHeaders;
+
+    @Value("${app.cors.allow-credentials}")
+    private boolean allowCredentials;
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
@@ -96,12 +101,11 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Restrict to the specific frontend origin — never use "*" in production.
-        configuration.setAllowedOrigins(List.of(frontendUrl));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Requested-With"));
+        configuration.setAllowedOrigins(allowedOrigins);
+        configuration.setAllowedMethods(allowedMethods);
+        configuration.setAllowedHeaders(allowedHeaders);
         configuration.setExposedHeaders(List.of("Authorization", "Content-Type"));
-        configuration.setAllowCredentials(true);
+        configuration.setAllowCredentials(allowCredentials);
         configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
