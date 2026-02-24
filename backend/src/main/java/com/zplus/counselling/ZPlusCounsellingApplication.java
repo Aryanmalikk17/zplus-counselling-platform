@@ -9,8 +9,6 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication(exclude = {
-        MongoAutoConfiguration.class,
-        MongoDataAutoConfiguration.class,
         RabbitAutoConfiguration.class
 })
 @EnableAsync

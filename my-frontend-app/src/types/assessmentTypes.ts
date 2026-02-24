@@ -111,4 +111,5 @@ export interface BackendUser {
     isEmailVerified?: boolean;
     isPhoneVerified?: boolean;
     createdAt: string;
+    updatedAt?: string;
 }

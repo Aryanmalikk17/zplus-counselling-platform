@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
           // Sync with backend to get full profile
           const backendUser = await authService.syncUser();
-          dispatch({ type: 'SET_USER', payload: backendUser });
+          dispatch({ type: 'SET_USER', payload: { ...backendUser, updatedAt: backendUser.updatedAt || new Date().toISOString() } });
         } catch (error) {
           console.error("Failed to sync user with backend", error);
           // Fallback to basic Firebase user if backend fails
@@ -116,89 +116,68 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       await firebaseUpdateProfile(userCredential.user, {
         displayName: fullName
       });
-      return () => unsubscribe();
-    }, []);
-
-    const login = async (email: string, password: string) => {
-      dispatch({ type: 'SET_LOADING', payload: true });
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        // State updated by onAuthStateChanged
-      } catch (error) {
-        dispatch({ type: 'SET_LOADING', payload: false });
-        throw error;
-      }
-    };
-
-    const register = async (email: string, password: string, fullName: string) => {
-      dispatch({ type: 'SET_LOADING', payload: true });
-      try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        await firebaseUpdateProfile(userCredential.user, {
-          displayName: fullName
-        });
-        // State updated by onAuthStateChanged
-      } catch (error) {
-        dispatch({ type: 'SET_LOADING', payload: false });
-        throw error;
-      }
-    };
-
-    const signInWithGoogle = async () => {
-      dispatch({ type: 'SET_LOADING', payload: true });
-      try {
-        await signInWithPopup(auth, googleProvider);
-        // State updated by onAuthStateChanged
-      } catch (error) {
-        dispatch({ type: 'SET_LOADING', payload: false });
-        throw error;
-      }
-    };
-
-    const logout = async () => {
-      try {
-        await signOut(auth);
-        dispatch({ type: 'LOGOUT' });
-      } catch (error) {
-        console.error("Logout failed", error);
-      }
-    };
-
-    const updateProfile = async (userData: Partial<User>) => {
-      if (!auth.currentUser) throw new Error('No user logged in');
-
-      try {
-        if (userData.fullName || userData.profilePictureUrl) {
-          await firebaseUpdateProfile(auth.currentUser, {
-            displayName: userData.fullName,
-            photoURL: userData.profilePictureUrl
-          });
-
-          // Refresh user in state
-          const updatedUser = mapFirebaseUser(auth.currentUser);
-          dispatch({ type: 'SET_USER', payload: updatedUser });
-        }
-      } catch (error) {
-        throw error;
-      }
-    };
-
-    const value: AuthContextType = {
-      ...state,
-      login,
-      register,
-      logout,
-      signInWithGoogle,
-      updateProfile,
-    };
-
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-  };
-
-  export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (context === undefined) {
-      throw new Error('useAuth must be used within an AuthProvider');
+      // State updated by onAuthStateChanged
+    } catch (error) {
+      dispatch({ type: 'SET_LOADING', payload: false });
+      throw error;
     }
-    return context;
   };
+
+  const signInWithGoogle = async () => {
+    dispatch({ type: 'SET_LOADING', payload: true });
+    try {
+      await signInWithPopup(auth, googleProvider);
+      // State updated by onAuthStateChanged
+    } catch (error) {
+      dispatch({ type: 'SET_LOADING', payload: false });
+      throw error;
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      dispatch({ type: 'LOGOUT' });
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  };
+
+  const updateProfile = async (userData: Partial<User>) => {
+    if (!auth.currentUser) throw new Error('No user logged in');
+
+    try {
+      if (userData.fullName || userData.profilePictureUrl) {
+        await firebaseUpdateProfile(auth.currentUser, {
+          displayName: userData.fullName,
+          photoURL: userData.profilePictureUrl
+        });
+
+        // Refresh user in state
+        const updatedUser = mapFirebaseUser(auth.currentUser);
+        dispatch({ type: 'SET_USER', payload: updatedUser });
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const value: AuthContextType = {
+    ...state,
+    login,
+    register,
+    logout,
+    signInWithGoogle,
+    updateProfile,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
