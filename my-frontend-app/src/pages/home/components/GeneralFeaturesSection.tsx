@@ -50,6 +50,7 @@ const GeneralFeaturesSection: React.FC = () => {
                                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80"
                                 alt="Counseling Session"
                                 className="w-full h-full object-cover"
+                                loading="lazy"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent flex items-end p-10">
                                 <div className="text-white">

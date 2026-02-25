@@ -1,14 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Brain, Sparkles } from 'lucide-react';
+import { Brain, Sparkles, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import React, { Suspense } from 'react';
+
+// Lazy loading the canvas to avoid blocking the initial text content render (LCP)
+const BackgroundWave = React.lazy(() => import('../../components/common/BackgroundWave'));
 
 const HomeHero: React.FC = () => {
     return (
-        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent-50/50 via-white to-white" />
-            <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-accent-100 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-pulse-slow" />
-            <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-purple-100 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-pulse-slow animation-delay-2000" />
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white min-h-[90vh] flex items-center">
+            {/* The white radial gradient sits below the wave to give a base white space feel */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white via-white to-gray-50" style={{ zIndex: -1 }} />
+
+            <Suspense fallback={null}>
+                <BackgroundWave />
+            </Suspense>
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
                 <motion.div
