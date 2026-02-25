@@ -1,12 +1,4 @@
-import {
-    BookOpen,
-    GraduationCap,
-    Target,
-    Microscope,
-    BarChart3,
-    Palette,
-    Trophy
-} from 'lucide-react';
+import { BookOpen, GraduationCap, Target, Microscope, BarChart3, Palette, Trophy } from 'lucide-react';
 import { TestConfig } from '../types/testTypes';
 
 // Primary Education Test Configuration

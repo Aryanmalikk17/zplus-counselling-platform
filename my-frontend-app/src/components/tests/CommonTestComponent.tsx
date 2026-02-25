@@ -1,14 +1,8 @@
+import { Clock, ArrowRight, ArrowLeft, CheckCircle, AlertCircle, Play, Pause } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 
-import { 
-  Clock, 
-  ArrowRight, 
-  ArrowLeft, 
-  CheckCircle, 
-  AlertCircle,
-  Play,
-  Pause
-} from 'lucide-react';
+
 import { TestConfig, TestAnswer, TestSession, TestResult } from '../../types/testTypes';
 import { testHistoryService } from '../../services/testHistoryService';
 import { useAuth } from '../../context/AuthContext';
@@ -101,10 +95,10 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
         answers: updatedAnswers,
         isCompleted: true
       };
-      
+
       const result = calculateResults(finalSession);
       setIsTimerRunning(false);
-      
+
       // Save test result to history if user is logged in
       if (user?.id) {
         const testResultForHistory = {
@@ -132,10 +126,10 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
             explanation: answer.explanation || undefined
           })),
           categoryBreakdown: result.categoryResults.map(cat => ({
-            category: cat.category,
-            total: cat.totalQuestions,
-            correct: cat.correctAnswers,
-            percentage: cat.percentage
+            category: (cat as any).category,
+            total: (cat as any).totalQuestions,
+            correct: (cat as any).correctAnswers,
+            percentage: (cat as any).percentage
           })),
           recommendations: result.recommendations,
           strengths: result.strengths,
@@ -148,7 +142,7 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
           console.error('Failed to save test result to history:', error);
         }
       }
-      
+
       onTestComplete(result);
     }
   };
@@ -173,12 +167,12 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
     let pointsEarned = 0;
     let correctAnswers = 0;
     let incorrectAnswers = 0;
-    
+
     // Calculate category-wise results
     const categoryResults: Record<string, any> = {};
-    
+
     // Initialize category results
-    testConfig.categories.forEach(category => {
+    testConfig.categories.forEach((category: any) => {
       categoryResults[category] = {
         category,
         totalQuestions: 0,
@@ -200,8 +194,8 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
 
       // Check if answer is correct (for objective questions)
       if (question.correctAnswer) {
-        isCorrect = answer.answer.toString().toLowerCase().trim() === 
-                   question.correctAnswer.toLowerCase().trim();
+        isCorrect = answer.answer.toString().toLowerCase().trim() ===
+          question.correctAnswer.toLowerCase().trim();
       } else if (question.options?.some(opt => opt.isCorrect)) {
         // Multiple choice with marked correct answer
         const correctOption = question.options.find(opt => opt.isCorrect);
@@ -214,7 +208,7 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
 
       const earnedPoints = isCorrect ? questionPoints : 0;
       pointsEarned += earnedPoints;
-      
+
       if (isCorrect) correctAnswers++;
       else incorrectAnswers++;
 
@@ -235,18 +229,18 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
         questionId: question.id,
         question: question.question,
         userAnswer: answer.answer.toString(),
-        correctAnswer: question.correctAnswer || 
-                      question.options?.find(opt => opt.isCorrect)?.text || 
-                      'Subjective Answer',
+        correctAnswer: question.correctAnswer ||
+          question.options?.find(opt => opt.isCorrect)?.text ||
+          'Subjective Answer',
         isCorrect,
         pointsEarned: earnedPoints,
         timeSpent: answer.timeSpent,
         category: question.category
       };
-    }).filter(Boolean) as unknown[];
+    }).filter(Boolean) as any[];
 
     // Calculate final category percentages
-    Object.values(categoryResults).forEach((category: unknown) => {
+    Object.values(categoryResults).forEach((category: any) => {
       if (category.totalQuestions > 0) {
         category.percentage = (category.correctAnswers / category.totalQuestions) * 100;
       }
@@ -254,22 +248,22 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
 
     const unanswered = totalQuestions - finalSession.answers.length;
     const percentage = (correctAnswers / totalQuestions) * 100;
-    
+
     // Calculate grade
     const grade = percentage >= 95 ? 'A+' :
-                 percentage >= 90 ? 'A' :
-                 percentage >= 85 ? 'B+' :
-                 percentage >= 80 ? 'B' :
-                 percentage >= 75 ? 'C+' :
-                 percentage >= 70 ? 'C' :
-                 percentage >= 60 ? 'D' : 'F';
+      percentage >= 90 ? 'A' :
+        percentage >= 85 ? 'B+' :
+          percentage >= 80 ? 'B' :
+            percentage >= 75 ? 'C+' :
+              percentage >= 70 ? 'C' :
+                percentage >= 60 ? 'D' : 'F';
 
     const isPassed = percentage >= (testConfig.passingScore || 60);
 
     // Generate insights
     const { recommendations, strengths, weaknesses } = generateDetailedInsights(
-      percentage, 
-      Object.values(categoryResults), 
+      percentage,
+      Object.values(categoryResults),
       detailedAnswers,
       testConfig.id
     );
@@ -291,16 +285,16 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
       recommendations,
       strengths,
       weaknesses,
-      grade: grade as unknown,
+      grade: grade as any,
       isPassed,
       detailedAnswers
     };
   };
 
   const generateDetailedInsights = (
-    percentage: number, 
-    categoryResults: unknown[], 
-    detailedAnswers: unknown[],
+    percentage: number,
+    categoryResults: any[],
+    detailedAnswers: any[],
     testId: string
   ) => {
     const recommendations: string[] = [];
@@ -323,7 +317,7 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
     }
 
     // Category-specific analysis
-    categoryResults.forEach(category => {
+    categoryResults.forEach((category: any) => {
       if (category.percentage >= 80) {
         strengths.push(`Strong performance in ${category.category.toLowerCase()}`);
       } else if (category.percentage < 60) {
@@ -351,9 +345,9 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
     }
 
     // Time management analysis
-    const avgTimePerQuestion = categoryResults.reduce((acc, cat) => acc + cat.timeSpent, 0) / 
-                              categoryResults.reduce((acc, cat) => acc + cat.totalQuestions, 0);
-    
+    const avgTimePerQuestion = categoryResults.reduce((acc: any, cat: any) => acc + cat.timeSpent, 0) /
+      categoryResults.reduce((acc: any, cat: any) => acc + cat.totalQuestions, 0);
+
     if (avgTimePerQuestion < 60) {
       strengths.push("Excellent time management and quick decision making");
     } else if (avgTimePerQuestion > 180) {
@@ -452,12 +446,12 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
                 Question {session.currentQuestionIndex + 1} of {testConfig.questions.length}
               </div>
             </div>
-            
+
             <div className="w-full bg-gray-200 rounded-full h-2">
-              <div 
+              <div
                 className="bg-primary-500 h-2 rounded-full transition-all duration-300"
-                style={{ 
-                  width: `${((session.currentQuestionIndex + 1) / testConfig.questions.length) * 100}%` 
+                style={{
+                  width: `${((session.currentQuestionIndex + 1) / testConfig.questions.length) * 100}%`
                 }}
               />
             </div>
@@ -477,7 +471,7 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
                   </div>
                 )}
               </div>
-              
+
               {currentQuestion.description && (
                 <p className="text-gray-600 mb-4">{currentQuestion.description}</p>
               )}
@@ -486,9 +480,9 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
                 <div className="mb-6">
                   <div className="text-center">
                     <div className="inline-block border-2 border-gray-200 rounded-lg overflow-hidden shadow-lg">
-                      <img 
-                        src={currentQuestion.image} 
-                        alt="Test Image" 
+                      <img
+                        src={currentQuestion.image}
+                        alt="Test Image"
                         className="max-w-full h-auto max-h-96 object-contain"
                         onError={(e) => {
                           // Fallback for missing images
@@ -553,11 +547,11 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
                     onChange={(e) => setCurrentAnswer(e.target.value)}
                     placeholder={
                       testConfig.id.includes('tat') ? "Write your story here... (150-200 words)" :
-                      testConfig.id.includes('wat') ? "Write your first thought as a sentence..." :
-                      testConfig.id.includes('srt') ? "Describe what you would do..." :
-                      testConfig.id.includes('sdt') ? "Describe yourself honestly..." :
-                      testConfig.id.includes('gpe') ? "Write your detailed plan..." :
-                      "Type your answer here..."
+                        testConfig.id.includes('wat') ? "Write your first thought as a sentence..." :
+                          testConfig.id.includes('srt') ? "Describe what you would do..." :
+                            testConfig.id.includes('sdt') ? "Describe yourself honestly..." :
+                              testConfig.id.includes('gpe') ? "Write your detailed plan..." :
+                                "Type your answer here..."
                     }
                     className="w-full p-4 border border-gray-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 resize-none text-sm"
                     rows={testConfig.id.includes('tat') || testConfig.id.includes('gpe') || testConfig.id.includes('sdt') ? 8 : 4}
@@ -576,18 +570,16 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
                     <button
                       key={option.id}
                       onClick={() => handleAnswerSelect(option.text)}
-                      className={`w-full text-left p-4 rounded-lg border transition-all duration-200 ${
-                        currentAnswer === option.text
-                          ? 'border-primary-500 bg-primary-50'
-                          : 'border-gray-200 hover:border-primary-300 hover:bg-gray-50'
-                      }`}
+                      className={`w-full text-left p-4 rounded-lg border transition-all duration-200 ${currentAnswer === option.text
+                        ? 'border-primary-500 bg-primary-50'
+                        : 'border-gray-200 hover:border-primary-300 hover:bg-gray-50'
+                        }`}
                     >
                       <div className="flex items-center">
-                        <div className={`w-4 h-4 rounded-full border-2 mr-3 ${
-                          currentAnswer === option.text
-                            ? 'border-primary-500 bg-primary-500'
-                            : 'border-gray-300'
-                        }`}>
+                        <div className={`w-4 h-4 rounded-full border-2 mr-3 ${currentAnswer === option.text
+                          ? 'border-primary-500 bg-primary-500'
+                          : 'border-gray-300'
+                          }`}>
                           {currentAnswer === option.text && (
                             <div className="w-full h-full rounded-full bg-white transform scale-50" />
                           )}

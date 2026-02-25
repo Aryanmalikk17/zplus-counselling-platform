@@ -1,3 +1,5 @@
+import { Trophy, Target, Clock, CheckCircle, XCircle, AlertCircle, Download, Share2, RefreshCw, BookOpen, Star, TrendingUp, Award, FileText, Camera, Loader } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 
 import { 
@@ -15,24 +17,7 @@ import {
   RadialBarChart,
   RadialBar
 } from 'recharts';
-import { 
-  Trophy, 
-  Target, 
-  Clock, 
-  CheckCircle, 
-  XCircle, 
-  AlertCircle,
-  Download,
-  Share2,
-  RefreshCw,
-  BookOpen,
-  Star,
-  TrendingUp,
-  Award,
-  FileText,
-  Camera,
-  Loader
-} from 'lucide-react';
+
 import { TestResult } from '../../types/testTypes';
 import PDFReportService from '../../services/pdfReportService';
 

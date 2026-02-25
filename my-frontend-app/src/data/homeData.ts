@@ -1,20 +1,4 @@
-import {
-    CheckCircle,
-    Brain,
-    Target,
-    UserCheck,
-    Briefcase,
-    BookOpen,
-    BarChart3,
-    Zap,
-    Heart,
-    Users,
-    TrendingUp,
-    Star,
-    MessageSquare,
-    Award
-} from 'lucide-react';
-
+import { CheckCircle, Brain, Target, UserCheck, Briefcase, BookOpen, BarChart3, Zap, Heart, Users, TrendingUp, Star, MessageSquare, Award } from 'lucide-react';
 export const platformStats = [
     { number: '50,000+', label: 'Tests Completed', icon: CheckCircle },
     { number: '30+', label: 'Assessment Types', icon: Brain },

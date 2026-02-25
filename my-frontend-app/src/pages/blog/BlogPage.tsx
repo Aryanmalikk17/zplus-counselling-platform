@@ -1,6 +1,8 @@
+import { Search, Calendar, User, BookOpen, Filter } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React, { useState, useMemo } from 'react';
 
-import { Search, Calendar, User } from 'lucide-react';
+
 
 const BlogPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');

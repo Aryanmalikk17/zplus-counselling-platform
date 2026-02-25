@@ -1,0 +1,263 @@
+src/components/profile/TestHistoryComponent.tsx(2,33): error TS2307: Cannot find module 'framer-' or its corresponding type declarations.
+src/components/profile/TestHistoryComponent.tsx(293,12): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestHistoryComponent.tsx(356,13): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestHistoryComponent.tsx(375,14): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestHistoryComponent.tsx(525,15): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(93,14): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(104,15): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(106,14): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(119,15): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(121,14): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(134,15): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(136,14): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(149,15): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(153,12): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(174,13): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(178,14): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(209,15): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(214,14): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(248,15): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(253,14): error TS2304: Cannot find name 'motion'.
+src/components/profile/TestStatsDashboard.tsx(277,15): error TS2304: Cannot find name 'motion'.
+src/components/results/TestResultDashboard.tsx(172,10): error TS2304: Cannot find name 'motion'.
+src/components/results/TestResultDashboard.tsx(464,14): error TS2304: Cannot find name 'motion'.
+src/components/results/TestResultDashboard.tsx(477,15): error TS2304: Cannot find name 'motion'.
+src/components/results/TestResultDashboard.tsx(481,12): error TS2304: Cannot find name 'motion'.
+src/components/results/TestResultDashboard.tsx(526,13): error TS2304: Cannot find name 'motion'.
+src/components/results/TestResultDashboard.tsx(527,11): error TS2304: Cannot find name 'motion'.
+src/components/tests/CommonTestComponent.tsx(250,11): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(251,9): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(251,32): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(251,58): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(294,7): error TS2322: Type 'unknown' is not assignable to type '"A+" | "A" | "B+" | "B" | "C+" | "C" | "D" | "F"'.
+src/components/tests/CommonTestComponent.tsx(296,7): error TS2322: Type 'unknown[]' is not assignable to type '{ questionId: string; question: string; userAnswer: string; correctAnswer?: string | undefined; isCorrect: boolean; pointsEarned: number; timeSpent: number; category: string; explanation?: string | undefined; }[]'.
+  Type 'unknown' is not assignable to type '{ questionId: string; question: string; userAnswer: string; correctAnswer?: string | undefined; isCorrect: boolean; pointsEarned: number; timeSpent: number; category: string; explanation?: string | undefined; }'.
+src/components/tests/CommonTestComponent.tsx(327,11): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(328,49): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(329,18): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(330,49): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(331,56): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(354,32): error TS2571: Object is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(354,75): error TS18046: 'cat' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(355,31): error TS2571: Object is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(355,74): error TS18046: 'cat' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(377,12): error TS2304: Cannot find name 'motion'.
+src/components/tests/CommonTestComponent.tsx(427,13): error TS2304: Cannot find name 'motion'.
+src/components/tests/CommonTestComponent.tsx(436,10): error TS2304: Cannot find name 'motion'.
+src/components/tests/CommonTestComponent.tsx(624,11): error TS2304: Cannot find name 'motion'.
+src/data/careerData.ts(241,9): error TS2322: Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ComponentType<unknown>'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'FunctionComponent<unknown>'.
+    Types of parameters 'props' and 'props' are incompatible.
+      Type 'unknown' is not assignable to type 'Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+        Type 'unknown' is not assignable to type 'Omit<LucideProps, "ref">'.
+src/data/careerData.ts(251,9): error TS2322: Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ComponentType<unknown>'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'FunctionComponent<unknown>'.
+    Types of parameters 'props' and 'props' are incompatible.
+      Type 'unknown' is not assignable to type 'Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+        Type 'unknown' is not assignable to type 'Omit<LucideProps, "ref">'.
+src/data/careerData.ts(261,9): error TS2322: Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ComponentType<unknown>'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'FunctionComponent<unknown>'.
+    Types of parameters 'props' and 'props' are incompatible.
+      Type 'unknown' is not assignable to type 'Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+        Type 'unknown' is not assignable to type 'Omit<LucideProps, "ref">'.
+src/pages/admin/AssessmentEditorPage.tsx(3,54): error TS2307: Cannot find module '../../services/' or its corresponding type declarations.
+src/pages/admin/AssessmentEditorPage.tsx(35,26): error TS2304: Cannot find name 'adminService'.
+src/pages/admin/AssessmentEditorPage.tsx(47,17): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(57,17): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(71,17): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(79,57): error TS7006: Parameter '_' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(79,60): error TS7006: Parameter 'i' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(80,17): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(98,17): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(104,17): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(111,15): error TS2304: Cannot find name 'adminService'.
+src/pages/admin/AssessmentEditorPage.tsx(113,15): error TS2304: Cannot find name 'adminService'.
+src/pages/admin/AssessmentEditorPage.tsx(195,48): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(216,38): error TS7006: Parameter 'question' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(216,48): error TS7006: Parameter 'qIndex' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(279,45): error TS7006: Parameter 'option' implicitly has an 'any' type.
+src/pages/admin/AssessmentEditorPage.tsx(279,53): error TS7006: Parameter 'oIndex' implicitly has an 'any' type.
+src/pages/admin/AssessmentListPage.tsx(3,36): error TS2307: Cannot find module '../../services/' or its corresponding type declarations.
+src/pages/admin/AssessmentListPage.tsx(17,26): error TS2304: Cannot find name 'adminService'.
+src/pages/admin/AssessmentListPage.tsx(30,15): error TS2304: Cannot find name 'adminService'.
+src/pages/auth/LoginPage.tsx(50,8): error TS2304: Cannot find name 'motion'.
+src/pages/auth/LoginPage.tsx(168,9): error TS2304: Cannot find name 'motion'.
+src/pages/auth/RegisterPage.tsx(62,16): error TS18046: 'err' is of type 'unknown'.
+src/pages/auth/RegisterPage.tsx(70,8): error TS2304: Cannot find name 'motion'.
+src/pages/auth/RegisterPage.tsx(230,9): error TS2304: Cannot find name 'motion'.
+src/pages/blog/BlogPage.tsx(300,10): error TS2304: Cannot find name 'motion'.
+src/pages/blog/BlogPage.tsx(313,11): error TS2304: Cannot find name 'motion'.
+src/pages/blog/BlogPage.tsx(316,10): error TS2304: Cannot find name 'motion'.
+src/pages/blog/BlogPage.tsx(334,16): error TS2304: Cannot find name 'Filter'.
+src/pages/blog/BlogPage.tsx(365,11): error TS2304: Cannot find name 'motion'.
+src/pages/blog/BlogPage.tsx(371,16): error TS2304: Cannot find name 'motion'.
+src/pages/blog/BlogPage.tsx(405,17): error TS2304: Cannot find name 'motion'.
+src/pages/blog/BlogPage.tsx(428,10): error TS2304: Cannot find name 'motion'.
+src/pages/blog/BlogPage.tsx(436,14): error TS2304: Cannot find name 'BookOpen'.
+src/pages/blog/BlogPage.tsx(450,11): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/CareerServicesSection.tsx(11,18): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/CareerServicesSection.tsx(24,19): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/CareerServicesSection.tsx(28,26): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/CareerServicesSection.tsx(48,46): error TS2304: Cannot find name 'CheckCircle'.
+src/pages/career/components/CareerServicesSection.tsx(67,27): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/CareerToolsSection.tsx(12,18): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/CareerToolsSection.tsx(29,19): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/CareerToolsSection.tsx(33,26): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/CareerToolsSection.tsx(63,42): error TS2304: Cannot find name 'CheckCircle'.
+src/pages/career/components/CareerToolsSection.tsx(73,27): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/CTASection.tsx(13,18): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/CTASection.tsx(37,19): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/ExpertCounselorsSection.tsx(10,18): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/ExpertCounselorsSection.tsx(23,19): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/ExpertCounselorsSection.tsx(27,26): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/ExpertCounselorsSection.tsx(44,46): error TS2304: Cannot find name 'Star'.
+src/pages/career/components/ExpertCounselorsSection.tsx(76,27): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/HeroSection.tsx(17,18): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/HeroSection.tsx(47,19): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/IndustrySalaryInsightsSection.tsx(9,18): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/IndustrySalaryInsightsSection.tsx(22,19): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/IndustrySalaryInsightsSection.tsx(37,34): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/IndustrySalaryInsightsSection.tsx(58,35): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/JobMarketTrendsSection.tsx(9,18): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/JobMarketTrendsSection.tsx(22,19): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/JobMarketTrendsSection.tsx(26,26): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/JobMarketTrendsSection.tsx(46,27): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/PopularCareerPathsSection.tsx(10,18): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/PopularCareerPathsSection.tsx(23,19): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/PopularCareerPathsSection.tsx(27,26): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/PopularCareerPathsSection.tsx(40,38): error TS2304: Cannot find name 'TrendingUp'.
+src/pages/career/components/PopularCareerPathsSection.tsx(65,27): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/QuickAssessmentModal.tsx(2,33): error TS2307: Cannot find module 'framer-' or its corresponding type declarations.
+src/pages/career/components/QuickAssessmentModal.tsx(76,14): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/QuickAssessmentModal.tsx(81,27): error TS7006: Parameter 'e' implicitly has an 'any' type.
+src/pages/career/components/QuickAssessmentModal.tsx(85,18): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/QuickAssessmentModal.tsx(140,38): error TS2304: Cannot find name 'Target'.
+src/pages/career/components/QuickAssessmentModal.tsx(153,46): error TS2304: Cannot find name 'Briefcase'.
+src/pages/career/components/QuickAssessmentModal.tsx(170,19): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/QuickAssessmentModal.tsx(171,15): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/SuccessStoriesSection.tsx(10,18): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/SuccessStoriesSection.tsx(23,19): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/SuccessStoriesSection.tsx(27,26): error TS2304: Cannot find name 'motion'.
+src/pages/career/components/SuccessStoriesSection.tsx(51,38): error TS2304: Cannot find name 'Star'.
+src/pages/career/components/SuccessStoriesSection.tsx(69,27): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/ComprehensiveFeatures.tsx(11,18): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/home/components/ComprehensiveFeatures.tsx(24,19): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/home/components/ComprehensiveFeatures.tsx(28,26): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/home/components/ComprehensiveFeatures.tsx(53,46): error TS2304: Cannot find name 'CheckCircle'.
+src/pages/home/components/ComprehensiveFeatures.tsx(65,27): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/home/components/ExpertServicesSection.tsx(10,18): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/ExpertServicesSection.tsx(23,19): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/ExpertServicesSection.tsx(27,26): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/ExpertServicesSection.tsx(47,42): error TS2304: Cannot find name 'CheckCircle'.
+src/pages/home/components/ExpertServicesSection.tsx(56,27): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/GeneralFeaturesSection.tsx(11,22): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/GeneralFeaturesSection.tsx(39,23): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/GeneralFeaturesSection.tsx(41,22): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/GeneralFeaturesSection.tsx(67,23): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/HomeCTASection.tsx(10,18): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/HomeCTASection.tsx(38,19): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/HomeHero.tsx(10,18): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/home/components/HomeHero.tsx(49,19): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/home/components/PlatformStats.tsx(11,26): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/home/components/PlatformStats.tsx(24,27): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/home/components/PopularTestsSection.tsx(10,18): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/home/components/PopularTestsSection.tsx(28,19): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/PopularTestsSection.tsx(32,26): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/PopularTestsSection.tsx(46,42): error TS2304: Cannot find name 'Star'.
+src/pages/home/components/PopularTestsSection.tsx(61,42): error TS2304: Cannot find name 'Clock'.
+src/pages/home/components/PopularTestsSection.tsx(65,42): error TS2304: Cannot find name 'Users'.
+src/pages/home/components/PopularTestsSection.tsx(77,27): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/SuccessMetricsSection.tsx(11,18): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/SuccessMetricsSection.tsx(24,19): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/SuccessMetricsSection.tsx(28,26): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/SuccessMetricsSection.tsx(48,27): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/TestimonialsSection.tsx(10,18): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/TestimonialsSection.tsx(23,19): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/TestimonialsSection.tsx(27,26): error TS2304: Cannot find name 'motion'.
+src/pages/home/components/TestimonialsSection.tsx(49,27): error TS2304: Cannot find name 'motion'.
+src/pages/profile/ProfilePage.tsx(123,47): error TS2304: Cannot find name 'BarChart3'.
+src/pages/profile/ProfilePage.tsx(130,10): error TS2304: Cannot find name 'motion'.
+src/pages/profile/ProfilePage.tsx(164,53): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'SetStateAction<"history" | "stats" | "overview" | "settings">'.
+src/pages/profile/ProfilePage.tsx(224,26): error TS2304: Cannot find name 'GraduationCap'.
+src/pages/profile/ProfilePage.tsx(278,26): error TS2304: Cannot find name 'GraduationCap'.
+src/pages/profile/ProfilePage.tsx(292,24): error TS2304: Cannot find name 'Briefcase'.
+src/pages/profile/ProfilePage.tsx(374,30): error TS2304: Cannot find name 'BarChart3'.
+src/pages/profile/ProfilePage.tsx(519,37): error TS2304: Cannot find name 'index'.
+src/pages/profile/ProfilePage.tsx(522,34): error TS18046: 'category' is of type 'unknown'.
+src/pages/profile/ProfilePage.tsx(525,45): error TS18046: 'category' is of type 'unknown'.
+src/pages/profile/ProfilePage.tsx(531,52): error TS18046: 'category' is of type 'unknown'.
+src/pages/profile/ProfilePage.tsx(535,32): error TS18046: 'category' is of type 'unknown'.
+src/pages/profile/ProfilePage.tsx(535,53): error TS18046: 'category' is of type 'unknown'.
+src/pages/profile/ProfilePage.tsx(853,11): error TS2304: Cannot find name 'motion'.
+src/pages/results/ResultsPage.tsx(9,10): error TS2304: Cannot find name 'motion'.
+src/pages/results/ResultsPage.tsx(28,18): error TS2304: Cannot find name 'BarChart3'.
+src/pages/results/ResultsPage.tsx(42,22): error TS2304: Cannot find name 'Award'.
+src/pages/results/ResultsPage.tsx(46,22): error TS2304: Cannot find name 'BarChart3'.
+src/pages/results/ResultsPage.tsx(74,11): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/education/EducationTestList.tsx(55,26): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/education/EducationTestList.tsx(99,27): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/education/EducationTestList.tsx(109,26): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/education/EducationTestList.tsx(153,27): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/education/EducationTestResult.tsx(16,18): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/education/EducationTestResult.tsx(23,30): error TS2304: Cannot find name 'Award'.
+src/pages/tests/components/education/EducationTestResult.tsx(52,34): error TS2304: Cannot find name 'BookOpen'.
+src/pages/tests/components/education/EducationTestResult.tsx(74,19): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestList.tsx(36,18): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestList.tsx(50,38): error TS2304: Cannot find name 'Star'.
+src/pages/tests/components/PsychologyTestList.tsx(78,34): error TS2304: Cannot find name 'Clock'.
+src/pages/tests/components/PsychologyTestList.tsx(101,19): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestResult.tsx(16,18): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestResult.tsx(24,26): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestResult.tsx(31,27): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestResult.tsx(65,38): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestResult.tsx(82,46): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestResult.tsx(92,39): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestResult.tsx(105,38): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestResult.tsx(114,39): error TS2304: Cannot find name 'motion'.
+src/pages/tests/components/PsychologyTestResult.tsx(138,19): error TS2304: Cannot find name 'motion'.
+src/pages/tests/DynamicTestPage.tsx(3,36): error TS2307: Cannot find module '../../services/' or its corresponding type declarations.
+src/pages/tests/DynamicTestPage.tsx(45,41): error TS7006: Parameter 'q' implicitly has an 'any' type.
+src/pages/tests/DynamicTestPage.tsx(49,33): error TS7006: Parameter 'o' implicitly has an 'any' type.
+src/pages/tests/EducationTestPage.tsx(100,10): error TS2304: Cannot find name 'motion'.
+src/pages/tests/EducationTestPage.tsx(140,11): error TS2304: Cannot find name 'motion'.
+src/pages/tests/PersonalityTestPage.tsx(354,10): error TS2304: Cannot find name 'motion'.
+src/pages/tests/PersonalityTestPage.tsx(396,16): error TS2304: Cannot find name 'motion'.
+src/pages/tests/PersonalityTestPage.tsx(447,17): error TS2304: Cannot find name 'motion'.
+src/pages/tests/PersonalityTestPage.tsx(452,12): error TS2304: Cannot find name 'motion'.
+src/pages/tests/PersonalityTestPage.tsx(492,13): error TS2304: Cannot find name 'motion'.
+src/pages/tests/PersonalityTestPage.tsx(493,11): error TS2304: Cannot find name 'motion'.
+src/pages/tests/PsychologyTestPage.tsx(104,10): error TS2304: Cannot find name 'motion'.
+src/pages/tests/PsychologyTestPage.tsx(153,11): error TS2304: Cannot find name 'motion'.
+src/pages/tests/ReasoningTestPage.tsx(185,12): error TS2304: Cannot find name 'motion'.
+src/pages/tests/ReasoningTestPage.tsx(240,13): error TS2304: Cannot find name 'motion'.
+src/pages/tests/ReasoningTestPage.tsx(249,10): error TS2304: Cannot find name 'motion'.
+src/pages/tests/ReasoningTestPage.tsx(273,20): error TS2304: Cannot find name 'Clock'.
+src/pages/tests/ReasoningTestPage.tsx(277,20): error TS2304: Cannot find name 'Users'.
+src/pages/tests/ReasoningTestPage.tsx(287,14): error TS2304: Cannot find name 'motion'.
+src/pages/tests/ReasoningTestPage.tsx(340,15): error TS2304: Cannot find name 'motion'.
+src/pages/tests/ReasoningTestPage.tsx(343,14): error TS2304: Cannot find name 'motion'.
+src/pages/tests/ReasoningTestPage.tsx(396,15): error TS2304: Cannot find name 'motion'.
+src/pages/tests/ReasoningTestPage.tsx(400,12): error TS2304: Cannot find name 'motion'.
+src/pages/tests/ReasoningTestPage.tsx(429,13): error TS2304: Cannot find name 'motion'.
+src/pages/tests/ReasoningTestPage.tsx(430,11): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestPage.tsx(36,10): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestPage.tsx(51,18): error TS2304: Cannot find name 'Clock'.
+src/pages/tests/TestPage.tsx(55,18): error TS2304: Cannot find name 'Users'.
+src/pages/tests/TestPage.tsx(65,18): error TS2304: Cannot find name 'CheckCircle'.
+src/pages/tests/TestPage.tsx(79,22): error TS2304: Cannot find name 'CheckCircle'.
+src/pages/tests/TestPage.tsx(83,22): error TS2304: Cannot find name 'CheckCircle'.
+src/pages/tests/TestPage.tsx(87,22): error TS2304: Cannot find name 'CheckCircle'.
+src/pages/tests/TestPage.tsx(91,22): error TS2304: Cannot find name 'CheckCircle'.
+src/pages/tests/TestPage.tsx(111,11): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestsPage.tsx(279,10): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestsPage.tsx(292,11): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestsPage.tsx(295,10): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestsPage.tsx(368,11): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestsPage.tsx(373,14): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestsPage.tsx(442,15): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestsPage.tsx(448,12): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestsPage.tsx(466,13): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestsPage.tsx(470,10): error TS2304: Cannot find name 'motion'.
+src/pages/tests/TestsPage.tsx(494,11): error TS2304: Cannot find name 'motion'.
+src/services/pdfReportService.ts(173,12): error TS2571: Object is of type 'unknown'.
+src/services/testService.ts(4,36): error TS2307: Cannot find module './' or its corresponding type declarations.

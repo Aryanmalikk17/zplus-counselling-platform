@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { AssessmentTemplate } from '../../services/';
+import { AssessmentTemplate } from '../../services/adminService';
 import testService from '../../services/testService';
 import { CommonTestComponent } from '../../components/tests/CommonTestComponent';
 import { TestConfig, TestResult } from '../../types/testTypes';
@@ -24,7 +24,7 @@ const DynamicTestPage: React.FC = () => {
       const template = await testService.getAssessment(id);
       const config = mapTemplateToConfig(template);
       setTestConfig(config);
-    } catch (err) {
+    } catch (err: any) {
       setError('Failed to load test configuration');
       console.error(err);
     } finally {

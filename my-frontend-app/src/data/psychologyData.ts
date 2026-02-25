@@ -1,13 +1,4 @@
-import {
-    Brain,
-    HardDrive,
-    Focus,
-    Zap,
-    Users,
-    Puzzle,
-    MessageSquare,
-    PenTool
-} from 'lucide-react';
+import { Brain, HardDrive, Focus, Zap, Users, Puzzle, MessageSquare, PenTool } from 'lucide-react';
 import { TestConfig } from '../types/testTypes';
 
 // IQ Test Configuration

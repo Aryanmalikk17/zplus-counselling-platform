@@ -1,6 +1,8 @@
+import { Quote } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 
-import { Quote } from 'lucide-react';
+
 import { testimonials } from '../../../data/homeData';
 
 const TestimonialsSection: React.FC = () => {

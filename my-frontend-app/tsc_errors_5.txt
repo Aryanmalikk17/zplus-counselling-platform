@@ -1,0 +1,19 @@
+src/components/tests/CommonTestComponent.tsx(108,48): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(129,40): error TS1136: Property assignment expected.
+src/components/tests/CommonTestComponent.tsx(130,18): error TS1005: ')' expected.
+src/components/tests/CommonTestComponent.tsx(131,20): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(132,23): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(133,11): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(133,12): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(133,13): error TS1134: Variable declaration expected.
+src/components/tests/CommonTestComponent.tsx(133,14): error TS1134: Variable declaration expected.
+src/components/tests/CommonTestComponent.tsx(175,55): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(175,58): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(238,44): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(243,64): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(243,67): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(320,49): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(320,52): error TS1005: ',' expected.
+src/components/tests/CommonTestComponent.tsx(622,1): error TS1128: Declaration or statement expected.
+src/pages/profile/ProfilePage.tsx(520,95): error TS1005: ',' expected.
+src/pages/profile/ProfilePage.tsx(520,98): error TS1005: ',' expected.

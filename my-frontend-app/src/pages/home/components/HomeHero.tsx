@@ -1,6 +1,8 @@
+import { Brain, Sparkles, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 
-import { Brain, Sparkles, ArrowRight } from 'lucide-react';
+
 import { Link } from 'react-router-dom';
 
 const HomeHero: React.FC = () => {

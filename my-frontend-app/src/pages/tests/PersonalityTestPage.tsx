@@ -1,17 +1,8 @@
+import { Brain, Heart, Users, Target, Clock, ArrowRight, ArrowLeft, Star, Compass, Lightbulb } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 
-import { 
-  Brain, 
-  Heart, 
-  Users, 
-  Target, 
-  Clock, 
-  ArrowRight,
-  ArrowLeft,
-  Star,
-  Compass,
-  Lightbulb
-} from 'lucide-react';
+
 import { TestConfig, TestResult } from '../../types/testTypes';
 import CommonTestComponent from '../../components/tests/CommonTestComponent';
 import TestResultDashboard from '../../components/results/TestResultDashboard';

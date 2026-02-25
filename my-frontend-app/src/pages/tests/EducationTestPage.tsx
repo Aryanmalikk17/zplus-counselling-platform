@@ -1,11 +1,8 @@
+import { ArrowLeft, Clock, Users, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React, { useState, Suspense } from 'react';
 
-import {
-  ArrowLeft,
-  Clock,
-  Users,
-  Award
-} from 'lucide-react';
+
 import { TestConfig, TestResult } from '../../types/testTypes';
 import CommonTestComponent from '../../components/tests/CommonTestComponent';
 import Loading from '../../components/common/Loading';

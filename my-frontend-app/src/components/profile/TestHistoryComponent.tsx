@@ -1,26 +1,7 @@
+import { Clock, Calendar, Trophy, TrendingUp, TrendingDown, Eye, Edit, Trash2, Heart, Download, Search, Filter, Star, BookOpen, Tag, MoreVertical, ChevronDown, ChevronUp, BarChart3 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-';
-import {
-  Clock,
-  Calendar,
-  Trophy,
-  TrendingUp,
-  TrendingDown,
-  Eye,
-  Edit,
-  Trash2,
-  Heart,
-  Download,
-  Search,
-  Filter,
-  Star,
-  BookOpen,
-  Tag,
-  MoreVertical,
-  ChevronDown,
-  ChevronUp,
-  BarChart3
-} from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+
 import { testHistoryService, UserTestHistory } from '../../services/testHistoryService';
 import { useAuth } from '../../context/AuthContext';
 
@@ -39,7 +20,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
   const [sortBy, setSortBy] = useState<'date' | 'score' | 'name'>('date');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [showFilters, setShowFilters] = useState(false);
-  
+
   const [editingNotes, setEditingNotes] = useState<string | null>(null);
   const [notesText, setNotesText] = useState('');
   const [filters, setFilters] = useState({
@@ -71,7 +52,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
 
   const loadTestHistory = async () => {
     if (!user?.id) return;
-    
+
     setLoading(true);
     try {
       const history = testHistoryService.getUserTestHistory(user.id);
@@ -102,7 +83,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
     // Sort results
     filtered.sort((a, b) => {
       let comparison = 0;
-      
+
       switch (sortBy) {
         case 'date':
           comparison = new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
@@ -123,7 +104,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
 
   const handleToggleFavorite = async (testId: string) => {
     if (!user?.id) return;
-    
+
     const success = testHistoryService.toggleFavorite(user.id, testId);
     if (success) {
       loadTestHistory();
@@ -132,7 +113,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
 
   const handleDeleteTest = async (testId: string) => {
     if (!user?.id) return;
-    
+
     if (window.confirm('Are you sure you want to delete this test result?')) {
       const success = testHistoryService.deleteTestResult(user.id, testId);
       if (success) {
@@ -143,7 +124,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
 
   const handleUpdateNotes = async (testId: string, notes: string) => {
     if (!user?.id) return;
-    
+
     const success = testHistoryService.updateTestNotes(user.id, testId, notes);
     if (success) {
       setEditingNotes(null);
@@ -153,7 +134,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
 
   const exportHistory = () => {
     if (!user?.id) return;
-    
+
     const exportData = testHistoryService.exportTestHistory(user.id);
     const blob = new Blob([exportData], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -180,7 +161,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
-    
+
     if (hours > 0) {
       return `${hours}h ${minutes}m ${secs}s`;
     }
@@ -224,7 +205,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
           <h2 className="text-2xl font-bold text-gray-900">Test History</h2>
           <p className="text-gray-600">View and manage your completed tests</p>
         </div>
-        
+
         <div className="flex items-center gap-3">
           <button
             onClick={() => setShowFilters(!showFilters)}
@@ -234,7 +215,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
             Filters
             {showFilters ? <ChevronUp className="h-4 w-4 ml-1" /> : <ChevronDown className="h-4 w-4 ml-1" />}
           </button>
-          
+
           <button onClick={exportHistory} className="btn-secondary flex items-center">
             <Download className="h-4 w-4 mr-2" />
             Export
@@ -254,7 +235,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
             className="input pl-10"
           />
         </div>
-        
+
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
@@ -266,7 +247,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
             </option>
           ))}
         </select>
-        
+
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as 'date' | 'score' | 'name')}
@@ -276,7 +257,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
           <option value="score">Sort by Score</option>
           <option value="name">Sort by Name</option>
         </select>
-        
+
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}
@@ -307,7 +288,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
                   className="input"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">To Date</label>
                 <input
@@ -317,7 +298,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
                   className="input"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Min Score (%)</label>
                 <input
@@ -330,7 +311,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
                   placeholder="0"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Max Score (%)</label>
                 <input
@@ -344,7 +325,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
                 />
               </div>
             </div>
-            
+
             <div className="mt-4 flex justify-end gap-2">
               <button
                 onClick={() => setFilters({ dateFrom: '', dateTo: '', minScore: '', maxScore: '', tags: [] })}
@@ -363,8 +344,8 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
           <BookOpen className="mx-auto h-12 w-12 text-gray-400 mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No test history found</h3>
           <p className="text-gray-600">
-            {searchQuery || selectedCategory !== 'all' ? 
-              'Try adjusting your search or filters.' : 
+            {searchQuery || selectedCategory !== 'all' ?
+              'Try adjusting your search or filters.' :
               'Take your first test to see results here.'
             }
           </p>
@@ -389,19 +370,18 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
                     {formatDate(historyItem.createdAt)}
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleToggleFavorite(historyItem.id)}
-                    className={`p-1 rounded-full transition-colors ${
-                      historyItem.isFavorite 
-                        ? 'text-red-500 hover:text-red-600' 
+                    className={`p-1 rounded-full transition-colors ${historyItem.isFavorite
+                        ? 'text-red-500 hover:text-red-600'
                         : 'text-gray-400 hover:text-red-500'
-                    }`}
+                      }`}
                   >
                     <Heart className={`h-4 w-4 ${historyItem.isFavorite ? 'fill-current' : ''}`} />
                   </button>
-                  
+
                   <div className="relative group">
                     <button className="p-1 rounded-full text-gray-400 hover:text-gray-600">
                       <MoreVertical className="h-4 w-4" />
@@ -439,7 +419,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
                     {historyItem.testResult.grade}
                   </div>
                 </div>
-                
+
                 {historyItem.testResult.isPassed && (
                   <div className="flex items-center text-green-600">
                     <Trophy className="h-4 w-4 mr-1" />

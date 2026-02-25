@@ -1,6 +1,8 @@
+import { Brain, Share2, Download, RefreshCw, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 
-import { Brain, Share2, Download, RefreshCw, ChevronRight } from 'lucide-react';
+
 import { TestResult } from '../../../types/testTypes';
 
 interface PsychologyTestResultProps {

@@ -1,21 +1,7 @@
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Youtube, MessageCircle, Heart, Shield, Award, Users, Brain, Lock } from 'lucide-react';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Facebook, 
-  Instagram, 
-  Linkedin, 
-  Youtube,
-  MessageCircle,
-  Heart,
-  Shield,
-  Award,
-  Users,
-  Brain,
-  Lock
-} from 'lucide-react';
+
 
 // Custom X (Twitter) Icon Component
 const XIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (

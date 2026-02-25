@@ -1,6 +1,8 @@
+import { ArrowRight, Clock, Users, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 
-import { ArrowRight } from 'lucide-react';
+
 import { popularTests } from '../../../data/homeData';
 
 const PopularTestsSection: React.FC = () => {

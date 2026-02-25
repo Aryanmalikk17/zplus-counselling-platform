@@ -1,6 +1,7 @@
+import { X, ArrowRight, Brain, Briefcase, Target } from 'lucide-react';
 import React, { useState } from 'react';
-import { AnimatePresence } from 'framer-';
-import { X, ArrowRight, Brain } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+
 import { assessmentQuestions } from '../../../data/careerData';
 
 interface QuickAssessmentModalProps {
@@ -78,7 +79,7 @@ const QuickAssessmentModal: React.FC<QuickAssessmentModalProps> = ({ isOpen, onC
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-                onClick={(e) => {
+                onClick={(e: any) => {
                     if (e.target === e.currentTarget) onClose();
                 }}
             >

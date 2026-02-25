@@ -1,6 +1,8 @@
+import { User, Settings, History, Edit, Download, Plus, X, Calendar, MapPin, Phone, BarChart3, GraduationCap, Briefcase } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 
-import { User, Settings, History, Edit, Download, Plus, X, Calendar, MapPin, Phone } from 'lucide-react';
+
 import { useAuth } from '../../context/AuthContext';
 import { TestHistoryComponent } from '../../components/profile/TestHistoryComponent';
 import TestStatsDashboard from '../../components/profile/TestStatsDashboard';
@@ -161,10 +163,10 @@ const ProfilePage: React.FC = () => {
                     return (
                       <button
                         key={tab.id}
-                        onClick={() => setActiveTab(tab.id as unknown)}
+                        onClick={() => setActiveTab(tab.id as any)}
                         className={`w-full flex items-center px-4 py-2 text-left rounded-lg transition-colors ${activeTab === tab.id
-                            ? 'text-primary-600 bg-primary-50'
-                            : 'text-gray-600 hover:bg-gray-50'
+                          ? 'text-primary-600 bg-primary-50'
+                          : 'text-gray-600 hover:bg-gray-50'
                           }`}
                       >
                         <Icon className="h-5 w-5 mr-3" />
@@ -351,7 +353,7 @@ const ProfilePage: React.FC = () => {
                       </button>
 
                       <button
-                        onClick={() => setActiveTab('history')}
+                        onClick={() => setActiveTab('history' as any)}
                         className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
                       >
                         <div className="flex items-center">
@@ -515,7 +517,7 @@ const ProfilePage: React.FC = () => {
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-4">Category Breakdown</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {selectedResult.testResult.categoryBreakdown?.map((category: unknown) => (
+                        {selectedResult.testResult.categoryBreakdown?.map((category: any, index: number) => (
                           <div key={index} className="border rounded-lg p-4">
                             <div className="flex items-center justify-between mb-2">
                               <span className="font-medium text-gray-900 capitalize">

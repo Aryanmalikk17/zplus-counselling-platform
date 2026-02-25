@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AssessmentTemplate, Question, Option } from '../../services/';
+import adminService, {  AssessmentTemplate, Question, Option  } from '../../services/adminService';
 import Navbar from '../../components/common/Navbar';
 import Footer from '../../components/common/Footer';
 import { v4 as uuidv4 } from 'uuid';
@@ -34,7 +34,7 @@ const AssessmentEditorPage: React.FC = () => {
     try {
       const data = await adminService.getAssessmentById(assessmentId);
       setTemplate(data);
-    } catch (err) {
+    } catch (err: any) {
       setError('Failed to load assessment');
       console.error(err);
     } finally {
@@ -76,7 +76,7 @@ const AssessmentEditorPage: React.FC = () => {
   };
 
   const removeQuestion = (index: number) => {
-    const updatedQuestions = template.questions.filter((_, i) => i !== index);
+    const updatedQuestions = template.questions.filter((_: any, i: any) => i !== index);
     setTemplate(prev => ({
       ...prev,
       questions: updatedQuestions,
@@ -113,7 +113,7 @@ const AssessmentEditorPage: React.FC = () => {
         await adminService.createAssessment(template);
       }
       navigate('/admin/assessments');
-    } catch (err) {
+    } catch (err: any) {
       setError('Failed to save assessment');
       console.error(err);
     }
@@ -192,7 +192,7 @@ const AssessmentEditorPage: React.FC = () => {
                   type="checkbox"
                   name="isActive"
                   checked={template.isActive}
-                  onChange={(e) => setTemplate(prev => ({ ...prev, isActive: e.target.checked }))}
+                  onChange={(e: any) => setTemplate(prev => ({ ...prev, isActive: e.target.checked }))}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
                 <label className="ml-2 block text-sm text-gray-900">Active</label>
@@ -213,7 +213,7 @@ const AssessmentEditorPage: React.FC = () => {
               </button>
             </div>
 
-            {template.questions.map((question, qIndex) => (
+            {template.questions.map((question: any, qIndex: any) => (
               <div key={question.id} className="border rounded-lg p-4 mb-4 bg-gray-50">
                 <div className="flex justify-between mb-2">
                   <h3 className="font-medium">Question {qIndex + 1}</h3>
@@ -231,14 +231,14 @@ const AssessmentEditorPage: React.FC = () => {
                     type="text"
                     placeholder="Question Text"
                     value={question.text}
-                    onChange={(e) => handleQuestionChange(qIndex, 'text', e.target.value)}
+                    onChange={(e: any) => handleQuestionChange(qIndex, 'text', e.target.value)}
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
                   />
 
                   <div className="grid grid-cols-2 gap-4">
                     <select
                       value={question.type}
-                      onChange={(e) => handleQuestionChange(qIndex, 'type', e.target.value)}
+                      onChange={(e: any) => handleQuestionChange(qIndex, 'type', e.target.value)}
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
                     >
                       <option value="MULTIPLE_CHOICE">Multiple Choice</option>
@@ -250,7 +250,7 @@ const AssessmentEditorPage: React.FC = () => {
                       type="text"
                       placeholder="Image URL (Optional)"
                       value={question.image || ''}
-                      onChange={(e) => handleQuestionChange(qIndex, 'image', e.target.value)}
+                      onChange={(e: any) => handleQuestionChange(qIndex, 'image', e.target.value)}
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
                     />
 
@@ -258,7 +258,7 @@ const AssessmentEditorPage: React.FC = () => {
                       type="number"
                       placeholder="Time Limit (Seconds)"
                       value={question.timeLimit || ''}
-                      onChange={(e) => handleQuestionChange(qIndex, 'timeLimit', Number(e.target.value))}
+                      onChange={(e: any) => handleQuestionChange(qIndex, 'timeLimit', Number(e.target.value))}
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
                     />
 
@@ -266,7 +266,7 @@ const AssessmentEditorPage: React.FC = () => {
                       type="text"
                       placeholder="Correct Answer (for auto-grading)"
                       value={question.correctAnswer || ''}
-                      onChange={(e) => handleQuestionChange(qIndex, 'correctAnswer', e.target.value)}
+                      onChange={(e: any) => handleQuestionChange(qIndex, 'correctAnswer', e.target.value)}
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
                     />
                   </div>
@@ -276,12 +276,12 @@ const AssessmentEditorPage: React.FC = () => {
                 {question.type === 'MULTIPLE_CHOICE' && (
                   <div className="ml-4 pl-4 border-l-2 border-gray-200">
                     <h4 className="text-sm font-medium mb-2">Options</h4>
-                    {question.options?.map((option, oIndex) => (
+                    {question.options?.map((option: any, oIndex: any) => (
                       <div key={option.id} className="flex gap-2 mb-2">
                         <input
                           type="text"
                           value={option.text}
-                          onChange={(e) => handleOptionChange(qIndex, oIndex, e.target.value)}
+                          onChange={(e: any) => handleOptionChange(qIndex, oIndex, e.target.value)}
                           className="flex-grow rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm p-2"
                           placeholder={`Option ${oIndex + 1}`}
                         />

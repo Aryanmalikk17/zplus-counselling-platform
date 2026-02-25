@@ -1,23 +1,9 @@
+import { Brain, Clock, Users, Star, ArrowRight, BookOpen, GraduationCap, Trophy, Heart, Target, Briefcase, Microscope, Calculator, Palette, Activity, Filter } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { 
-  Brain, 
-  Clock, 
-  Users, 
-  Star, 
-  ArrowRight, 
-  BookOpen,
-  GraduationCap,
-  Trophy,
-  Heart,
-  Target,
-  Briefcase,
-  Microscope,
-  Calculator,
-  Palette,
-  Activity
-} from 'lucide-react';
+
 
 const TestsPage: React.FC = () => {
   const allTests = [

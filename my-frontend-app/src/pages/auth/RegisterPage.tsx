@@ -1,7 +1,9 @@
+import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+
 import { useAuth } from '../../context/AuthContext';
 
 const RegisterPage: React.FC = () => {
@@ -59,7 +61,7 @@ const RegisterPage: React.FC = () => {
       navigate('/');
     } catch (err: unknown) {
       console.error(err);
-      setError(err.message || 'Registration failed. Please try again.');
+      setError((err as any).message || 'Registration failed. Please try again.');
     } finally {
       setIsLoading(false);
     }

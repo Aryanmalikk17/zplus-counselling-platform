@@ -1,0 +1,158 @@
+src/components/common/Footer.tsx(14,3): error TS2300: Duplicate identifier 'Award'.
+src/components/common/Footer.tsx(15,3): error TS2300: Duplicate identifier 'Users'.
+src/components/common/Footer.tsx(18,3): error TS2300: Duplicate identifier 'Users'.
+src/components/common/Footer.tsx(18,10): error TS2300: Duplicate identifier 'Award'.
+src/components/profile/TestHistoryComponent.tsx(4,3): error TS2300: Duplicate identifier 'Clock'.
+src/components/profile/TestHistoryComponent.tsx(7,3): error TS2300: Duplicate identifier 'TrendingUp'.
+src/components/profile/TestHistoryComponent.tsx(15,3): error TS2300: Duplicate identifier 'Filter'.
+src/components/profile/TestHistoryComponent.tsx(16,3): error TS2300: Duplicate identifier 'Star'.
+src/components/profile/TestHistoryComponent.tsx(17,3): error TS2300: Duplicate identifier 'BookOpen'.
+src/components/profile/TestHistoryComponent.tsx(22,3): error TS2300: Duplicate identifier 'BarChart3'.
+src/components/profile/TestHistoryComponent.tsx(23,3): error TS2300: Duplicate identifier 'BarChart3'.
+src/components/profile/TestHistoryComponent.tsx(23,14): error TS2300: Duplicate identifier 'Clock'.
+src/components/profile/TestHistoryComponent.tsx(23,21): error TS2300: Duplicate identifier 'Star'.
+src/components/profile/TestHistoryComponent.tsx(23,27): error TS2300: Duplicate identifier 'TrendingUp'.
+src/components/profile/TestHistoryComponent.tsx(23,39): error TS2300: Duplicate identifier 'BookOpen'.
+src/components/profile/TestHistoryComponent.tsx(23,49): error TS2300: Duplicate identifier 'Filter'.
+src/components/profile/TestHistoryComponent.tsx(293,12): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/components/profile/TestHistoryComponent.tsx(356,13): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/components/profile/TestHistoryComponent.tsx(375,14): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/components/profile/TestHistoryComponent.tsx(525,15): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/components/profile/TestStatsDashboard.tsx(5,3): error TS2300: Duplicate identifier 'BarChart3'.
+src/components/profile/TestStatsDashboard.tsx(6,3): error TS2300: Duplicate identifier 'TrendingUp'.
+src/components/profile/TestStatsDashboard.tsx(7,3): error TS2300: Duplicate identifier 'Target'.
+src/components/profile/TestStatsDashboard.tsx(9,3): error TS2300: Duplicate identifier 'Award'.
+src/components/profile/TestStatsDashboard.tsx(11,3): error TS2300: Duplicate identifier 'Users'.
+src/components/profile/TestStatsDashboard.tsx(12,3): error TS2300: Duplicate identifier 'Clock'.
+src/components/profile/TestStatsDashboard.tsx(13,3): error TS2300: Duplicate identifier 'BarChart3'.
+src/components/profile/TestStatsDashboard.tsx(13,14): error TS2300: Duplicate identifier 'Clock'.
+src/components/profile/TestStatsDashboard.tsx(13,21): error TS2300: Duplicate identifier 'Users'.
+src/components/profile/TestStatsDashboard.tsx(13,28): error TS2300: Duplicate identifier 'Award'.
+src/components/profile/TestStatsDashboard.tsx(13,35): error TS2300: Duplicate identifier 'TrendingUp'.
+src/components/profile/TestStatsDashboard.tsx(13,47): error TS2300: Duplicate identifier 'Target'.
+src/components/results/TestResultDashboard.tsx(21,3): error TS2300: Duplicate identifier 'Target'.
+src/components/results/TestResultDashboard.tsx(22,3): error TS2300: Duplicate identifier 'Clock'.
+src/components/results/TestResultDashboard.tsx(23,3): error TS2300: Duplicate identifier 'CheckCircle'.
+src/components/results/TestResultDashboard.tsx(29,3): error TS2300: Duplicate identifier 'BookOpen'.
+src/components/results/TestResultDashboard.tsx(30,3): error TS2300: Duplicate identifier 'Star'.
+src/components/results/TestResultDashboard.tsx(31,3): error TS2300: Duplicate identifier 'TrendingUp'.
+src/components/results/TestResultDashboard.tsx(32,3): error TS2300: Duplicate identifier 'Award'.
+src/components/results/TestResultDashboard.tsx(36,3): error TS2300: Duplicate identifier 'Clock'.
+src/components/results/TestResultDashboard.tsx(36,10): error TS2300: Duplicate identifier 'CheckCircle'.
+src/components/results/TestResultDashboard.tsx(36,23): error TS2300: Duplicate identifier 'Star'.
+src/components/results/TestResultDashboard.tsx(36,29): error TS2300: Duplicate identifier 'Award'.
+src/components/results/TestResultDashboard.tsx(36,36): error TS2300: Duplicate identifier 'TrendingUp'.
+src/components/results/TestResultDashboard.tsx(36,48): error TS2300: Duplicate identifier 'Target'.
+src/components/results/TestResultDashboard.tsx(36,56): error TS2300: Duplicate identifier 'BookOpen'.
+src/components/tests/CommonTestComponent.tsx(5,3): error TS2300: Duplicate identifier 'Clock'.
+src/components/tests/CommonTestComponent.tsx(8,3): error TS2300: Duplicate identifier 'CheckCircle'.
+src/components/tests/CommonTestComponent.tsx(12,3): error TS2300: Duplicate identifier 'Clock'.
+src/components/tests/CommonTestComponent.tsx(12,10): error TS2300: Duplicate identifier 'CheckCircle'.
+src/components/tests/CommonTestComponent.tsx(251,11): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(252,9): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(252,32): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(252,58): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(295,7): error TS2322: Type 'unknown' is not assignable to type '"A+" | "A" | "B+" | "B" | "C+" | "C" | "D" | "F"'.
+src/components/tests/CommonTestComponent.tsx(297,7): error TS2322: Type 'unknown[]' is not assignable to type '{ questionId: string; question: string; userAnswer: string; correctAnswer?: string | undefined; isCorrect: boolean; pointsEarned: number; timeSpent: number; category: string; explanation?: string | undefined; }[]'.
+  Type 'unknown' is not assignable to type '{ questionId: string; question: string; userAnswer: string; correctAnswer?: string | undefined; isCorrect: boolean; pointsEarned: number; timeSpent: number; category: string; explanation?: string | undefined; }'.
+src/components/tests/CommonTestComponent.tsx(328,11): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(329,49): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(330,18): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(331,49): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(332,56): error TS18046: 'category' is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(355,32): error TS2571: Object is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(356,31): error TS2571: Object is of type 'unknown'.
+src/data/careerData.ts(2,5): error TS2300: Duplicate identifier 'Briefcase'.
+src/data/careerData.ts(3,5): error TS2300: Duplicate identifier 'TrendingUp'.
+src/data/careerData.ts(4,5): error TS2300: Duplicate identifier 'Users'.
+src/data/careerData.ts(5,5): error TS2300: Duplicate identifier 'Target'.
+src/data/careerData.ts(6,5): error TS2300: Duplicate identifier 'BookOpen'.
+src/data/careerData.ts(7,5): error TS2300: Duplicate identifier 'CheckCircle'.
+src/data/careerData.ts(9,5): error TS2300: Duplicate identifier 'BarChart3'.
+src/data/careerData.ts(20,5): error TS2300: Duplicate identifier 'GraduationCap'.
+src/data/careerData.ts(21,5): error TS2300: Duplicate identifier 'Star'.
+src/data/careerData.ts(22,3): error TS2300: Duplicate identifier 'BarChart3'.
+src/data/careerData.ts(22,14): error TS2300: Duplicate identifier 'GraduationCap'.
+src/data/careerData.ts(22,29): error TS2300: Duplicate identifier 'Briefcase'.
+src/data/careerData.ts(22,40): error TS2300: Duplicate identifier 'Users'.
+src/data/careerData.ts(22,47): error TS2300: Duplicate identifier 'CheckCircle'.
+src/data/careerData.ts(22,60): error TS2300: Duplicate identifier 'Star'.
+src/data/careerData.ts(22,66): error TS2300: Duplicate identifier 'TrendingUp'.
+src/data/careerData.ts(22,78): error TS2300: Duplicate identifier 'Target'.
+src/data/careerData.ts(22,86): error TS2300: Duplicate identifier 'BookOpen'.
+src/data/educationData.ts(2,5): error TS2300: Duplicate identifier 'BookOpen'.
+src/data/educationData.ts(3,5): error TS2300: Duplicate identifier 'GraduationCap'.
+src/data/educationData.ts(4,5): error TS2300: Duplicate identifier 'Target'.
+src/data/educationData.ts(6,5): error TS2300: Duplicate identifier 'BarChart3'.
+src/data/educationData.ts(9,3): error TS2300: Duplicate identifier 'BarChart3'.
+src/data/educationData.ts(9,14): error TS2300: Duplicate identifier 'GraduationCap'.
+src/data/educationData.ts(9,29): error TS2300: Duplicate identifier 'Target'.
+src/data/educationData.ts(9,37): error TS2300: Duplicate identifier 'BookOpen'.
+src/data/homeData.ts(2,5): error TS2300: Duplicate identifier 'CheckCircle'.
+src/data/homeData.ts(4,5): error TS2300: Duplicate identifier 'Target'.
+src/data/homeData.ts(6,5): error TS2300: Duplicate identifier 'Briefcase'.
+src/data/homeData.ts(7,5): error TS2300: Duplicate identifier 'BookOpen'.
+src/data/homeData.ts(8,5): error TS2300: Duplicate identifier 'BarChart3'.
+src/data/homeData.ts(11,5): error TS2300: Duplicate identifier 'Users'.
+src/data/homeData.ts(12,5): error TS2300: Duplicate identifier 'TrendingUp'.
+src/data/homeData.ts(13,5): error TS2300: Duplicate identifier 'Star'.
+src/data/homeData.ts(15,5): error TS2300: Duplicate identifier 'Award'.
+src/data/homeData.ts(16,3): error TS2300: Duplicate identifier 'BarChart3'.
+src/data/homeData.ts(16,14): error TS2300: Duplicate identifier 'Briefcase'.
+src/data/homeData.ts(16,25): error TS2300: Duplicate identifier 'Users'.
+src/data/homeData.ts(16,32): error TS2300: Duplicate identifier 'CheckCircle'.
+src/data/homeData.ts(16,45): error TS2300: Duplicate identifier 'Star'.
+src/data/homeData.ts(16,51): error TS2300: Duplicate identifier 'Award'.
+src/data/homeData.ts(16,58): error TS2300: Duplicate identifier 'TrendingUp'.
+src/data/homeData.ts(16,70): error TS2300: Duplicate identifier 'Target'.
+src/data/homeData.ts(16,78): error TS2300: Duplicate identifier 'BookOpen'.
+src/data/psychologyData.ts(6,5): error TS2300: Duplicate identifier 'Users'.
+src/data/psychologyData.ts(10,3): error TS2300: Duplicate identifier 'Users'.
+src/pages/admin/AssessmentEditorPage.tsx(35,26): error TS2304: Cannot find name 'adminService'.
+src/pages/admin/AssessmentEditorPage.tsx(111,15): error TS2304: Cannot find name 'adminService'.
+src/pages/admin/AssessmentEditorPage.tsx(113,15): error TS2304: Cannot find name 'adminService'.
+src/pages/admin/AssessmentListPage.tsx(17,26): error TS2304: Cannot find name 'adminService'.
+src/pages/admin/AssessmentListPage.tsx(30,15): error TS2304: Cannot find name 'adminService'.
+src/pages/career/components/QuickAssessmentModal.tsx(76,14): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/career/components/QuickAssessmentModal.tsx(81,27): error TS7006: Parameter 'e' implicitly has an 'any' type.
+src/pages/career/components/QuickAssessmentModal.tsx(85,18): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/career/components/QuickAssessmentModal.tsx(170,19): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/career/components/QuickAssessmentModal.tsx(171,15): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/profile/ProfilePage.tsx(165,53): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'SetStateAction<"history" | "stats" | "overview" | "settings">'.
+src/pages/profile/ProfilePage.tsx(520,37): error TS2304: Cannot find name 'index'.
+src/pages/profile/ProfilePage.tsx(523,34): error TS18046: 'category' is of type 'unknown'.
+src/pages/profile/ProfilePage.tsx(526,45): error TS18046: 'category' is of type 'unknown'.
+src/pages/profile/ProfilePage.tsx(532,52): error TS18046: 'category' is of type 'unknown'.
+src/pages/profile/ProfilePage.tsx(536,32): error TS18046: 'category' is of type 'unknown'.
+src/pages/profile/ProfilePage.tsx(536,53): error TS18046: 'category' is of type 'unknown'.
+src/pages/tests/EducationTestPage.tsx(6,3): error TS2300: Duplicate identifier 'Clock'.
+src/pages/tests/EducationTestPage.tsx(7,3): error TS2300: Duplicate identifier 'Users'.
+src/pages/tests/EducationTestPage.tsx(8,3): error TS2300: Duplicate identifier 'Award'.
+src/pages/tests/EducationTestPage.tsx(9,3): error TS2300: Duplicate identifier 'Clock'.
+src/pages/tests/EducationTestPage.tsx(9,10): error TS2300: Duplicate identifier 'Users'.
+src/pages/tests/EducationTestPage.tsx(9,17): error TS2300: Duplicate identifier 'Award'.
+src/pages/tests/PersonalityTestPage.tsx(7,3): error TS2300: Duplicate identifier 'Users'.
+src/pages/tests/PersonalityTestPage.tsx(8,3): error TS2300: Duplicate identifier 'Target'.
+src/pages/tests/PersonalityTestPage.tsx(9,3): error TS2300: Duplicate identifier 'Clock'.
+src/pages/tests/PersonalityTestPage.tsx(12,3): error TS2300: Duplicate identifier 'Star'.
+src/pages/tests/PersonalityTestPage.tsx(15,3): error TS2300: Duplicate identifier 'Clock'.
+src/pages/tests/PersonalityTestPage.tsx(15,10): error TS2300: Duplicate identifier 'Users'.
+src/pages/tests/PersonalityTestPage.tsx(15,17): error TS2300: Duplicate identifier 'Star'.
+src/pages/tests/PersonalityTestPage.tsx(15,23): error TS2300: Duplicate identifier 'Target'.
+src/pages/tests/PsychologyTestPage.tsx(6,3): error TS2300: Duplicate identifier 'Filter'.
+src/pages/tests/PsychologyTestPage.tsx(7,3): error TS2300: Duplicate identifier 'Filter'.
+src/pages/tests/TestsPage.tsx(7,3): error TS2300: Duplicate identifier 'Clock'.
+src/pages/tests/TestsPage.tsx(8,3): error TS2300: Duplicate identifier 'Users'.
+src/pages/tests/TestsPage.tsx(9,3): error TS2300: Duplicate identifier 'Star'.
+src/pages/tests/TestsPage.tsx(11,3): error TS2300: Duplicate identifier 'BookOpen'.
+src/pages/tests/TestsPage.tsx(12,3): error TS2300: Duplicate identifier 'GraduationCap'.
+src/pages/tests/TestsPage.tsx(15,3): error TS2300: Duplicate identifier 'Target'.
+src/pages/tests/TestsPage.tsx(16,3): error TS2300: Duplicate identifier 'Briefcase'.
+src/pages/tests/TestsPage.tsx(21,3): error TS2300: Duplicate identifier 'GraduationCap'.
+src/pages/tests/TestsPage.tsx(21,18): error TS2300: Duplicate identifier 'Briefcase'.
+src/pages/tests/TestsPage.tsx(21,29): error TS2300: Duplicate identifier 'Clock'.
+src/pages/tests/TestsPage.tsx(21,36): error TS2300: Duplicate identifier 'Users'.
+src/pages/tests/TestsPage.tsx(21,43): error TS2300: Duplicate identifier 'Star'.
+src/pages/tests/TestsPage.tsx(21,49): error TS2300: Duplicate identifier 'Target'.
+src/pages/tests/TestsPage.tsx(21,57): error TS2300: Duplicate identifier 'BookOpen'.
+src/services/pdfReportService.ts(173,12): error TS2571: Object is of type 'unknown'.

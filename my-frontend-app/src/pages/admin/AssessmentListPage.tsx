@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AssessmentTemplate } from '../../services/';
+import adminService, {  AssessmentTemplate  } from '../../services/adminService';
 
 const AssessmentListPage: React.FC = () => {
   const [assessments, setAssessments] = useState<AssessmentTemplate[]>([]);

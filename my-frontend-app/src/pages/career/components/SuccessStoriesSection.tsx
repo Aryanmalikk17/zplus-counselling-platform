@@ -1,6 +1,8 @@
+import { Quote, MapPin, DollarSign, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 
-import { Quote, MapPin, DollarSign } from 'lucide-react';
+
 import { successStories } from '../../../data/careerData';
 
 const SuccessStoriesSection: React.FC = () => {

@@ -1,0 +1,16 @@
+src/components/profile/TestHistoryComponent.tsx(274,12): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/components/profile/TestHistoryComponent.tsx(337,13): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/components/profile/TestHistoryComponent.tsx(356,14): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/components/profile/TestHistoryComponent.tsx(506,15): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/components/tests/CommonTestComponent.tsx(288,7): error TS2322: Type 'unknown' is not assignable to type '"A+" | "A" | "B+" | "B" | "C+" | "C" | "D" | "F"'.
+src/components/tests/CommonTestComponent.tsx(290,7): error TS2322: Type 'unknown[]' is not assignable to type '{ questionId: string; question: string; userAnswer: string; correctAnswer?: string | undefined; isCorrect: boolean; pointsEarned: number; timeSpent: number; category: string; explanation?: string | undefined; }[]'.
+  Type 'unknown' is not assignable to type '{ questionId: string; question: string; userAnswer: string; correctAnswer?: string | undefined; isCorrect: boolean; pointsEarned: number; timeSpent: number; category: string; explanation?: string | undefined; }'.
+src/components/tests/CommonTestComponent.tsx(348,32): error TS2571: Object is of type 'unknown'.
+src/components/tests/CommonTestComponent.tsx(349,7): error TS2571: Object is of type 'unknown'.
+src/pages/career/components/QuickAssessmentModal.tsx(77,14): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/career/components/QuickAssessmentModal.tsx(82,27): error TS7006: Parameter 'e' implicitly has an 'any' type.
+src/pages/career/components/QuickAssessmentModal.tsx(86,18): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/career/components/QuickAssessmentModal.tsx(171,19): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/career/components/QuickAssessmentModal.tsx(172,15): error TS2552: Cannot find name 'motion'. Did you mean 'Option'?
+src/pages/profile/ProfilePage.tsx(166,53): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'SetStateAction<"history" | "stats" | "overview" | "settings">'.
+src/services/pdfReportService.ts(173,12): error TS2571: Object is of type 'unknown'.

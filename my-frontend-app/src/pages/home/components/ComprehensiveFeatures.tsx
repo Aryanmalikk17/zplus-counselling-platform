@@ -1,6 +1,8 @@
+import { ArrowRight, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 
-import { ArrowRight } from 'lucide-react';
+
 import { comprehensiveFeatures } from '../../../data/homeData';
 
 const ComprehensiveFeatures: React.FC = () => {

@@ -1,0 +1,5 @@
+src/pages/admin/AssessmentEditorPage.tsx(39,24): error TS1005: ',' expected.
+src/pages/admin/AssessmentEditorPage.tsx(118,24): error TS1005: ',' expected.
+src/pages/auth/RegisterPage.tsx(35,24): error TS1005: ',' expected.
+src/pages/auth/RegisterPage.tsx(62,24): error TS1005: ',' expected.
+src/pages/tests/DynamicTestPage.tsx(29,24): error TS1005: ',' expected.

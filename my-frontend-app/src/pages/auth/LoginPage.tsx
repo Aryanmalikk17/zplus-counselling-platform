@@ -1,7 +1,9 @@
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+
 import { useAuth } from '../../context/AuthContext';
 
 const LoginPage: React.FC = () => {

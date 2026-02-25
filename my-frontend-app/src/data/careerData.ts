@@ -1,26 +1,4 @@
-import {
-    Briefcase,
-    TrendingUp,
-    Users,
-    Target,
-    BookOpen,
-    CheckCircle,
-    Brain,
-    BarChart3,
-    Globe,
-    MapPin,
-    DollarSign,
-    Play,
-    MessageSquare,
-    Video,
-    Download,
-    Lightbulb,
-    Heart,
-    Building,
-    GraduationCap,
-    Star
-} from 'lucide-react';
-
+import { Briefcase, TrendingUp, Users, Target, BookOpen, CheckCircle, Brain, BarChart3, Globe, MapPin, DollarSign, Play, MessageSquare, Video, Download, Lightbulb, Heart, Building, GraduationCap, Star } from 'lucide-react';
 export interface CareerResourceItem {
     title: string;
     description: string;
@@ -91,28 +69,28 @@ export const assessmentQuestions = [
 
 export const careerServices = [
     {
-        icon: Target,
+        icon: Target as React.ComponentType<any>,
         title: 'Career Assessment',
         description: 'Discover your ideal career path through comprehensive personality and aptitude testing.',
         link: '/test/career',
         features: ['Personality Analysis', 'Skills Assessment', 'Interest Mapping', 'Career Matching']
     },
     {
-        icon: BookOpen,
+        icon: BookOpen as React.ComponentType<any>,
         title: 'Career Counseling',
         description: 'Get personalized career guidance from our certified career counselors.',
         price: '₹2,999',
         features: ['1-on-1 Sessions', 'Personalized Plan', 'Industry Insights', 'Goal Setting']
     },
     {
-        icon: Users,
+        icon: Users as React.ComponentType<any>,
         title: 'Interview Preparation',
         description: 'Master job interviews with our specialized training programs.',
         link: '/interview/gd',
         features: ['Mock Interviews', 'HR Rounds', 'Technical Prep', 'Body Language']
     },
     {
-        icon: TrendingUp,
+        icon: TrendingUp as React.ComponentType<any>,
         title: 'Skill Development',
         description: 'Identify and develop the skills needed for your target career.',
         price: '₹1,999',
@@ -200,28 +178,28 @@ export const jobMarketTrends = [
         title: 'Remote Work Revolution',
         description: 'Remote and hybrid work models have increased by 300% post-pandemic',
         trend: '+300%',
-        icon: Globe,
+        icon: Globe as React.ComponentType<any>,
         color: 'blue'
     },
     {
         title: 'AI & Machine Learning',
         description: 'Fastest growing field with 40% job growth annually',
         trend: '+40%',
-        icon: Brain,
+        icon: Brain as React.ComponentType<any>,
         color: 'purple'
     },
     {
         title: 'Green Jobs',
         description: 'Sustainable energy and environmental roles growing rapidly',
         trend: '+25%',
-        icon: Lightbulb,
+        icon: Lightbulb as React.ComponentType<any>,
         color: 'green'
     },
     {
         title: 'Healthcare Expansion',
         description: 'Aging population driving demand for healthcare professionals',
         trend: '+18%',
-        icon: Heart,
+        icon: Heart as React.ComponentType<any>,
         color: 'red'
     }
 ];
@@ -238,7 +216,7 @@ export const industrySalaryData = [
 export const careerResources: CareerResource[] = [
     {
         type: 'Free Resources',
-        icon: Download,
+        icon: Download as React.ComponentType<any>,
         items: [
             { title: 'Resume Templates', description: '50+ Professional Templates', action: 'Download', free: true },
             { title: 'Interview Guide', description: 'Complete Preparation Manual', action: 'Download', free: true },
@@ -248,7 +226,7 @@ export const careerResources: CareerResource[] = [
     },
     {
         type: 'Video Courses',
-        icon: Play,
+        icon: Play as React.ComponentType<any>,
         items: [
             { title: 'LinkedIn Optimization', description: '2-hour comprehensive course', action: 'Watch', price: '₹999' },
             { title: 'Interview Mastery', description: '5-hour complete training', action: 'Enroll', price: '₹1,999' },
@@ -258,7 +236,7 @@ export const careerResources: CareerResource[] = [
     },
     {
         type: 'Live Sessions',
-        icon: Video,
+        icon: Video as React.ComponentType<any>,
         items: [
             { title: 'Career Q&A Sessions', description: 'Weekly expert interactions', action: 'Join', time: 'Every Friday 7 PM' },
             { title: 'Industry Insider Talks', description: 'Monthly industry experts', action: 'Register', time: 'First Saturday' },
@@ -272,7 +250,7 @@ export const careerTools = [
     {
         name: 'Salary Benchmark Tool',
         description: 'Compare salaries across industries and locations',
-        icon: DollarSign,
+        icon: DollarSign as React.ComponentType<any>,
         features: ['Real-time data', 'Location-based', 'Experience level filters'],
         action: 'Use Tool',
         popular: true
@@ -280,21 +258,21 @@ export const careerTools = [
     {
         name: 'Skills Gap Analyzer',
         description: 'Identify skills needed for your target role',
-        icon: Target,
+        icon: Target as React.ComponentType<any>,
         features: ['Skill mapping', 'Learning resources', 'Progress tracking'],
         action: 'Analyze Skills'
     },
     {
         name: 'Career Path Planner',
         description: 'Create step-by-step career progression plan',
-        icon: MapPin,
+        icon: MapPin as React.ComponentType<any>,
         features: ['Goal setting', 'Timeline creation', 'Milestone tracking'],
         action: 'Plan Career'
     },
     {
         name: 'Interview Simulator',
         description: 'Practice with AI-powered interview questions',
-        icon: MessageSquare,
+        icon: MessageSquare as React.ComponentType<any>,
         features: ['AI feedback', 'Multiple formats', 'Performance analytics'],
         action: 'Start Practice',
         new: true

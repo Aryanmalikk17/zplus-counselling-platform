@@ -1,7 +1,9 @@
+import { ArrowRight, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+
 import { careerServices } from '../../../data/careerData';
 
 const CareerServicesSection: React.FC = () => {

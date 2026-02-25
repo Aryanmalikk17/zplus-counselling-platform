@@ -1,6 +1,8 @@
+import { ArrowRight, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 
-import { ArrowRight } from 'lucide-react';
+
 import { expertServices } from '../../../data/homeData';
 
 const ExpertServicesSection: React.FC = () => {

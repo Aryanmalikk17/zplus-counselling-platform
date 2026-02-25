@@ -1,15 +1,8 @@
+import { BarChart3, TrendingUp, Target, Calendar, Award, Brain, Users, Clock } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 
-import { 
-  BarChart3, 
-  TrendingUp, 
-  Target, 
-  Calendar,
-  Award,
-  Brain,
-  Users,
-  Clock
-} from 'lucide-react';
+
 import { testHistoryService, TestStats } from '../../services/testHistoryService';
 import { useAuth } from '../../context/AuthContext';
 

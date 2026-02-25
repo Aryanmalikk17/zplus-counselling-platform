@@ -1,6 +1,8 @@
+import { Share, Download, ArrowLeft, BarChart3, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 
-import { Share, Download, ArrowLeft } from 'lucide-react';
+
 
 const ResultsPage: React.FC = () => {
   return (
