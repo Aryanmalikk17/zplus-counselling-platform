@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { BookOpen, GraduationCap, Target, Microscope, BarChart3, Palette, Trophy, ArrowRight } from 'lucide-react';
+
+import { ArrowRight } from 'lucide-react';
 import { testDetails } from '../../../../data/educationData';
 
 interface EducationTestListProps {

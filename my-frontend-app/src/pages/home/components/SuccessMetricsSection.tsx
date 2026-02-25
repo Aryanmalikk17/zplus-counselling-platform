@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+
 import { successMetrics } from '../../../data/homeData';
 
 const SuccessMetricsSection: React.FC = () => {

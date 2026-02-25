@@ -1,21 +1,11 @@
-import React, { Suspense } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
+
 import { Brain, Sparkles, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// Lazy loading the canvas to avoid blocking the initial text content render (LCP)
-const BackgroundWave = React.lazy(() => import('../../../components/common/BackgroundWave'));
-
 const HomeHero: React.FC = () => {
     return (
-        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white min-h-[90vh] flex items-center">
-            {/* The white radial gradient sits below the wave to give a base white space feel */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white via-white to-gray-50" style={{ zIndex: -1 }} />
-
-            <Suspense fallback={null}>
-                <BackgroundWave />
-            </Suspense>
-
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-transparent min-h-[90vh] flex items-center">
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95, y: 20 }}

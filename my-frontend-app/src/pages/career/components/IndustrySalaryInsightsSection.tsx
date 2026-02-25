@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+
 import { industrySalaryData } from '../../../data/careerData';
 
 const IndustrySalaryInsightsSection: React.FC = () => {

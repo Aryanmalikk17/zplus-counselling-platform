@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle, Zap } from 'lucide-react';
+
+import { ArrowRight, Zap } from 'lucide-react';
 import { careerTools } from '../../../data/careerData';
 
 const CareerToolsSection: React.FC = () => {

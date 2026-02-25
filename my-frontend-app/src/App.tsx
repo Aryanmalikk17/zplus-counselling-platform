@@ -7,6 +7,9 @@ import Footer from './components/common/Footer';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Loading from './components/common/Loading';
 
+// Lazy load global background to prevent blocking LCP
+const BackgroundWave = React.lazy(() => import('./components/common/BackgroundWave'));
+
 // Lazy load pages
 const HomePage = React.lazy(() => import('./pages/home/HomePage'));
 const TestsPage = React.lazy(() => import('./pages/tests/TestsPage'));
@@ -39,9 +42,15 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Router>
-          <div className="min-h-screen bg-gradient-to-br from-white via-primary-50 to-primary-100">
+          {/* Global Background Layer */}
+          <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white via-white to-gray-50 z-[-20]" />
+          <Suspense fallback={null}>
+            <BackgroundWave />
+          </Suspense>
+
+          <div className="min-h-screen relative z-0 flex flex-col">
             <Navbar />
-            <main className="pt-20">
+            <main className="pt-20 flex-grow">
               <Suspense fallback={<Loading />}>
                 <Routes>
                   <Route path="/" element={<HomePage />} />

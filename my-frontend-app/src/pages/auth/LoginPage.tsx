@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -23,7 +23,7 @@ const LoginPage: React.FC = () => {
     try {
       await login(email, password);
       navigate(from, { replace: true });
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       setError('Login failed. Please check your credentials and try again.');
     } finally {
@@ -37,7 +37,7 @@ const LoginPage: React.FC = () => {
     try {
       await signInWithGoogle();
       navigate(from, { replace: true });
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       setError('Google sign-in failed. Please try again.');
     } finally {
@@ -46,14 +46,14 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-transparent">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="max-w-md w-full space-y-8"
       >
-        <div className="card bg-white p-8 rounded-2xl shadow-xl">
+        <div className="bg-white/60 backdrop-blur-md rounded-3xl p-8 shadow-elevated-low border border-white/20">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
             <p className="mt-2 text-gray-600">Sign in to your ZPlus Counselling account</p>

@@ -16,7 +16,7 @@ const HomeCTASection = React.lazy(() => import('./components/HomeCTASection'));
 
 const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-transparent">
       <HomeHero />
 
       <Suspense fallback={<div className="h-64 flex items-center justify-center"><Loading /></div>}>

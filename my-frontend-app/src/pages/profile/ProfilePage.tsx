@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { User, Settings, History, Bell, Edit, BarChart3, Award, Download, Plus, X, GraduationCap, Calendar, MapPin, Phone, Briefcase } from 'lucide-react';
+
+import { User, Settings, History, Edit, Download, Plus, X, Calendar, MapPin, Phone } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { TestHistoryComponent } from '../../components/profile/TestHistoryComponent';
 import TestStatsDashboard from '../../components/profile/TestStatsDashboard';
@@ -89,7 +89,7 @@ const ProfilePage: React.FC = () => {
       let updatedEducations;
 
       if (editingEducation) {
-        updatedEducations = currentEducations.map(edu => 
+        updatedEducations = currentEducations.map(edu =>
           edu.id === editingEducation.id ? newEducation : edu
         );
       } else {
@@ -154,19 +154,18 @@ const ProfilePage: React.FC = () => {
                   <h2 className="text-xl font-bold text-gray-900">{user?.fullName}</h2>
                   <p className="text-gray-600">{user?.email}</p>
                 </div>
-                
+
                 <nav className="space-y-2">
                   {tabs.map((tab) => {
                     const Icon = tab.icon;
                     return (
                       <button
                         key={tab.id}
-                        onClick={() => setActiveTab(tab.id as any)}
-                        className={`w-full flex items-center px-4 py-2 text-left rounded-lg transition-colors ${
-                          activeTab === tab.id
+                        onClick={() => setActiveTab(tab.id as unknown)}
+                        className={`w-full flex items-center px-4 py-2 text-left rounded-lg transition-colors ${activeTab === tab.id
                             ? 'text-primary-600 bg-primary-50'
                             : 'text-gray-600 hover:bg-gray-50'
-                        }`}
+                          }`}
                       >
                         <Icon className="h-5 w-5 mr-3" />
                         {tab.label}
@@ -190,7 +189,7 @@ const ProfilePage: React.FC = () => {
                         Edit Profile
                       </button>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
@@ -209,7 +208,7 @@ const ProfilePage: React.FC = () => {
                         <p className="text-gray-600">{user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}</p>
                       </div>
                     </div>
-                    
+
                     {user?.bio && (
                       <div className="mt-6">
                         <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
@@ -230,7 +229,7 @@ const ProfilePage: React.FC = () => {
                         Add Education
                       </button>
                     </div>
-                    
+
                     {user?.educationalQualifications && user.educationalQualifications.length > 0 ? (
                       <div className="space-y-4">
                         {user.educationalQualifications.map((education, index) => (
@@ -293,7 +292,7 @@ const ProfilePage: React.FC = () => {
                       <Briefcase className="h-6 w-6 mr-2 text-primary-500" />
                       Professional Information
                     </h3>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Profession</label>
@@ -336,7 +335,7 @@ const ProfilePage: React.FC = () => {
                   <div className="card">
                     <h3 className="text-xl font-bold text-gray-900 mb-6">Quick Actions</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <button 
+                      <button
                         onClick={() => window.location.href = '/tests'}
                         className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
                       >
@@ -350,8 +349,8 @@ const ProfilePage: React.FC = () => {
                           </div>
                         </div>
                       </button>
-                      
-                      <button 
+
+                      <button
                         onClick={() => setActiveTab('history')}
                         className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
                       >
@@ -366,7 +365,7 @@ const ProfilePage: React.FC = () => {
                         </div>
                       </button>
 
-                      <button 
+                      <button
                         onClick={() => setActiveTab('stats')}
                         className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
                       >
@@ -381,7 +380,7 @@ const ProfilePage: React.FC = () => {
                         </div>
                       </button>
 
-                      <button 
+                      <button
                         onClick={() => setActiveTab('settings')}
                         className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
                       >
@@ -471,8 +470,8 @@ const ProfilePage: React.FC = () => {
 
           {/* Test Result Modal */}
           {selectedResult && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-              <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-elevated-medium border border-white/40 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-bold text-gray-900">Test Result Details</h2>
@@ -516,7 +515,7 @@ const ProfilePage: React.FC = () => {
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-4">Category Breakdown</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {selectedResult.testResult.categoryBreakdown?.map((category: any, index: number) => (
+                        {selectedResult.testResult.categoryBreakdown?.map((category: unknown) => (
                           <div key={index} className="border rounded-lg p-4">
                             <div className="flex items-center justify-between mb-2">
                               <span className="font-medium text-gray-900 capitalize">
@@ -550,8 +549,8 @@ const ProfilePage: React.FC = () => {
                             <span className="text-gray-700">{rec}</span>
                           </li>
                         )) || (
-                          <li className="text-gray-500">No recommendations available</li>
-                        )}
+                            <li className="text-gray-500">No recommendations available</li>
+                          )}
                       </ul>
                     </div>
 
@@ -570,8 +569,8 @@ const ProfilePage: React.FC = () => {
 
           {/* Edit Profile Modal */}
           {isEditModalOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-              <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-elevated-medium border border-white/40 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-bold text-gray-900">Edit Profile</h2>
@@ -597,7 +596,7 @@ const ProfilePage: React.FC = () => {
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                         />
                       </div>
-                      
+
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Email *
@@ -706,8 +705,8 @@ const ProfilePage: React.FC = () => {
 
           {/* Education Modal */}
           {isEducationModalOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-              <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-elevated-medium border border-white/40 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-bold text-gray-900">
@@ -736,7 +735,7 @@ const ProfilePage: React.FC = () => {
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                         />
                       </div>
-                      
+
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Institution *

@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from 'react';
-import { motion } from 'framer-motion';
+
 import {
   ArrowLeft,
   Clock,
@@ -95,7 +95,7 @@ const EducationTestPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen py-12 bg-gray-50">
+    <div className="min-h-screen py-12 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

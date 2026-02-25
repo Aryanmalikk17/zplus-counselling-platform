@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+
 import { features } from '../../../data/homeData';
 
 const GeneralFeaturesSection: React.FC = () => {

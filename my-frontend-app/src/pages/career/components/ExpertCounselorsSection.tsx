@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Star, MessageSquare } from 'lucide-react';
+
+import { MessageSquare } from 'lucide-react';
 import { expertCounselors } from '../../../data/careerData';
 
 const ExpertCounselorsSection: React.FC = () => {

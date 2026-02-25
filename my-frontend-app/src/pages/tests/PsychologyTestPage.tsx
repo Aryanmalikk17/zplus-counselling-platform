@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from 'react';
-import { motion } from 'framer-motion';
+
 import {
   ArrowLeft,
   Filter
@@ -99,7 +99,7 @@ const PsychologyTestPage: React.FC = () => {
   const categories = ['All', ...Array.from(new Set(cognitiveTests.map(test => test.category)))];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-transparent py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -135,8 +135,8 @@ const PsychologyTestPage: React.FC = () => {
                     key={category}
                     onClick={() => setSelectedCategory(category)}
                     className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 ${selectedCategory === category
-                        ? 'bg-gray-900 text-white shadow-lg transform scale-105'
-                        : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                      ? 'bg-gray-900 text-white shadow-lg transform scale-105'
+                      : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
                       }`}
                   >
                     {category}

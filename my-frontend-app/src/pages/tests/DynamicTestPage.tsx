@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import adminService, { AssessmentTemplate } from '../../services/adminService';
+import { AssessmentTemplate } from '../../services/';
 import testService from '../../services/testService';
 import { CommonTestComponent } from '../../components/tests/CommonTestComponent';
 import { TestConfig, TestResult } from '../../types/testTypes';
@@ -93,9 +93,9 @@ const DynamicTestPage: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-transparent">
       <Navbar />
-      <CommonTestComponent 
+      <CommonTestComponent
         testConfig={testConfig}
         onTestComplete={handleTestComplete}
         onTestExit={() => navigate('/tests')}

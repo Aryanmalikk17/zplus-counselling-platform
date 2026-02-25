@@ -32,7 +32,7 @@ export interface CareerResourceItem {
 
 export interface CareerResource {
     type: string;
-    icon: React.ComponentType<any>;
+    icon: React.ComponentType<unknown>;
     items: CareerResourceItem[];
 }
 

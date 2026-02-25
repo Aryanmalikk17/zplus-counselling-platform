@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, TrendingUp, DollarSign } from 'lucide-react';
+
+import { ArrowRight, DollarSign } from 'lucide-react';
 import { careerPaths } from '../../../data/careerData';
 
 const PopularCareerPathsSection: React.FC = () => {

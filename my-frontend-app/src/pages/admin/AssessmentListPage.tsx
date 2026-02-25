@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import adminService, { AssessmentTemplate } from '../../services/adminService';
+import { AssessmentTemplate } from '../../services/';
 
 const AssessmentListPage: React.FC = () => {
   const [assessments, setAssessments] = useState<AssessmentTemplate[]>([]);
@@ -37,8 +37,8 @@ const AssessmentListPage: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center p-8 bg-white rounded-lg shadow-md">
+      <div className="min-h-screen flex items-center justify-center bg-transparent">
+        <div className="text-center p-8 bg-white/60 backdrop-blur-md rounded-3xl shadow-elevated-low border border-white/20">
           <h2 className="text-2xl font-bold text-red-600 mb-4">Access Denied</h2>
           <p className="text-gray-600 mb-4">{error}</p>
           <div className="flex justify-center space-x-4">
@@ -75,9 +75,9 @@ const AssessmentListPage: React.FC = () => {
       {loading ? (
         <div className="text-center py-10">Loading...</div>
       ) : (
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+        <div className="bg-white/60 backdrop-blur-md rounded-3xl p-8 shadow-elevated-low border border-white/20 overflow-hidden">
+          <table className="min-w-full divide-y divide-gray-200/50">
+            <thead className="bg-white/40">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
@@ -86,7 +86,7 @@ const AssessmentListPage: React.FC = () => {
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-transparent divide-y divide-gray-200/50">
               {assessments.map((assessment) => (
                 <tr key={assessment.id}>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -96,9 +96,8 @@ const AssessmentListPage: React.FC = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{assessment.testType}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{assessment.category}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                      assessment.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                    }`}>
+                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${assessment.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                      }`}>
                       {assessment.isActive ? 'Active' : 'Inactive'}
                     </span>
                   </td>

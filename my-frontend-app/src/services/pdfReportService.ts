@@ -1,12 +1,12 @@
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import 'jspdf-autotable';
+
 import { TestResult } from '../types/testTypes';
 
 // Extend jsPDF type to include autoTable
 declare module 'jspdf' {
   interface jsPDF {
-    autoTable: (options: any) => jsPDF;
+    autoTable: (options: unknown) => jsPDF;
   }
 }
 
@@ -170,7 +170,7 @@ export class PDFReportService {
       margin: { left: 15, right: 15 }
     });
     
-    return (pdf as any).lastAutoTable.finalY + 10;
+    return (pdf as unknown).lastAutoTable.finalY + 10;
   }
 
   private static addInsights(pdf: jsPDF, result: TestResult, startY: number): number {

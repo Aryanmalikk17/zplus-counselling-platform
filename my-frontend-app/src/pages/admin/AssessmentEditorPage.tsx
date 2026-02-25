@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import adminService, { AssessmentTemplate, Question, Option } from '../../services/adminService';
+import { AssessmentTemplate, Question, Option } from '../../services/';
 import Navbar from '../../components/common/Navbar';
 import Footer from '../../components/common/Footer';
 import { v4 as uuidv4 } from 'uuid';
@@ -46,12 +46,12 @@ const AssessmentEditorPage: React.FC = () => {
     const { name, value, type } = e.target;
     setTemplate(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : 
-               type === 'number' ? Number(value) : value
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked :
+        type === 'number' ? Number(value) : value
     }));
   };
 
-  const handleQuestionChange = (index: number, field: keyof Question, value: any) => {
+  const handleQuestionChange = (index: number, field: keyof Question, value: unknown) => {
     const updatedQuestions = [...template.questions];
     updatedQuestions[index] = { ...updatedQuestions[index], [field]: value };
     setTemplate(prev => ({ ...prev, questions: updatedQuestions }));
@@ -92,7 +92,7 @@ const AssessmentEditorPage: React.FC = () => {
       weights: {}
     };
     if (!updatedQuestions[questionIndex].options) {
-        updatedQuestions[questionIndex].options = [];
+      updatedQuestions[questionIndex].options = [];
     }
     updatedQuestions[questionIndex].options.push(newOption);
     setTemplate(prev => ({ ...prev, questions: updatedQuestions }));
@@ -122,11 +122,11 @@ const AssessmentEditorPage: React.FC = () => {
   if (loading) return <div className="text-center py-10">Loading...</div>;
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-transparent">
       <Navbar />
       <div className="flex-grow container mx-auto px-4 py-8">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">{isEditMode ? 'Edit Assessment' : 'Create Assessment'}</h1>
-        
+
         {error && <div className="bg-red-100 text-red-700 p-4 rounded mb-4">{error}</div>}
 
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -188,14 +188,14 @@ const AssessmentEditorPage: React.FC = () => {
                 />
               </div>
               <div className="flex items-center">
-                 <input
-                    type="checkbox"
-                    name="isActive"
-                    checked={template.isActive}
-                    onChange={(e) => setTemplate(prev => ({ ...prev, isActive: e.target.checked }))}
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label className="ml-2 block text-sm text-gray-900">Active</label>
+                <input
+                  type="checkbox"
+                  name="isActive"
+                  checked={template.isActive}
+                  onChange={(e) => setTemplate(prev => ({ ...prev, isActive: e.target.checked }))}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <label className="ml-2 block text-sm text-gray-900">Active</label>
               </div>
             </div>
           </div>
@@ -225,7 +225,7 @@ const AssessmentEditorPage: React.FC = () => {
                     Remove
                   </button>
                 </div>
-                
+
                 <div className="grid grid-cols-1 gap-4 mb-4">
                   <input
                     type="text"
@@ -234,41 +234,41 @@ const AssessmentEditorPage: React.FC = () => {
                     onChange={(e) => handleQuestionChange(qIndex, 'text', e.target.value)}
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
                   />
-                  
+
                   <div className="grid grid-cols-2 gap-4">
-                      <select
-                        value={question.type}
-                        onChange={(e) => handleQuestionChange(qIndex, 'type', e.target.value)}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
-                      >
-                        <option value="MULTIPLE_CHOICE">Multiple Choice</option>
-                        <option value="TEXT">Text Input</option>
-                        <option value="RATING">Rating Scale</option>
-                      </select>
-                      
-                      <input 
-                        type="text"
-                        placeholder="Image URL (Optional)"
-                        value={question.image || ''}
-                        onChange={(e) => handleQuestionChange(qIndex, 'image', e.target.value)}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
-                      />
+                    <select
+                      value={question.type}
+                      onChange={(e) => handleQuestionChange(qIndex, 'type', e.target.value)}
+                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+                    >
+                      <option value="MULTIPLE_CHOICE">Multiple Choice</option>
+                      <option value="TEXT">Text Input</option>
+                      <option value="RATING">Rating Scale</option>
+                    </select>
 
-                      <input
-                        type="number"
-                        placeholder="Time Limit (Seconds)"
-                        value={question.timeLimit || ''}
-                        onChange={(e) => handleQuestionChange(qIndex, 'timeLimit', Number(e.target.value))}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
-                      />
+                    <input
+                      type="text"
+                      placeholder="Image URL (Optional)"
+                      value={question.image || ''}
+                      onChange={(e) => handleQuestionChange(qIndex, 'image', e.target.value)}
+                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+                    />
 
-                       <input
-                        type="text"
-                        placeholder="Correct Answer (for auto-grading)"
-                        value={question.correctAnswer || ''}
-                        onChange={(e) => handleQuestionChange(qIndex, 'correctAnswer', e.target.value)}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
-                      />
+                    <input
+                      type="number"
+                      placeholder="Time Limit (Seconds)"
+                      value={question.timeLimit || ''}
+                      onChange={(e) => handleQuestionChange(qIndex, 'timeLimit', Number(e.target.value))}
+                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+                    />
+
+                    <input
+                      type="text"
+                      placeholder="Correct Answer (for auto-grading)"
+                      value={question.correctAnswer || ''}
+                      onChange={(e) => handleQuestionChange(qIndex, 'correctAnswer', e.target.value)}
+                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"
+                    />
                   </div>
                 </div>
 

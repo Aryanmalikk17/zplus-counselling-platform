@@ -99,7 +99,7 @@ export interface TestResult {
   weaknesses: string[];
   recommendations: string[];
   detailedAnalysis: string;
-  chartData?: any;
+  chartData?: unknown;
   completedAt: Date;
 }
 

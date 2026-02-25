@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-';
 import {
   Clock,
   Calendar,
@@ -39,7 +39,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
   const [sortBy, setSortBy] = useState<'date' | 'score' | 'name'>('date');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [showFilters, setShowFilters] = useState(false);
-  const [selectedTest, setSelectedTest] = useState<UserTestHistory | null>(null);
+  
   const [editingNotes, setEditingNotes] = useState<string | null>(null);
   const [notesText, setNotesText] = useState('');
   const [filters, setFilters] = useState({

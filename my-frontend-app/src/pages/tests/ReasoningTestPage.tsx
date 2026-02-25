@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Brain, MessageSquare, Image, ArrowRight, ArrowLeft, Clock, Users } from 'lucide-react';
+
+import { Brain, MessageSquare, Image, ArrowRight, ArrowLeft } from 'lucide-react';
 import { TestConfig, TestResult } from '../../types/testTypes';
 import CommonTestComponent from '../../components/tests/CommonTestComponent';
 

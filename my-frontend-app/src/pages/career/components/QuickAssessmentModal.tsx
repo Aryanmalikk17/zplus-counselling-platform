@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, CheckCircle, Brain, Target, Briefcase } from 'lucide-react';
+import { AnimatePresence } from 'framer-';
+import { X, ArrowRight, Brain } from 'lucide-react';
 import { assessmentQuestions } from '../../../data/careerData';
 
 interface QuickAssessmentModalProps {

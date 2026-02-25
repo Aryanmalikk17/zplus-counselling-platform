@@ -1,7 +1,7 @@
 import apiClient from './apiClient';
 import { ApiResponse } from '../types';
 import { TestResult } from '../types/testTypes';
-import { AssessmentTemplate } from './adminService';
+import { AssessmentTemplate } from './';
 
 const testService = {
   async getAssessment(testType: string): Promise<AssessmentTemplate> {

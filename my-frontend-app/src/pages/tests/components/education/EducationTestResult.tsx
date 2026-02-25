@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Award, BookOpen, Clock, Users } from 'lucide-react';
+
+
 import { TestResult } from '../../../../types/testTypes';
 
 interface EducationTestResultProps {
@@ -11,7 +11,7 @@ interface EducationTestResultProps {
 
 const EducationTestResult: React.FC<EducationTestResultProps> = ({ result, onRetake, onBack }) => {
     return (
-        <div className="min-h-screen py-12 bg-gray-50">
+        <div className="min-h-screen py-12 bg-transparent">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

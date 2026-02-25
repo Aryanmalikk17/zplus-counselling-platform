@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+
 import { 
   Clock, 
   ArrowRight, 
@@ -196,7 +196,7 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
       if (!question) return null;
 
       let isCorrect = false;
-      let questionPoints = question.points || 1;
+      const questionPoints = question.points || 1;
 
       // Check if answer is correct (for objective questions)
       if (question.correctAnswer) {
@@ -243,10 +243,10 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
         timeSpent: answer.timeSpent,
         category: question.category
       };
-    }).filter(Boolean) as any[];
+    }).filter(Boolean) as unknown[];
 
     // Calculate final category percentages
-    Object.values(categoryResults).forEach((category: any) => {
+    Object.values(categoryResults).forEach((category: unknown) => {
       if (category.totalQuestions > 0) {
         category.percentage = (category.correctAnswers / category.totalQuestions) * 100;
       }
@@ -291,7 +291,7 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
       recommendations,
       strengths,
       weaknesses,
-      grade: grade as any,
+      grade: grade as unknown,
       isPassed,
       detailedAnswers
     };
@@ -299,8 +299,8 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
 
   const generateDetailedInsights = (
     percentage: number, 
-    categoryResults: any[], 
-    detailedAnswers: any[],
+    categoryResults: unknown[], 
+    detailedAnswers: unknown[],
     testId: string
   ) => {
     const recommendations: string[] = [];

@@ -102,9 +102,9 @@ const BackgroundWave: React.FC = () => {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 pointer-events-none transform-gpu"
+            className="fixed inset-0 pointer-events-none transform-gpu"
             style={{
-                zIndex: 0,
+                zIndex: -10,
                 // Hardware acceleration for the canvas element itself
                 transform: 'translateZ(0)'
             }}

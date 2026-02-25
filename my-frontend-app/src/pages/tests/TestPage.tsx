@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Clock, Users, ArrowLeft, CheckCircle } from 'lucide-react';
+
+import { ArrowLeft } from 'lucide-react';
 
 const TestPage: React.FC = () => {
   const { testId } = useParams<{ testId: string }>();

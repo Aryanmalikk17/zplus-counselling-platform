@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+
 import { Brain, Share2, Download, RefreshCw, ChevronRight } from 'lucide-react';
 import { TestResult } from '../../../types/testTypes';
 
@@ -11,7 +11,7 @@ interface PsychologyTestResultProps {
 
 const PsychologyTestResult: React.FC<PsychologyTestResultProps> = ({ result, onRetake, onBack }) => {
     return (
-        <div className="min-h-screen bg-gray-50 py-12">
+        <div className="min-h-screen bg-transparent py-12">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -72,8 +72,8 @@ const PsychologyTestResult: React.FC<PsychologyTestResultProps> = ({ result, onR
                                         <div className="flex justify-between items-center mb-3">
                                             <span className="font-semibold text-gray-700 capitalize">{cat.category}</span>
                                             <span className={`font-bold ${cat.percentage >= 80 ? 'text-green-600' :
-                                                    cat.percentage >= 60 ? 'text-blue-600' :
-                                                        'text-orange-600'
+                                                cat.percentage >= 60 ? 'text-blue-600' :
+                                                    'text-orange-600'
                                                 }`}>
                                                 {Math.round(cat.percentage)}%
                                             </span>
@@ -84,8 +84,8 @@ const PsychologyTestResult: React.FC<PsychologyTestResultProps> = ({ result, onR
                                                 animate={{ width: `${cat.percentage}%` }}
                                                 transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
                                                 className={`h-full rounded-full ${cat.percentage >= 80 ? 'bg-gradient-to-r from-green-400 to-green-500' :
-                                                        cat.percentage >= 60 ? 'bg-gradient-to-r from-blue-400 to-blue-600' :
-                                                            'bg-gradient-to-r from-orange-400 to-red-500'
+                                                    cat.percentage >= 60 ? 'bg-gradient-to-r from-blue-400 to-blue-600' :
+                                                        'bg-gradient-to-r from-orange-400 to-red-500'
                                                     }`}
                                             />
                                         </div>

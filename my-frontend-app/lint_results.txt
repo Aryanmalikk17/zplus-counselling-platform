@@ -1,0 +1,115 @@
+
+> zplusecouncelling-project@0.0.0 lint
+> eslint .
+
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/components/profile/TestHistoryComponent.tsx
+   4:3   error    'Clock' is defined but never used                                                                                        @typescript-eslint/no-unused-vars
+   7:3   error    'TrendingUp' is defined but never used                                                                                   @typescript-eslint/no-unused-vars
+   8:3   error    'TrendingDown' is defined but never used                                                                                 @typescript-eslint/no-unused-vars
+  16:3   error    'Star' is defined but never used                                                                                         @typescript-eslint/no-unused-vars
+  42:10  error    'selectedTest' is assigned a value but never used                                                                        @typescript-eslint/no-unused-vars
+  42:24  error    'setSelectedTest' is assigned a value but never used                                                                     @typescript-eslint/no-unused-vars
+  66:6   warning  React Hook useEffect has a missing dependency: 'loadTestHistory'. Either include it or remove the dependency array       react-hooks/exhaustive-deps
+  70:6   warning  React Hook useEffect has a missing dependency: 'filterAndSortHistory'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  89:9   error    'filtered' is never reassigned. Use 'const' instead                                                                      prefer-const
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/components/profile/TestStatsDashboard.tsx
+   10:3   error    'Users' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+   11:3   error    'Clock' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+   39:6   warning  React Hook useEffect has a missing dependency: 'loadStats'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  186:53  error    'index' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+  264:55  error    'index' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/components/results/TestResultDashboard.tsx
+   15:3  error  'RadialBarChart' is defined but never used           @typescript-eslint/no-unused-vars
+   16:3  error  'RadialBar' is defined but never used                @typescript-eslint/no-unused-vars
+   21:3  error  'Clock' is defined but never used                    @typescript-eslint/no-unused-vars
+  101:9  error  'timeEfficiency' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/components/tests/CommonTestComponent.tsx
+   10:3   error    'Pause' is defined but never used                                                                                                                                                        @typescript-eslint/no-unused-vars
+   68:6   warning  React Hook useEffect has missing dependencies: 'currentQuestion.timeLimit', 'handleNextQuestion', and 'testConfig.questions.length'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  178:43  error    Unexpected any. Specify a different type                                                                                                                                                 @typescript-eslint/no-explicit-any
+  199:11  error    'questionPoints' is never reassigned. Use 'const' instead                                                                                                                                prefer-const
+  246:27  error    Unexpected any. Specify a different type                                                                                                                                                 @typescript-eslint/no-explicit-any
+  249:55  error    Unexpected any. Specify a different type                                                                                                                                                 @typescript-eslint/no-explicit-any
+  294:23  error    Unexpected any. Specify a different type                                                                                                                                                 @typescript-eslint/no-explicit-any
+  302:22  error    Unexpected any. Specify a different type                                                                                                                                                 @typescript-eslint/no-explicit-any
+  303:22  error    Unexpected any. Specify a different type                                                                                                                                                 @typescript-eslint/no-explicit-any
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/context/AuthContext.tsx
+  149:5   error    Unnecessary try/catch wrapper                                                                                                   no-useless-catch
+  177:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/data/careerData.ts
+   2:5   error  'Briefcase' is defined but never used     @typescript-eslint/no-unused-vars
+   7:5   error  'CheckCircle' is defined but never used   @typescript-eslint/no-unused-vars
+  21:5   error  'Star' is defined but never used          @typescript-eslint/no-unused-vars
+  35:31  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/admin/AssessmentEditorPage.tsx
+  54:78  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/auth/LoginPage.tsx
+  26:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  40:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/auth/RegisterPage.tsx
+  117:14  error  Parsing error: Expected corresponding JSX closing tag for 'div'
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/blog/BlogPage.tsx
+  10:9  warning  The 'blogPosts' array makes the dependencies of useMemo Hook (at line 294) change on every render. To fix this, wrap the initialization of 'blogPosts' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/career/CareerPage.tsx
+  2:10  error  'motion' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/career/components/QuickAssessmentModal.tsx
+  3:25  error  'CheckCircle' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/profile/ProfilePage.tsx
+    3:35  error  'Bell' is defined but never used                       @typescript-eslint/no-unused-vars
+    3:58  error  'Award' is defined but never used                      @typescript-eslint/no-unused-vars
+  116:9   error  'handleViewResult' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  164:63  error  Unexpected any. Specify a different type               @typescript-eslint/no-explicit-any
+  235:73  error  'index' is defined but never used                      @typescript-eslint/no-unused-vars
+  518:86  error  Unexpected any. Specify a different type               @typescript-eslint/no-explicit-any
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/tests/DynamicTestPage.tsx
+   3:8  error    'adminService' is defined but never used                                                                     @typescript-eslint/no-unused-vars
+  20:6  warning  React Hook useEffect has a missing dependency: 'loadTest'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/tests/PersonalityTestPage.tsx
+   7:3  error  'Target' is defined but never used     @typescript-eslint/no-unused-vars
+  13:3  error  'Lightbulb' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/tests/PsychologyTestPage.tsx
+  5:3  error  'Filter' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/tests/components/PsychologyTestResult.tsx
+  12:88  error  'onBack' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/tests/components/education/EducationTestList.tsx
+   3:10  error  'BookOpen' is defined but never used          @typescript-eslint/no-unused-vars
+   3:20  error  'GraduationCap' is defined but never used     @typescript-eslint/no-unused-vars
+   3:35  error  'Target' is defined but never used            @typescript-eslint/no-unused-vars
+   3:43  error  'Microscope' is defined but never used        @typescript-eslint/no-unused-vars
+   3:55  error  'BarChart3' is defined but never used         @typescript-eslint/no-unused-vars
+   3:66  error  'Palette' is defined but never used           @typescript-eslint/no-unused-vars
+   3:75  error  'Trophy' is defined but never used            @typescript-eslint/no-unused-vars
+  37:11  error  'getIcon' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/pages/tests/components/education/EducationTestResult.tsx
+  3:27  error  'Clock' is defined but never used  @typescript-eslint/no-unused-vars
+  3:34  error  'Users' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/services/pdfReportService.ts
+    9:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  173:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Documents/zpluscouncelling project/my-frontend-app/src/types/index.ts
+  102:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 65 problems (58 errors, 7 warnings)
+  2 errors and 0 warnings potentially fixable with the `--fix` option.
+

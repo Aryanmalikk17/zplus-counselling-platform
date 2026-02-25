@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from 'react';
-import { motion } from 'framer-motion';
+
 import Loading from '../../components/common/Loading';
 
 // Eager load Hero to prevent LCP delay
@@ -20,7 +20,7 @@ const CareerPage: React.FC = () => {
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-transparent">
       <HeroSection onStartAssessment={() => setIsAssessmentOpen(true)} />
 
       <Suspense fallback={<div className="h-96 flex items-center justify-center"><Loading /></div>}>
