@@ -42,42 +42,42 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-lg">
+    <nav className="fixed top-4 left-4 right-4 lg:left-8 lg:right-8 z-50 bg-white/75 backdrop-blur-md rounded-2xl border border-white/40 shadow-elevated-low transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <Brain className="h-8 w-8 text-primary-500" />
+            <Brain className="h-8 w-8 text-accent-600" />
             <span className="text-2xl font-bold text-gray-900">ZPluse Counselling</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-primary-500 font-medium transition-colors">
+            <Link to="/" className="text-gray-700 hover:text-accent-600 font-medium transition-colors">
               Home
             </Link>
-            
+
             {/* Tests Dropdown */}
-            <div 
+            <div
               className="relative group"
               onMouseEnter={() => setIsTestsDropdownOpen(true)}
               onMouseLeave={() => setIsTestsDropdownOpen(false)}
             >
-              <button className="flex items-center text-gray-700 hover:text-primary-500 font-medium transition-colors py-2">
+              <button className="flex items-center text-gray-700 hover:text-accent-600 font-medium transition-colors py-2">
                 Tests
                 <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isTestsDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
-              
+
               {/* Invisible bridge to prevent dropdown from closing */}
               <div className="absolute top-full left-0 w-full h-2 bg-transparent"></div>
-              
+
               {/* Dropdown Menu */}
               {isTestsDropdownOpen && (
                 <div className="absolute top-full left-0 pt-2 z-50">
                   <div className="w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 transform transition-all duration-200 ease-out">
-                    <Link 
-                      to="/tests" 
-                      className="block px-4 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors font-medium"
+                    <Link
+                      to="/tests"
+                      className="block px-4 py-3 text-gray-700 hover:bg-accent-50 hover:text-accent-700 transition-colors font-medium"
                     >
                       All Tests
                     </Link>
@@ -86,7 +86,7 @@ const Navbar = () => {
                       <Link
                         key={category.path}
                         to={category.path}
-                        className="block px-4 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        className="block px-4 py-3 text-gray-700 hover:bg-accent-50 hover:text-accent-700 transition-colors"
                       >
                         {category.name}
                       </Link>
@@ -97,19 +97,19 @@ const Navbar = () => {
             </div>
 
             {/* Interview Dropdown */}
-            <div 
+            <div
               className="relative group"
               onMouseEnter={() => setIsInterviewDropdownOpen(true)}
               onMouseLeave={() => setIsInterviewDropdownOpen(false)}
             >
-              <button className="flex items-center text-gray-700 hover:text-primary-500 font-medium transition-colors py-2">
+              <button className="flex items-center text-gray-700 hover:text-accent-600 font-medium transition-colors py-2">
                 Interview
                 <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${isInterviewDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
-              
+
               {/* Invisible bridge to prevent dropdown from closing */}
               <div className="absolute top-full left-0 w-full h-2 bg-transparent"></div>
-              
+
               {/* Dropdown Menu */}
               {isInterviewDropdownOpen && (
                 <div className="absolute top-full left-0 pt-2 z-50">
@@ -121,7 +121,7 @@ const Navbar = () => {
                           handleInterviewClick(category.path);
                           setIsInterviewDropdownOpen(false);
                         }}
-                        className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-accent-50 hover:text-accent-700 transition-colors"
                       >
                         {category.name}
                       </button>
@@ -130,18 +130,18 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            
-            <Link to="/career" className="text-gray-700 hover:text-primary-500 font-medium transition-colors">
+
+            <Link to="/career" className="text-gray-700 hover:text-accent-600 font-medium transition-colors">
               Career
             </Link>
-            
-            <Link to="/blog" className="text-gray-700 hover:text-primary-500 font-medium transition-colors">
+
+            <Link to="/blog" className="text-gray-700 hover:text-accent-600 font-medium transition-colors">
               Blog
             </Link>
-            
+
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
-                <Link to="/profile" className="text-gray-700 hover:text-primary-500 font-medium transition-colors">
+                <Link to="/profile" className="text-gray-700 hover:text-accent-600 font-medium transition-colors">
                   Profile
                 </Link>
                 <div className="flex items-center space-x-2">
@@ -150,14 +150,14 @@ const Navbar = () => {
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="text-gray-700 hover:text-primary-500 font-medium transition-colors"
+                  className="text-gray-700 hover:text-accent-600 font-medium transition-colors"
                 >
                   Logout
                 </button>
               </div>
             ) : (
               <div className="flex items-center space-x-4">
-                <Link to="/login" className="text-gray-700 hover:text-primary-500 font-medium transition-colors">
+                <Link to="/login" className="text-gray-700 hover:text-accent-600 font-medium transition-colors">
                   Login
                 </Link>
                 <Link to="/register" className="btn-primary">
@@ -170,7 +170,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-md text-gray-700 hover:text-primary-500 hover:bg-gray-100"
+            className="md:hidden p-2 rounded-md text-gray-700 hover:text-accent-600 hover:bg-gray-100"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -181,17 +181,17 @@ const Navbar = () => {
           <div className="md:hidden py-4 space-y-4">
             <Link
               to="/"
-              className="block text-gray-700 hover:text-primary-500 font-medium"
+              className="block text-gray-700 hover:text-accent-600 font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
-            
+
             {/* Mobile Tests Menu */}
             <div>
               <Link
                 to="/tests"
-                className="block text-gray-700 hover:text-primary-500 font-medium mb-2"
+                className="block text-gray-700 hover:text-accent-600 font-medium mb-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 All Tests
@@ -201,7 +201,7 @@ const Navbar = () => {
                   <Link
                     key={category.path}
                     to={category.path}
-                    className="block text-gray-600 hover:text-primary-500 text-sm"
+                    className="block text-gray-600 hover:text-accent-600 text-sm"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {category.name}
@@ -221,42 +221,42 @@ const Navbar = () => {
                       handleInterviewClick(category.path);
                       setIsMenuOpen(false);
                     }}
-                    className="block w-full text-left text-gray-600 hover:text-primary-500 text-sm"
+                    className="block w-full text-left text-gray-600 hover:text-accent-600 text-sm"
                   >
                     {category.name}
                   </button>
                 ))}
               </div>
             </div>
-            
+
             <Link
               to="/career"
-              className="block text-gray-700 hover:text-primary-500 font-medium"
+              className="block text-gray-700 hover:text-accent-600 font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Career
             </Link>
-            
+
             <Link
               to="/blog"
-              className="block text-gray-700 hover:text-primary-500 font-medium"
+              className="block text-gray-700 hover:text-accent-600 font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Blog
             </Link>
-            
+
             {isAuthenticated ? (
               <>
                 <Link
                   to="/profile"
-                  className="block text-gray-700 hover:text-primary-500 font-medium"
+                  className="block text-gray-700 hover:text-accent-600 font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Profile
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="block w-full text-left text-gray-700 hover:text-primary-500 font-medium"
+                  className="block w-full text-left text-gray-700 hover:text-accent-600 font-medium"
                 >
                   Logout
                 </button>
@@ -265,7 +265,7 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className="block text-gray-700 hover:text-primary-500 font-medium"
+                  className="block text-gray-700 hover:text-accent-600 font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Login
