@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Brain, Sparkles, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import React, { Suspense } from 'react';
 
 // Lazy loading the canvas to avoid blocking the initial text content render (LCP)
-const BackgroundWave = React.lazy(() => import('../../components/common/BackgroundWave'));
+const BackgroundWave = React.lazy(() => import('../../../components/common/BackgroundWave'));
 
 const HomeHero: React.FC = () => {
     return (
