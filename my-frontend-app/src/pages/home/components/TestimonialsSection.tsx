@@ -44,7 +44,7 @@ const TestimonialsSection: React.FC = () => {
                                     {testimonial.avatar}
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                                    <h3 className="font-bold text-gray-900">{testimonial.name}</h3>
                                     <p className="text-indigo-600 text-sm">{testimonial.role}</p>
                                 </div>
                             </div>

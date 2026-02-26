@@ -19,7 +19,7 @@ const SuccessMetricsSection: React.FC = () => {
                     <h2 className="text-4xl lg:text-5xl font-bold mb-6">
                         Impact That Matters
                     </h2>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                         We measure our success by the growth and achievements of our users.
                     </p>
                 </motion.div>
@@ -43,7 +43,7 @@ const SuccessMetricsSection: React.FC = () => {
                             </div>
 
                             <h3 className="text-xl font-bold text-white mb-2">{metric.title}</h3>
-                            <p className="text-gray-400">
+                            <p className="text-gray-300">
                                 {metric.description}
                             </p>
                         </motion.div>

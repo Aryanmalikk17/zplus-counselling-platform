@@ -16,6 +16,18 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react-is']
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          charts: ['recharts'],
+          firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
+          pdf: ['jspdf', 'jspdf-autotable', 'html2canvas']
+        }
+      }
+    }
+  },
   define: {
     global: 'globalThis',
   },

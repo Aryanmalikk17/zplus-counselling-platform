@@ -50,6 +50,8 @@ const GeneralFeaturesSection: React.FC = () => {
                             <img
                                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80"
                                 alt="Counseling Session"
+                                width="800"
+                                height="1000"
                                 className="w-full h-full object-cover"
                                 loading="lazy"
                             />

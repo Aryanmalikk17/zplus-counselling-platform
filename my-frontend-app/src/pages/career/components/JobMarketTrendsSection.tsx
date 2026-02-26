@@ -17,7 +17,7 @@ const JobMarketTrendsSection: React.FC = () => {
                     <h2 className="text-4xl lg:text-5xl font-bold mb-6">
                         Future Job Market Trends
                     </h2>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                         Stay ahead of the curve with insights into emerging industries and roles.
                     </p>
                 </motion.div>
@@ -41,7 +41,7 @@ const JobMarketTrendsSection: React.FC = () => {
                             </div>
 
                             <h3 className="text-xl font-bold text-white mb-3">{trend.title}</h3>
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 {trend.description}
                             </p>
                         </motion.div>

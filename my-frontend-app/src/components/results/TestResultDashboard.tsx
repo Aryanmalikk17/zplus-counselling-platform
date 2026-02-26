@@ -2,24 +2,23 @@ import { Trophy, Target, Clock, CheckCircle, XCircle, AlertCircle, Download, Sha
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 
-import { 
-  PieChart, 
-  Pie, 
-  Cell, 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend, 
+import {
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
   ResponsiveContainer,
   RadialBarChart,
   RadialBar
 } from 'recharts';
 
 import { TestResult } from '../../types/testTypes';
-import PDFReportService from '../../services/pdfReportService';
 
 interface TestResultDashboardProps {
   result: TestResult;
@@ -83,8 +82,8 @@ const TestResultDashboard: React.FC<TestResultDashboardProps> = ({
   const performance = getPerformanceLevel();
 
   const averageTimePerQuestion = result.timeSpent / result.totalQuestions;
-  const timeEfficiency = averageTimePerQuestion < 60 ? 'Excellent' : 
-                        averageTimePerQuestion < 120 ? 'Good' : 'Needs Improvement';
+  const timeEfficiency = averageTimePerQuestion < 60 ? 'Excellent' :
+    averageTimePerQuestion < 120 ? 'Good' : 'Needs Improvement';
 
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
@@ -95,8 +94,9 @@ const TestResultDashboard: React.FC<TestResultDashboardProps> = ({
   const handleDownloadReport = async () => {
     setIsGeneratingPDF(true);
     setDownloadType('report');
-    
+
     try {
+      const { PDFReportService } = await import('../../services/pdfReportService');
       await PDFReportService.generatePDFReport(result);
     } catch (error) {
       console.error('Error generating PDF report:', error);
@@ -110,8 +110,9 @@ const TestResultDashboard: React.FC<TestResultDashboardProps> = ({
   const handleDownloadDashboard = async () => {
     setIsGeneratingPDF(true);
     setDownloadType('dashboard');
-    
+
     try {
+      const { PDFReportService } = await import('../../services/pdfReportService');
       await PDFReportService.generateDashboardScreenshot(result);
     } catch (error) {
       console.error('Error generating dashboard PDF:', error);
@@ -143,7 +144,7 @@ const TestResultDashboard: React.FC<TestResultDashboardProps> = ({
     const shareText = `I just completed the ${result.testName} and scored ${result.percentage}%! 
 Grade: ${result.grade} | ${result.correctAnswers}/${result.totalQuestions} correct answers
 Check out Z+ Counselling for comprehensive psychological assessments.`;
-    
+
     navigator.clipboard.writeText(shareText).then(() => {
       alert('Results copied to clipboard!');
     }).catch(() => {
@@ -172,7 +173,7 @@ Check out Z+ Counselling for comprehensive psychological assessments.`;
             <p className="text-gray-600 mb-4">
               Completed on {result.completedAt.toLocaleDateString()} at {result.completedAt.toLocaleTimeString()}
             </p>
-            
+
             <div className="flex items-center justify-center space-x-4 mb-6">
               <div className={`px-6 py-3 rounded-full font-bold text-2xl ${getGradeColor(result.grade)}`}>
                 Grade: {result.grade}
@@ -245,17 +246,17 @@ Check out Z+ Counselling for comprehensive psychological assessments.`;
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={categoryData}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis 
-                      dataKey="category" 
+                    <XAxis
+                      dataKey="category"
                       angle={-45}
                       textAnchor="end"
                       height={80}
                       fontSize={12}
                     />
                     <YAxis />
-                    <Tooltip 
+                    <Tooltip
                       formatter={(value, name) => [
-                        `${value}${name === 'percentage' ? '%' : ''}`, 
+                        `${value}${name === 'percentage' ? '%' : ''}`,
                         name === 'percentage' ? 'Score' : name
                       ]}
                     />
@@ -369,8 +370,8 @@ Check out Z+ Counselling for comprehensive psychological assessments.`;
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
-                            <div 
-                              className="bg-blue-600 h-2 rounded-full" 
+                            <div
+                              className="bg-blue-600 h-2 rounded-full"
                               style={{ width: `${category.percentage}%` }}
                             ></div>
                           </div>
@@ -398,7 +399,7 @@ Check out Z+ Counselling for comprehensive psychological assessments.`;
               <RefreshCw className="h-5 w-5 mr-2" />
               Retake Test
             </button>
-            
+
             <button
               onClick={onBackToTests}
               className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
@@ -406,7 +407,7 @@ Check out Z+ Counselling for comprehensive psychological assessments.`;
               <BookOpen className="h-5 w-5 mr-2" />
               Back to Tests
             </button>
-            
+
             {/* Download Report Button */}
             <button
               onClick={handleDownloadReport}
@@ -435,7 +436,7 @@ Check out Z+ Counselling for comprehensive psychological assessments.`;
               Dashboard PDF
             </button>
 
-            <button 
+            <button
               onClick={handleShareResults}
               className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
             >
@@ -454,8 +455,8 @@ Check out Z+ Counselling for comprehensive psychological assessments.`;
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center">
                 <Loader className="h-5 w-5 text-blue-600 animate-spin mr-3" />
                 <span className="text-blue-800 font-medium">
-                  {downloadType === 'dashboard' 
-                    ? 'Generating dashboard PDF...' 
+                  {downloadType === 'dashboard'
+                    ? 'Generating dashboard PDF...'
                     : 'Generating detailed report PDF...'}
                 </span>
               </div>

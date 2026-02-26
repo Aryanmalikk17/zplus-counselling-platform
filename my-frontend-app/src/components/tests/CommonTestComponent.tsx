@@ -1,6 +1,6 @@
 import { Clock, ArrowRight, ArrowLeft, CheckCircle, AlertCircle, Play, Pause } from 'lucide-react';
 import { motion } from 'framer-motion';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 
 import { TestConfig, TestAnswer, TestSession, TestResult } from '../../types/testTypes';
@@ -147,6 +147,73 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
     }
   };
 
+  const generateDetailedInsights = useCallback((
+    percentage: number,
+    categoryResults: any[],
+    detailedAnswers: any[],
+    testId: string
+  ) => {
+    const recommendations: string[] = [];
+    const strengths: string[] = [];
+    const weaknesses: string[] = [];
+
+    // Overall performance analysis
+    if (percentage >= 90) {
+      strengths.push("Exceptional overall performance across all areas");
+      recommendations.push("Consider advanced level challenges to further develop your skills");
+    } else if (percentage >= 80) {
+      strengths.push("Strong performance with good understanding of concepts");
+      recommendations.push("Focus on perfecting weaker areas to achieve excellence");
+    } else if (percentage >= 70) {
+      strengths.push("Good foundation with room for improvement");
+      recommendations.push("Regular practice and review of key concepts recommended");
+    } else {
+      weaknesses.push("Needs significant improvement in fundamental concepts");
+      recommendations.push("Consider additional study and practice before retaking");
+    }
+
+    // Category-specific analysis
+    categoryResults.forEach((category: any) => {
+      if (category.percentage >= 80) {
+        strengths.push(`Strong performance in ${category.category.toLowerCase()}`);
+      } else if (category.percentage < 60) {
+        weaknesses.push(`Needs improvement in ${category.category.toLowerCase()}`);
+        recommendations.push(`Focus more practice on ${category.category.toLowerCase()} topics`);
+      }
+    });
+
+    // Test-specific insights
+    if (testId.includes('iq')) {
+      if (percentage >= 80) {
+        strengths.push("Strong analytical and logical reasoning abilities");
+      } else {
+        recommendations.push("Practice more logical reasoning and pattern recognition exercises");
+      }
+    } else if (testId.includes('memory')) {
+      recommendations.push("Use memory techniques like visualization and association");
+    } else if (testId.includes('personality')) {
+      recommendations.push("Results reflect your natural personality traits and preferences");
+    } else if (testId.includes('tat') || testId.includes('wat') || testId.includes('srt')) {
+      recommendations.push("Continue developing leadership and communication skills");
+      if (percentage >= 70) {
+        strengths.push("Good understanding of leadership principles and situational awareness");
+      }
+    }
+
+    // Time management analysis
+    const avgTimePerQuestion = categoryResults.reduce((acc: any, cat: any) => acc + cat.timeSpent, 0) /
+      categoryResults.reduce((acc: any, cat: any) => acc + cat.totalQuestions, 0);
+
+    if (avgTimePerQuestion < 60) {
+      strengths.push("Excellent time management and quick decision making");
+    } else if (avgTimePerQuestion > 180) {
+      weaknesses.push("Time management needs improvement");
+      recommendations.push("Practice answering questions more quickly while maintaining accuracy");
+    }
+
+    return { recommendations, strengths, weaknesses };
+  }, []);
+
   const handlePreviousQuestion = () => {
     if (session.currentQuestionIndex > 0) {
       setSession(prev => ({
@@ -161,7 +228,7 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
     }
   };
 
-  const calculateResults = (finalSession: TestSession): TestResult => {
+  const calculateResults = useCallback((finalSession: TestSession): TestResult => {
     const totalQuestions = testConfig.questions.length;
     const totalPoints = testConfig.totalPoints || totalQuestions;
     let pointsEarned = 0;
@@ -289,74 +356,7 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
       isPassed,
       detailedAnswers
     };
-  };
-
-  const generateDetailedInsights = (
-    percentage: number,
-    categoryResults: any[],
-    detailedAnswers: any[],
-    testId: string
-  ) => {
-    const recommendations: string[] = [];
-    const strengths: string[] = [];
-    const weaknesses: string[] = [];
-
-    // Overall performance analysis
-    if (percentage >= 90) {
-      strengths.push("Exceptional overall performance across all areas");
-      recommendations.push("Consider advanced level challenges to further develop your skills");
-    } else if (percentage >= 80) {
-      strengths.push("Strong performance with good understanding of concepts");
-      recommendations.push("Focus on perfecting weaker areas to achieve excellence");
-    } else if (percentage >= 70) {
-      strengths.push("Good foundation with room for improvement");
-      recommendations.push("Regular practice and review of key concepts recommended");
-    } else {
-      weaknesses.push("Needs significant improvement in fundamental concepts");
-      recommendations.push("Consider additional study and practice before retaking");
-    }
-
-    // Category-specific analysis
-    categoryResults.forEach((category: any) => {
-      if (category.percentage >= 80) {
-        strengths.push(`Strong performance in ${category.category.toLowerCase()}`);
-      } else if (category.percentage < 60) {
-        weaknesses.push(`Needs improvement in ${category.category.toLowerCase()}`);
-        recommendations.push(`Focus more practice on ${category.category.toLowerCase()} topics`);
-      }
-    });
-
-    // Test-specific insights
-    if (testId.includes('iq')) {
-      if (percentage >= 80) {
-        strengths.push("Strong analytical and logical reasoning abilities");
-      } else {
-        recommendations.push("Practice more logical reasoning and pattern recognition exercises");
-      }
-    } else if (testId.includes('memory')) {
-      recommendations.push("Use memory techniques like visualization and association");
-    } else if (testId.includes('personality')) {
-      recommendations.push("Results reflect your natural personality traits and preferences");
-    } else if (testId.includes('tat') || testId.includes('wat') || testId.includes('srt')) {
-      recommendations.push("Continue developing leadership and communication skills");
-      if (percentage >= 70) {
-        strengths.push("Good understanding of leadership principles and situational awareness");
-      }
-    }
-
-    // Time management analysis
-    const avgTimePerQuestion = categoryResults.reduce((acc: any, cat: any) => acc + cat.timeSpent, 0) /
-      categoryResults.reduce((acc: any, cat: any) => acc + cat.totalQuestions, 0);
-
-    if (avgTimePerQuestion < 60) {
-      strengths.push("Excellent time management and quick decision making");
-    } else if (avgTimePerQuestion > 180) {
-      weaknesses.push("Time management needs improvement");
-      recommendations.push("Practice answering questions more quickly while maintaining accuracy");
-    }
-
-    return { recommendations, strengths, weaknesses };
-  };
+  }, [testConfig, generateDetailedInsights]);
 
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
@@ -483,6 +483,8 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
                       <img
                         src={currentQuestion.image}
                         alt="Test Image"
+                        width="400"
+                        height="300"
                         className="max-w-full h-auto max-h-96 object-contain"
                         onError={(e) => {
                           // Fallback for missing images
