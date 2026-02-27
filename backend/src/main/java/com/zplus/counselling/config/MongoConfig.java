@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @Configuration
 @Profile("!test") // Exclude from test profile
-@ConditionalOnProperty(name = "spring.data.mongodb.enabled", havingValue = "true", matchIfMissing = false)
 @EnableMongoRepositories(basePackages = "com.zplus.counselling.repository.mongodb")
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
