@@ -59,7 +59,8 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
       }, remainingTime * 1000);
     }
     return () => clearTimeout(questionTimer);
-  }, [isTimerRunning, session.currentQuestionIndex]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTimerRunning, session.currentQuestionIndex, currentQuestion?.timeLimit, testConfig.questions.length]);
 
   const handleStartTest = () => {
     setShowInstructions(false);
@@ -356,7 +357,7 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
       isPassed,
       detailedAnswers
     };
-  }, [testConfig, generateDetailedInsights]);
+  }, [testConfig, generateDetailedInsights, timeSpent]);
 
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);

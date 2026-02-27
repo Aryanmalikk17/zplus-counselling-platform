@@ -2,11 +2,11 @@ spring:
   application:
     name: zplus-counselling-backend
   
-  # Use Docker databases for local development
+  # Use Docker databases for local development or Render external DB
   datasource:
-    url: jdbc:postgresql://localhost:5432/zplus_counselling
-    username: zplus_user
-    password: secure_password
+    url: ${RENDER_DB_URL:jdbc:postgresql://localhost:5432/zplus_counselling}?sslmode=require
+    username: ${RENDER_DB_USER:zplus_user}
+    password: ${RENDER_DB_PASSWORD:secure_password}
     driver-class-name: org.postgresql.Driver
   
   jpa:

@@ -146,19 +146,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const updateProfile = async (userData: Partial<User>) => {
     if (!auth.currentUser) throw new Error('No user logged in');
 
-    try {
-      if (userData.fullName || userData.profilePictureUrl) {
-        await firebaseUpdateProfile(auth.currentUser, {
-          displayName: userData.fullName,
-          photoURL: userData.profilePictureUrl
-        });
+    if (userData.fullName || userData.profilePictureUrl) {
+      await firebaseUpdateProfile(auth.currentUser, {
+        displayName: userData.fullName,
+        photoURL: userData.profilePictureUrl
+      });
 
-        // Refresh user in state
-        const updatedUser = mapFirebaseUser(auth.currentUser);
-        dispatch({ type: 'SET_USER', payload: updatedUser });
-      }
-    } catch (error) {
-      throw error;
+      // Refresh user in state
+      const updatedUser = mapFirebaseUser(auth.currentUser);
+      dispatch({ type: 'SET_USER', payload: updatedUser });
     }
   };
 
@@ -174,6 +170,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {

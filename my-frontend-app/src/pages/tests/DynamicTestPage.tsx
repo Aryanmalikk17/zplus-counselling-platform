@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { AssessmentTemplate } from '../../services/adminService';
 import testService from '../../services/testService';
@@ -13,26 +13,7 @@ const DynamicTestPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (testId) {
-      loadTest(testId);
-    }
-  }, [testId]);
-
-  const loadTest = async (id: string) => {
-    try {
-      const template = await testService.getAssessment(id);
-      const config = mapTemplateToConfig(template);
-      setTestConfig(config);
-    } catch (err: any) {
-      setError('Failed to load test configuration');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const mapTemplateToConfig = (template: AssessmentTemplate): TestConfig => {
+  const mapTemplateToConfig = useCallback((template: AssessmentTemplate): TestConfig => {
     return {
       id: template.id || template.testType,
       name: template.title,
@@ -58,7 +39,26 @@ const DynamicTestPage: React.FC = () => {
         points: q.points
       }))
     };
-  };
+  }, []);
+
+  const loadTest = useCallback(async (id: string) => {
+    try {
+      const template = await testService.getAssessment(id);
+      const config = mapTemplateToConfig(template);
+      setTestConfig(config);
+    } catch (err: any) {
+      setError('Failed to load test configuration');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }, [mapTemplateToConfig]);
+
+  useEffect(() => {
+    if (testId) {
+      loadTest(testId);
+    }
+  }, [testId, loadTest]);
 
   const handleTestComplete = async (result: TestResult) => {
     try {

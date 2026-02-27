@@ -2,7 +2,8 @@ import { User, Settings, History, Edit, Download, Plus, X, Calendar, MapPin, Pho
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 
-
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import app from '../../config/firebase'; // The initialized Firebase app
 import { useAuth } from '../../context/AuthContext';
 import { TestHistoryComponent } from '../../components/profile/TestHistoryComponent';
 import TestStatsDashboard from '../../components/profile/TestStatsDashboard';
@@ -82,6 +83,23 @@ const ProfilePage: React.FC = () => {
 
   const handleSaveEducation = async () => {
     try {
+      // 1. Wait for auth initialization state to resolve if it is pending
+      const authObj = getAuth(app);
+      const currentUser = await new Promise((resolve, reject) => {
+        const unsubscribe = onAuthStateChanged(
+          authObj,
+          (userState) => {
+            unsubscribe(); // Clean up listener to avoid memory leaks
+            resolve(userState);
+          },
+          reject
+        );
+      });
+
+      if (!currentUser) {
+        throw new Error('User is not authenticated. Please log in first.');
+      }
+
       const newEducation: EducationalQualification = {
         id: editingEducation?.id || Date.now().toString(),
         ...educationForm
@@ -100,8 +118,9 @@ const ProfilePage: React.FC = () => {
 
       await updateProfile({ educationalQualifications: updatedEducations });
       setIsEducationModalOpen(false);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to save education:', error);
+      alert(error.message || 'An unexpected error occurred during submission.');
     }
   };
 

@@ -26,10 +26,24 @@ export class ApiError extends Error {
     }
 }
 
+import { getAuth } from 'firebase/auth';
+import { auth } from '../config/firebase'; // The initialized Firebase app
+
 /**
- * Gets the stored access token from localStorage.
+ * Gets the stored access token from Firebase securely.
+ * Note: Since this is async, we modify the fetch wrapping rather than a sync fn.
  */
-function getAuthHeader(): Record<string, string> {
+async function getAuthHeader(): Promise<Record<string, string>> {
+    const user = auth.currentUser;
+    if (user) {
+        try {
+            const token = await user.getIdToken();
+            return { Authorization: `Bearer ${token}` };
+        } catch (error) {
+            console.error("Failed to get Firebase token", error);
+        }
+    }
+    // Fallback to local storage (e.g. for non-Firebase tokens if previously supported)
     const token = localStorage.getItem('accessToken');
     return token ? { Authorization: `Bearer ${token}` } : {};
 }
@@ -43,11 +57,12 @@ async function request<T>(
 ): Promise<T> {
     const url = `${API_BASE_URL}${path}`;
 
+    const authHeaders = await getAuthHeader();
     const response = await fetch(url, {
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...getAuthHeader(),
+            ...authHeaders,
             ...(options.headers as Record<string, string> | undefined),
         },
     });

@@ -42,15 +42,7 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
     { value: 'aptitude', label: 'Aptitude Tests' }
   ];
 
-  useEffect(() => {
-    loadTestHistory();
-  }, [user]);
-
-  useEffect(() => {
-    filterAndSortHistory();
-  }, [searchQuery, selectedCategory, sortBy, sortOrder, filters]);
-
-  const loadTestHistory = async () => {
+  const loadTestHistory = useCallback(async () => {
     if (!user?.id) return;
 
     setLoading(true);
@@ -62,12 +54,16 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [user?.id]);
 
-  const filterAndSortHistory = () => {
+  useEffect(() => {
+    loadTestHistory();
+  }, [loadTestHistory]);
+
+  const filterAndSortHistory = useCallback(() => {
     if (!user?.id) return;
 
-    let filtered = testHistoryService.searchTestHistory(
+    const filtered = testHistoryService.searchTestHistory(
       user.id,
       searchQuery,
       {
@@ -100,7 +96,11 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
     });
 
     setTestHistory(filtered);
-  };
+  }, [user?.id, searchQuery, selectedCategory, sortBy, sortOrder, filters]);
+
+  useEffect(() => {
+    filterAndSortHistory();
+  }, [filterAndSortHistory]);
 
   const handleToggleFavorite = async (testId: string) => {
     if (!user?.id) return;
@@ -375,8 +375,8 @@ export const TestHistoryComponent: React.FC<TestHistoryComponentProps> = ({
                   <button
                     onClick={() => handleToggleFavorite(historyItem.id)}
                     className={`p-1 rounded-full transition-colors ${historyItem.isFavorite
-                        ? 'text-red-500 hover:text-red-600'
-                        : 'text-gray-400 hover:text-red-500'
+                      ? 'text-red-500 hover:text-red-600'
+                      : 'text-gray-400 hover:text-red-500'
                       }`}
                   >
                     <Heart className={`h-4 w-4 ${historyItem.isFavorite ? 'fill-current' : ''}`} />

@@ -1,6 +1,6 @@
 import { BarChart3, TrendingUp, Target, Calendar, Award, Brain, Users, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 
 import { testHistoryService, TestStats } from '../../services/testHistoryService';
@@ -25,17 +25,17 @@ const TestStatsDashboard: React.FC = () => {
     }
   });
 
+  const loadStats = useCallback(() => {
+    if (!user?.id) return;
+    const userStats = testHistoryService.getUserStats(user.id);
+    setStats(userStats);
+  }, [user?.id]);
+
   useEffect(() => {
     if (user?.id) {
       loadStats();
     }
-  }, [user?.id]);
-
-  const loadStats = () => {
-    if (!user?.id) return;
-    const userStats = testHistoryService.getUserStats(user.id);
-    setStats(userStats);
-  };
+  }, [user?.id, loadStats]);
 
   const getCategoryIcon = (category: string) => {
     switch (category.toLowerCase()) {
