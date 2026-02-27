@@ -92,6 +92,8 @@ public class FirebaseTokenFilter extends OncePerRequestFilter {
             } catch (Exception e) {
                  System.err.println("Authentication error: " + e.getMessage());
                  e.printStackTrace();
+                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                 return; // Stop — do not let an unauthenticated request through
             }
         }
 

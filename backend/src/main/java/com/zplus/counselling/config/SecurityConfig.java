@@ -81,7 +81,12 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                    "/auth/**",
+                    // Only truly public auth endpoints — NOT /auth/me or /auth/profile
+                    "/auth/login",
+                    "/auth/register",
+                    "/auth/refresh",
+                    "/auth/forgot-password",
+                    "/auth/reset-password",
                     "/public/**",
                     "/actuator/health",
                     "/swagger-ui/**",
