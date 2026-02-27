@@ -24,10 +24,22 @@ public class DataSeeder implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void run(String... args) throws Exception {
-        seedIQTest();
-        seedTATTest();
-        seedAdminUser();
+    public void run(String... args) {
+        // Seed admin user first (PostgreSQL — always available)
+        try {
+            seedAdminUser();
+        } catch (Exception e) {
+            log.error("Failed to seed admin user: {}", e.getMessage());
+        }
+
+        // Seed MongoDB templates — wrapped so a missing Mongo doesn't crash the app
+        try {
+            seedIQTest();
+            seedTATTest();
+        } catch (Exception e) {
+            log.warn("⚠️  MongoDB is not reachable. Skipping assessment template seeding. " +
+                     "Set MONGODB_URI to a valid MongoDB Atlas connection string. Error: {}", e.getMessage());
+        }
     }
 
     private void seedAdminUser() {
