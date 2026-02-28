@@ -1,5 +1,6 @@
 package com.zplus.counselling.controller;
 
+import com.zplus.counselling.exception.BadRequestException;
 import com.zplus.counselling.dto.FrontendTestResultDto;
 import com.zplus.counselling.dto.response.ApiResponse;
 import com.zplus.counselling.entity.postgres.TestResult;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/test-results")
@@ -34,6 +34,10 @@ public class TestResultController {
             @AuthenticationPrincipal UserPrincipal userPrincipal,
             @RequestBody FrontendTestResultDto resultDto) {
         
+        if (resultDto == null || resultDto.getTestType() == null || resultDto.getTestType().isEmpty()) {
+            throw new BadRequestException("Invalid session: Missing test type or result details");
+        }
+
         User user = userRepository.findById(userPrincipal.getId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
