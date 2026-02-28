@@ -89,11 +89,11 @@ public class SecurityConfig {
                     "/auth/reset-password",
                     "/public/**",
                     "/actuator/health",
+                    "/actuator/health/**",
                     "/swagger-ui/**",
                     "/v3/api-docs/**",
                     "/error"
                 ).permitAll()
-                .requestMatchers("/actuator/**").hasRole("ADMIN")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/counselor/**").hasAnyRole("COUNSELOR", "ADMIN")
                 .anyRequest().authenticated()
