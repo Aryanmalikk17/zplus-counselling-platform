@@ -1,5 +1,5 @@
 import { Clock, Calendar, Trophy, TrendingUp, TrendingDown, Eye, Edit, Trash2, Heart, Download, Search, Filter, Star, BookOpen, Tag, MoreVertical, ChevronDown, ChevronUp, BarChart3 } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { testHistoryService, UserTestHistory } from '../../services/testHistoryService';
