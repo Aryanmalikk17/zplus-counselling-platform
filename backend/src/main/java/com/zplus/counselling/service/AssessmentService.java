@@ -170,6 +170,7 @@ public class AssessmentService {
         answer.setSession(session);
         answer.setQuestionId(request.getQuestionId());
         answer.setSelectedOptionId(request.getAnswer());
+        answer.setQuestionNumber(session.getCurrentQuestionIndex() + 1);
         answer.setTimeSpentSeconds(request.getResponseTime() != null ? request.getResponseTime().longValue() : 0L);
 
         answerRepository.save(answer);

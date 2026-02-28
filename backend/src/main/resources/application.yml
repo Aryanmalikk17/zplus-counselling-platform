@@ -88,11 +88,15 @@ management:
       base-path: /actuator
   endpoint:
     health:
-      show-details: when_authorized
+      show-details: always
+      probes:
+        enabled: true
   health:
     redis:
       enabled: false
     rabbit:
+      enabled: false
+    mail:
       enabled: false
   metrics:
     export:
