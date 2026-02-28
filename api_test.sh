@@ -8,8 +8,8 @@
 set -uo pipefail # Removed -e to manually handle test failures without aborting
 
 # ── Configuration ───────────────────────────────────────────────────────────
-BASE_URL="http://localhost:8080/api/v1" # Local test URL (change to Render for live tests)
-if [[ "${1:-}" == "https://"* ]]; then
+BASE_URL="https://zplus-counselling-platform.onrender.com/api/v1" # Live test URL
+if [[ "${1:-}" == "https://"* || "${1:-}" == "http://"* ]]; then
     BASE_URL="${1:-}"
     TOKEN="${2:-${FIREBASE_TOKEN:-}}"
 else
