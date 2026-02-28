@@ -41,8 +41,8 @@ public class TestResultController {
         testResult.setUser(user);
         testResult.setTestType(resultDto.getTestType() != null ? resultDto.getTestType() : "UNKNOWN");
         testResult.setTestVersion("1.0");
-        testResult.setCompletionPercentage(resultDto.getPercentage());
-        testResult.setDurationMinutes(resultDto.getTimeSpent() / 60);
+        testResult.setCompletionPercentage(resultDto.getPercentage() != null ? resultDto.getPercentage() : 0);
+        testResult.setDurationMinutes(resultDto.getTimeSpent() != null ? resultDto.getTimeSpent() / 60 : 0);
         testResult.setIsCompleted(true);
         testResult.setCreatedAt(LocalDateTime.now());
         testResult.setUpdatedAt(LocalDateTime.now());

@@ -89,6 +89,11 @@ management:
   endpoint:
     health:
       show-details: when_authorized
+  health:
+    redis:
+      enabled: false
+    rabbit:
+      enabled: false
   metrics:
     export:
       prometheus:
