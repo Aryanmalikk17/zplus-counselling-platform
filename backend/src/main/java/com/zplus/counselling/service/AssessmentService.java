@@ -94,6 +94,30 @@ public class AssessmentService {
     }
 
     /**
+     * Get active assessments for public listing (no user-specific info)
+     */
+    @Transactional(readOnly = true)
+    public List<AvailableAssessmentDto> getPublicAssessments() {
+        log.info("Getting public assessment list");
+        
+        return templateRepository.findAll().stream()
+                .filter(template -> template.getIsActive() != null && template.getIsActive())
+                .map(template -> AvailableAssessmentDto.builder()
+                        .testType(template.getTestType())
+                        .title(template.getTitle())
+                        .description(template.getDescription())
+                        .category(template.getCategory())
+                        .estimatedTimeMinutes(template.getEstimatedTimeMinutes())
+                        .totalQuestions(template.getTotalQuestions())
+                        .isCompleted(false)
+                        .lastAttemptDate(null)
+                        .price(0.0)
+                        .difficulty("BEGINNER")
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    /**
      * Start a new assessment session for a user
      */
     public StartAssessmentResponse startAssessment(UUID userId, String testType, StartAssessmentRequest request) {
