@@ -15,7 +15,7 @@ import java.util.UUID;
  *   - passwordResetToken / passwordResetTokenExpiresAt
  *   - firebaseUid
  *   - lastLogoutAt / passwordChangedAt
- *   - role (not needed by the client; capabilities are determined by auth state)
+ *   - role (Required by client for RBAC)
  */
 @Data
 @Builder
@@ -31,6 +31,7 @@ public class UserProfileResponse {
     private Boolean isEmailVerified;
     private Boolean isPhoneVerified;
     private Boolean isActive;
+    private String role;
     private LocalDateTime createdAt;
     private LocalDateTime lastLoginAt;
 }

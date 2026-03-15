@@ -96,6 +96,7 @@ public class UserService implements UserDetailsService {
             .subscriptionType(user.getSubscriptionType())
             .isEmailVerified(user.getIsEmailVerified())
             .isPhoneVerified(user.getIsPhoneVerified())
+            .role(user.getRole())
             .createdAt(user.getCreatedAt())
             .build();
     }

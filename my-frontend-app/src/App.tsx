@@ -28,6 +28,10 @@ const AssessmentListPage = React.lazy(() => import('./pages/admin/AssessmentList
 const AssessmentEditorPage = React.lazy(() => import('./pages/admin/AssessmentEditorPage'));
 const DynamicTestPage = React.lazy(() => import('./pages/tests/DynamicTestPage'));
 
+const AdminLogin = React.lazy(() => import('./pages/admin/AdminLogin'));
+const AdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard'));
+const TestEditor = React.lazy(() => import('./pages/admin/TestEditor'));
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -58,10 +62,41 @@ function App() {
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/tests" element={<TestsPage />} />
                   <Route path="/test/:testId" element={<DynamicTestPage />} />
-                  {/* Admin Routes - Public Access Requested by User */}
-                  <Route path="/admin/assessments" element={<AssessmentListPage />} />
-                  <Route path="/admin/assessments/new" element={<AssessmentEditorPage />} />
-                  <Route path="/admin/assessments/:id" element={<AssessmentEditorPage />} />
+                  
+                  {/* Admin Routes */}
+                  <Route path="/admin/login" element={<AdminLogin />} />
+                  <Route 
+                    path="/admin/dashboard" 
+                    element={
+                      <ProtectedRoute adminOnly={true}>
+                        <AdminDashboard />
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/admin/assessments" 
+                    element={
+                      <ProtectedRoute adminOnly={true}>
+                        <AssessmentListPage />
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/admin/assessments/new" 
+                    element={
+                      <ProtectedRoute adminOnly={true}>
+                        <TestEditor />
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/admin/assessments/:id" 
+                    element={
+                      <ProtectedRoute adminOnly={true}>
+                        <TestEditor />
+                      </ProtectedRoute>
+                    } 
+                  />
                   {/* New test category routes */}
                   <Route path="/test/reasoning" element={<ReasoningTestPage />} />
                   <Route path="/test/psychology" element={<PsychologyTestPage />} />

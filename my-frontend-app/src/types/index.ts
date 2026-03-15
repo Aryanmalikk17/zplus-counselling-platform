@@ -28,6 +28,7 @@ export interface User {
   lastLoginAt?: string;
   createdAt: Date | string;
   updatedAt: Date | string;
+  role?: string;
   
   // Legacy fields for compatibility
   avatar?: string;
