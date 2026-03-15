@@ -1,0 +1,200 @@
+[
+  {
+    "testType": "mbti",
+    "title": "16 Types (MBTI)",
+    "description": "Discover your Myers-Briggs personality type and understand your cognitive preferences.",
+    "category": "Personality",
+    "estimatedTimeMinutes": 15,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Answer questions based on your natural preferences.", "Choose the option that feels most like you."]
+  },
+  {
+    "testType": "bigfive",
+    "title": "Big Five Traits",
+    "description": "Measure your personality across five key dimensions: openness, conscientiousness, and more.",
+    "category": "Personality",
+    "estimatedTimeMinutes": 12,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Rate how much you agree with each statement.", "Be honest for accurate results."]
+  },
+  {
+    "testType": "enneagram",
+    "title": "Enneagram Test",
+    "description": "Explore your core motivations, fears, and desires through nine personality types.",
+    "category": "Personality",
+    "estimatedTimeMinutes": 18,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Consider your core motivations behind your actions.", "Reflect on your behavior in different situations."]
+  },
+  {
+    "testType": "disc",
+    "title": "DISC Assessment",
+    "description": "Understand your work style and communication preferences in professional settings.",
+    "category": "Career",
+    "estimatedTimeMinutes": 10,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Think about your typical behavior in a work environment."]
+  },
+  {
+    "testType": "eq",
+    "title": "Emotional Intelligence",
+    "description": "Measure your ability to understand and manage emotions effectively.",
+    "category": "Emotional",
+    "estimatedTimeMinutes": 15,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Evaluate how you handle emotional situations."]
+  },
+  {
+    "testType": "career",
+    "title": "Career Aptitude",
+    "description": "Find careers that match your personality traits and natural strengths.",
+    "category": "Career",
+    "estimatedTimeMinutes": 20,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Answer questions about your interests and strengths."]
+  },
+  {
+    "testType": "iq",
+    "title": "IQ Test",
+    "description": "Assess your cognitive abilities and intellectual potential.",
+    "category": "Psychology",
+    "estimatedTimeMinutes": 45,
+    "totalQuestions": 40,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Solve the puzzles and logic questions.", "Complete the test in one sitting."]
+  },
+  {
+    "testType": "memory",
+    "title": "Memory Assessment",
+    "description": "Evaluate your short-term and long-term memory capabilities.",
+    "category": "Psychology",
+    "estimatedTimeMinutes": 25,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Follow the visual and verbal memory prompts."]
+  },
+  {
+    "testType": "attention",
+    "title": "Attention & Focus",
+    "description": "Test your concentration abilities and attention span.",
+    "category": "Psychology",
+    "estimatedTimeMinutes": 20,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Focus on the tasks presented without distractions."]
+  },
+  {
+    "testType": "primary",
+    "title": "Primary Education",
+    "description": "Basic educational skills assessment for elementary level students.",
+    "category": "Education",
+    "estimatedTimeMinutes": 30,
+    "totalQuestions": 30,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Standard assessment for primary level knowledge."]
+  },
+  {
+    "testType": "secondary",
+    "title": "Secondary Education",
+    "description": "Comprehensive assessment for middle school knowledge and skills.",
+    "category": "Education",
+    "estimatedTimeMinutes": 45,
+    "totalQuestions": 40,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Covers major subjects for secondary education."]
+  },
+  {
+    "testType": "science-stream",
+    "title": "Science Stream",
+    "description": "Specialized test for Physics, Chemistry, Biology, and Mathematics.",
+    "category": "Education",
+    "estimatedTimeMinutes": 50,
+    "totalQuestions": 50,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Advanced assessment for science stream students."]
+  },
+  {
+    "testType": "commerce-stream",
+    "title": "Commerce Stream",
+    "description": "Business, Economics, and Accounting knowledge assessment.",
+    "category": "Education",
+    "estimatedTimeMinutes": 45,
+    "totalQuestions": 40,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Evaluation for commerce stream subjects."]
+  },
+  {
+    "testType": "arts-stream",
+    "title": "Arts Stream",
+    "description": "Humanities, Literature, and Social Sciences assessment.",
+    "category": "Education",
+    "estimatedTimeMinutes": 50,
+    "totalQuestions": 40,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Assessment for humanities and social sciences."]
+  },
+  {
+    "testType": "leadership",
+    "title": "Leadership Style",
+    "description": "Discover your natural leadership approach and management style.",
+    "category": "Career",
+    "estimatedTimeMinutes": 15,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Evaluate your approach to leading others and making decisions."]
+  },
+  {
+    "testType": "entrepreneurship",
+    "title": "Entrepreneurship Potential",
+    "description": "Assess your entrepreneurial mindset and business acumen.",
+    "category": "Career",
+    "estimatedTimeMinutes": 18,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Think about your risk-taking ability and innovativeness."]
+  },
+  {
+    "testType": "stress",
+    "title": "Stress Assessment",
+    "description": "Evaluate your stress levels and coping mechanisms.",
+    "category": "Wellness",
+    "estimatedTimeMinutes": 12,
+    "totalQuestions": 20,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Consider your recent experiences with stress."]
+  },
+  {
+    "testType": "wellness",
+    "title": "Overall Wellness",
+    "description": "Comprehensive assessment of your physical and mental well-being.",
+    "category": "Wellness",
+    "estimatedTimeMinutes": 20,
+    "totalQuestions": 30,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Evaluate your general lifestyle and well-being habits."]
+  }
+]
