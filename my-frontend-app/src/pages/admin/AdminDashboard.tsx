@@ -15,6 +15,7 @@ import {
 import { motion } from 'framer-motion';
 import { useAuth } from '../../context/AuthContext';
 import { getAuth } from 'firebase/auth';
+import adminStatsService from '../../services/adminStatsApi';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -207,40 +208,61 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
 
 // AdminDashboard component
 const AdminDashboard: React.FC = () => {
+  const [stats, setStats] = React.useState<any>(null);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response: any = await adminStatsService.getStats();
+        setStats(response.data);
+      } catch (error) {
+        console.error('Failed to fetch dashboard stats:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStats();
+  }, []);
+
+  const statCards = [
+    { label: 'Total Assessments', value: stats?.totalAssessments ?? '...', change: '', color: 'blue' },
+    { label: 'Active Students', value: stats?.activeStudents ?? '...', change: '', color: 'green' },
+    { label: 'Tests Completed', value: stats?.testsCompleted ?? '...', change: '', color: 'purple' },
+    // Average score is calculated or removed per phase 1 requirements
+    ...(stats?.averageScore && stats.averageScore !== 'N/A' ? [
+      { label: 'Average Score', value: stats.averageScore, change: 'Stable', color: 'orange' }
+    ] : [])
+  ];
+
   return (
     <AdminLayout title="Dashboard Overview">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {[
-          { label: 'Total Assessments', value: '32', change: '+4 this month', color: 'blue' },
-          { label: 'Active Students', value: '1,280', change: '+12%', color: 'green' },
-          { label: 'Tests Completed', value: '5,420', change: '+85 today', color: 'purple' },
-          { label: 'Average Score', value: '74%', change: 'Stable', color: 'orange' },
-        ].map((stat) => (
-          <div key={stat.label} className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-            <p className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">{stat.label}</p>
-            <h3 className="text-3xl font-black text-gray-900 mb-1">{stat.value}</h3>
-            <p className="text-xs font-bold text-green-600">{stat.change}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8">
-        <h3 className="text-xl font-bold text-gray-900 mb-6">Recent Activity</h3>
-        <div className="space-y-6">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="flex items-center gap-4 pb-6 border-b border-gray-50 last:border-0 last:pb-0">
-              <div className="h-12 w-12 rounded-2xl bg-gray-50 flex items-center justify-center text-primary-600">
-                <ClipboardList className="h-6 w-6" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-bold text-gray-900">MBTI Assessment Updated</p>
-                <p className="text-xs text-gray-400 font-medium">Modified by System Admin • 2 hours ago</p>
-              </div>
-              <button className="px-4 py-2 text-primary-600 font-bold hover:bg-primary-50 rounded-xl transition-all">Details</button>
-            </div>
-          ))}
+      {loading ? (
+        <div className="flex items-center justify-center py-20">
+          <div className="animate-spin h-8 w-8 border-4 border-primary-500/30 border-t-primary-500 rounded-full"></div>
         </div>
-      </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {statCards.map((stat) => (
+              <div key={stat.label} className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                <p className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">{stat.label}</p>
+                <h3 className="text-3xl font-black text-gray-900 mb-1">{stat.value}</h3>
+                {stat.change && <p className="text-xs font-bold text-green-600">{stat.change}</p>}
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8">
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Recent Activity</h3>
+            <div className="space-y-6">
+              <div className="text-center py-10">
+                <p className="text-gray-400 font-medium italic text-sm">Real-time activity logs starting soon...</p>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </AdminLayout>
   );
 };
