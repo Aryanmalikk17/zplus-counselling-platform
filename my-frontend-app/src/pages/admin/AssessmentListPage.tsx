@@ -16,8 +16,25 @@ const AssessmentListPage: React.FC = () => {
 
   const loadAssessments = async () => {
     try {
-      const data: any = await assessmentService.getAll();
-      setAssessments(data);
+      const rawData: any = await assessmentService.getAll();
+      console.log('[AssessmentListPage] API Response:', rawData);
+      
+      let assessmentsArray = [];
+      if (Array.isArray(rawData)) {
+        assessmentsArray = rawData;
+      } else if (rawData && typeof rawData === 'object') {
+        // Handle Spring Boot Page object (content) or custom wrappers (data)
+        // If the response is wrapped by axios response interceptor (as seen in adminAssessmentApi.ts line 27)
+        // rawData is actually the content of the response
+        assessmentsArray = rawData.content || rawData.data || rawData.assessments || [];
+      }
+      
+      if (!Array.isArray(assessmentsArray)) {
+        console.warn('[AssessmentListPage] Expected array but got:', assessmentsArray);
+        assessmentsArray = [];
+      }
+      
+      setAssessments(assessmentsArray);
     } catch (error) {
       console.error('Failed to load assessments', error);
       setError('Failed to load assessments. Please check your connection.');
@@ -85,54 +102,56 @@ const AssessmentListPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {assessments.map((assessment) => (
-                  <tr key={assessment.id} className="hover:bg-primary-50/10 transition-colors group">
-                    <td className="px-8 py-6">
-                      <div className="flex items-start gap-4">
-                        <div className="h-12 w-12 rounded-2xl bg-primary-50 flex items-center justify-center text-primary-600 font-bold shrink-0">
-                          {assessment.title?.charAt(0)}
+                {Array.isArray(assessments) && assessments.length > 0 ? (
+                  assessments.map((assessment) => (
+                    <tr key={assessment.id} className="hover:bg-primary-50/10 transition-colors group">
+                      <td className="px-8 py-6">
+                        <div className="flex items-start gap-4">
+                          <div className="h-12 w-12 rounded-2xl bg-primary-50 flex items-center justify-center text-primary-600 font-bold shrink-0">
+                            {assessment.title?.charAt(0)}
+                          </div>
+                          <div>
+                            <p className="text-base font-bold text-gray-900 group-hover:text-primary-700 transition-colors">{assessment.title}</p>
+                            <p className="text-sm text-gray-500 font-medium line-clamp-1">{assessment.description}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-base font-bold text-gray-900 group-hover:text-primary-700 transition-colors">{assessment.title}</p>
-                          <p className="text-sm text-gray-500 font-medium line-clamp-1">{assessment.description}</p>
+                      </td>
+                      <td className="px-8 py-6">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-xs font-bold text-gray-900">{assessment.questions?.length || 0} Questions</span>
+                          <span className="text-[10px] font-black text-gray-400 uppercase tracking-tighter">{assessment.testType || 'Dynamic'}</span>
                         </div>
-                      </div>
-                    </td>
-                    <td className="px-8 py-6">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-xs font-bold text-gray-900">{assessment.questions?.length || 0} Questions</span>
-                        <span className="text-[10px] font-black text-gray-400 uppercase tracking-tighter">{assessment.testType || 'Dynamic'}</span>
-                      </div>
-                    </td>
-                    <td className="px-8 py-6">
-                      <span className={`px-3 py-1 text-[10px] font-black uppercase tracking-wider rounded-lg ${
-                        assessment.isActive 
-                          ? 'bg-green-100 text-green-700' 
-                          : 'bg-gray-100 text-gray-500'
-                      }`}>
-                        {assessment.isActive ? 'Active' : 'Draft'}
-                      </span>
-                    </td>
-                    <td className="px-8 py-6 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <button
-                          onClick={() => navigate(`/admin/assessments/${assessment.id}`)}
-                          className="p-2 text-gray-400 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all"
-                          title="Edit"
-                        >
-                          <Edit className="h-5 w-5" />
-                        </button>
-                        <button
-                          onClick={() => assessment.id && handleDelete(assessment.id)}
-                          className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"
-                          title="Delete"
-                        >
-                          <Trash2 className="h-5 w-5" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+                      <td className="px-8 py-6">
+                        <span className={`px-3 py-1 text-[10px] font-black uppercase tracking-wider rounded-lg ${
+                          assessment.isActive 
+                            ? 'bg-green-100 text-green-700' 
+                            : 'bg-gray-100 text-gray-500'
+                        }`}>
+                          {assessment.isActive ? 'Active' : 'Draft'}
+                        </span>
+                      </td>
+                      <td className="px-8 py-6 text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <button
+                            onClick={() => navigate(`/admin/assessments/${assessment.id}`)}
+                            className="p-2 text-gray-400 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all"
+                            title="Edit"
+                          >
+                            <Edit className="h-5 w-5" />
+                          </button>
+                          <button
+                            onClick={() => assessment.id && handleDelete(assessment.id)}
+                            className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"
+                            title="Delete"
+                          >
+                            <Trash2 className="h-5 w-5" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : null}
               </tbody>
             </table>
           </div>
