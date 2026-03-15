@@ -9,10 +9,12 @@ import {
   ClipboardList,
   Users,
   Settings,
-  LogOut
+  LogOut,
+  Terminal
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../../context/AuthContext';
+import { getAuth } from 'firebase/auth';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -171,7 +173,23 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
               ))}
             </nav>
 
-            <div className="pt-6 border-t border-gray-100">
+            <div className="pt-6 mt-auto border-t border-gray-100">
+              <button
+                onClick={async () => {
+                  const auth = getAuth();
+                  const token = await auth.currentUser?.getIdToken(true);
+                  if (token) {
+                    await navigator.clipboard.writeText(token);
+                    alert("Full Token Copied!");
+                  } else {
+                    alert("Failed to fetch token. Are you logged in?");
+                  }
+                }}
+                className="w-full flex items-center gap-3 px-4 py-3 mb-2 text-primary-600 font-bold hover:bg-primary-50 rounded-xl transition-all"
+              >
+                <Terminal className="h-5 w-5" />
+                <span>Copy ID Token</span>
+              </button>
               <button
                 onClick={handleLogout}
                 className="w-full flex items-center gap-3 px-4 py-3 text-red-600 font-bold hover:bg-red-50 rounded-xl transition-all"

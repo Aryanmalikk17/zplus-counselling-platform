@@ -5,7 +5,7 @@
 
 # --- CONFIGURATION ---
 API_BASE_URL="${VITE_API_URL:-http://localhost:8080/api/v1}"
-ADMIN_TOKEN="" # Paste your Firebase ID Token here for manual runs
+ADMIN_TOKEN="$1"
 
 echo "===================================================="
 echo "🚀 ZPlus Counselling: Admin API Audit"
@@ -13,12 +13,13 @@ echo "===================================================="
 
 # Check if token is provided
 if [ -z "$ADMIN_TOKEN" ]; then
-    echo "⚠️ Warning: ADMIN_TOKEN is not set. Using dummy token."
-    ADMIN_TOKEN="DEBUG_TOKEN"
+    echo "❌ ERROR: No Bearer token provided."
+    echo "Usage: ./admin_api_test.sh \"YOUR_FIREBASE_ID_TOKEN\""
+    exit 1
 fi
 
 # 1. CREATE ASSESSMENT
-echo "\n[1/4] Testing: CREATE ASSESSMENT"
+echo -e "\n[1/4] Testing: CREATE ASSESSMENT"
 CREATE_RESPONSE=$(curl -s -X POST "$API_BASE_URL/admin/assessments" \
     -H "Authorization: Bearer $ADMIN_TOKEN" \
     -H "Content-Type: application/json" \
@@ -45,7 +46,7 @@ fi
 
 # 2. READ ASSESSMENT
 if [ ! -z "$NEW_ID" ]; then
-    echo "\n[2/4] Testing: READ ASSESSMENT ($NEW_ID)"
+    echo -e "\n[2/4] Testing: READ ASSESSMENT ($NEW_ID)"
     READ_RESPONSE=$(curl -s -X GET "$API_BASE_URL/admin/assessments/$NEW_ID" \
         -H "Authorization: Bearer $ADMIN_TOKEN")
     
@@ -58,7 +59,7 @@ fi
 
 # 3. UPDATE ASSESSMENT
 if [ ! -z "$NEW_ID" ]; then
-    echo "\n[3/4] Testing: UPDATE ASSESSMENT ($NEW_ID)"
+    echo -e "\n[3/4] Testing: UPDATE ASSESSMENT ($NEW_ID)"
     UPDATE_RESPONSE=$(curl -s -X PUT "$API_BASE_URL/admin/assessments/$NEW_ID" \
         -H "Authorization: Bearer $ADMIN_TOKEN" \
         -H "Content-Type: application/json" \
@@ -76,7 +77,7 @@ fi
 
 # 4. DELETE ASSESSMENT
 if [ ! -z "$NEW_ID" ]; then
-    echo "\n[4/4] Testing: DELETE ASSESSMENT ($NEW_ID)"
+    echo -e "\n[4/4] Testing: DELETE ASSESSMENT ($NEW_ID)"
     DELETE_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X DELETE "$API_BASE_URL/admin/assessments/$NEW_ID" \
         -H "Authorization: Bearer $ADMIN_TOKEN")
     
@@ -87,6 +88,6 @@ if [ ! -z "$NEW_ID" ]; then
     fi
 fi
 
-echo "\n===================================================="
+echo -e "\n===================================================="
 echo "🎯 Audit Complete"
 echo "===================================================="
