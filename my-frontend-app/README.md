@@ -127,7 +127,7 @@ A comprehensive web application for psychological assessments, personality tests
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd zpluscouncelling-project
+cd zplus-counselling-platform
 
 # Install dependencies
 npm install
