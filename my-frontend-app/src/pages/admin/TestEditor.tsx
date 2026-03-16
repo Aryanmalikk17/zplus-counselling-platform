@@ -3,14 +3,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { 
   Plus, 
   Trash2, 
-  MoveUp, 
-  MoveDown, 
   Save, 
   ArrowLeft,
   Settings,
   ListFilter,
   Layers,
-  HelpCircle
+  HelpCircle,
+  Clock,
+  Activity,
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 import { AdminLayout } from './AdminDashboard';
 import assessmentService from '../../services/adminAssessmentApi';
@@ -19,7 +21,7 @@ import { motion, Reorder } from 'framer-motion';
 interface Option {
   id: string;
   text: string;
-  weight: number;
+  weight: number; // For UI simplicity
 }
 
 interface Question {
@@ -31,8 +33,14 @@ interface Question {
 }
 
 interface Assessment {
+  testType: string;
   title: string;
   description: string;
+  category: string;
+  estimatedTimeMinutes: number;
+  isActive: boolean;
+  version: string;
+  instructions: string[];
   questions: Question[];
 }
 
@@ -41,8 +49,14 @@ const TestEditor: React.FC = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [assessment, setAssessment] = useState<Assessment>({
+    testType: '',
     title: '',
     description: '',
+    category: 'Personality',
+    estimatedTimeMinutes: 15,
+    isActive: true,
+    version: '1.0',
+    instructions: ['Please answer honestly.'],
     questions: []
   });
 
@@ -55,8 +69,23 @@ const TestEditor: React.FC = () => {
   const fetchAssessment = async (testId: string) => {
     setIsLoading(true);
     try {
-      const data: any = await assessmentService.getById(testId);
-      setAssessment(data);
+      const response: any = await assessmentService.getById(testId);
+      const data = response?.data || response;
+      
+      // Transform backend AssessmentTemplate to frontend Assessment DTO
+      const transformed: Assessment = {
+        ...data,
+        questions: (data.questions || []).map((q: any) => ({
+          ...q,
+          options: (q.options || []).map((o: any) => ({
+            ...o,
+            // Extract the first weight from the weights map for the UI
+            weight: Object.values(o.weights || {})[0] as number || 0
+          }))
+        }))
+      };
+      
+      setAssessment(transformed);
     } catch (error) {
       console.error('Failed to fetch assessment:', error);
     } finally {
@@ -125,12 +154,32 @@ const TestEditor: React.FC = () => {
   };
 
   const handleSave = async () => {
+    if (!assessment.testType) {
+      alert('Test Type identifier is required (e.g. mbti)');
+      return;
+    }
+
     setIsLoading(true);
     try {
+      // Transform frontend Assessment to backend AssessmentTemplate
+      const payload = {
+        ...assessment,
+        totalQuestions: assessment.questions.length,
+        questions: assessment.questions.map(q => ({
+          ...q,
+          options: q.options.map(o => ({
+            id: o.id,
+            text: o.text,
+            // Map the single weight back to the backend's weights map
+            weights: { [q.dimension || 'default']: o.weight }
+          }))
+        }))
+      };
+
       if (id && id !== 'new') {
-        await assessmentService.update(id, assessment);
+        await assessmentService.update(id, payload);
       } else {
-        await assessmentService.create(assessment);
+        await assessmentService.create(payload);
       }
       navigate('/admin/assessments');
     } catch (error) {
@@ -139,6 +188,8 @@ const TestEditor: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  const categories = ['Personality', 'Career', 'Psychology', 'Education', 'Emotional', 'Wellness'];
 
   return (
     <AdminLayout title={id === 'new' ? 'New Assessment' : 'Edit Assessment'}>
@@ -167,7 +218,7 @@ const TestEditor: React.FC = () => {
             <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <Settings className="h-5 w-5 text-primary-500" /> Basic Information
             </h3>
-            <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Test Title</label>
                 <input 
@@ -179,15 +230,54 @@ const TestEditor: React.FC = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Description</label>
-                <textarea 
-                  rows={3}
-                  value={assessment.description}
-                  onChange={e => setAssessment({...assessment, description: e.target.value})}
-                  className="w-full bg-gray-50 border-2 border-transparent focus:border-primary-500 rounded-2xl p-4 transition-all outline-none font-medium text-gray-900"
-                  placeholder="Explain the purpose of this test..."
+                <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Unique Identifier (testType)</label>
+                <input 
+                  type="text"
+                  value={assessment.testType}
+                  onChange={e => setAssessment({...assessment, testType: e.target.value})}
+                  disabled={id !== 'new' && id !== undefined}
+                  className="w-full bg-gray-50 border-2 border-transparent focus:border-primary-500 rounded-2xl p-4 transition-all outline-none font-medium text-gray-900 disabled:opacity-50"
+                  placeholder="e.g. mbti"
                 />
               </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Category</label>
+                <select 
+                  value={assessment.category}
+                  onChange={e => setAssessment({...assessment, category: e.target.value})}
+                  className="w-full bg-gray-50 border-2 border-transparent focus:border-primary-500 rounded-2xl p-4 transition-all outline-none font-medium text-gray-900"
+                >
+                  {categories.map(cat => (
+                    <option key={cat} value={cat}>{cat}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Duration (Minutes)</label>
+                <div className="relative">
+                  <input 
+                    type="number"
+                    value={assessment.estimatedTimeMinutes}
+                    onChange={e => setAssessment({...assessment, estimatedTimeMinutes: parseInt(e.target.value) || 0})}
+                    className="w-full bg-gray-50 border-2 border-transparent focus:border-primary-500 rounded-2xl p-4 pl-12 transition-all outline-none font-medium text-gray-900"
+                  />
+                  <Clock className="h-5 w-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Description</label>
+              <textarea 
+                rows={3}
+                value={assessment.description}
+                onChange={e => setAssessment({...assessment, description: e.target.value})}
+                className="w-full bg-gray-50 border-2 border-transparent focus:border-primary-500 rounded-2xl p-4 transition-all outline-none font-medium text-gray-900"
+                placeholder="Explain the purpose of this test..."
+              />
             </div>
           </section>
 
@@ -257,6 +347,7 @@ const TestEditor: React.FC = () => {
                           <label className="text-[10px] font-black text-gray-400 uppercase">Weight</label>
                           <input 
                             type="number"
+                            step="0.1"
                             value={opt.weight}
                             onChange={e => updateOption(q.id, opt.id, { weight: parseFloat(e.target.value) || 0 })}
                             className="w-16 bg-white border border-gray-200 rounded-lg py-1 px-2 text-center text-xs font-bold text-primary-600 outline-none focus:border-primary-500"
@@ -291,26 +382,47 @@ const TestEditor: React.FC = () => {
         <div className="space-y-8">
           <section className="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 sticky top-28">
             <h4 className="font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <ListFilter className="h-5 w-5 text-primary-500" /> Editor Tools
+              <ListFilter className="h-5 w-5 text-primary-500" /> Status & Visibility
             </h4>
-            <div className="space-y-4">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl">
+                <div className="flex items-center gap-3">
+                  <Activity className={`h-5 w-5 ${assessment.isActive ? 'text-green-500' : 'text-gray-400'}`} />
+                  <span className="text-sm font-bold text-gray-700">Active Status</span>
+                </div>
+                <button 
+                  onClick={() => setAssessment({...assessment, isActive: !assessment.isActive})}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${
+                    assessment.isActive ? 'bg-primary-600' : 'bg-gray-200'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      assessment.isActive ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+              </div>
+
               <div className="p-4 bg-blue-50/50 border border-blue-100 rounded-2xl">
-                <p className="text-sm font-bold text-blue-800 mb-1">Expert Tip</p>
-                <p className="text-xs text-blue-600 font-medium">Dimension mapping allows you to group questions for psychological profiling in the final report.</p>
+                <div className="flex items-center gap-2 mb-2">
+                  <AlertCircle className="h-4 w-4 text-blue-600" />
+                  <p className="text-sm font-bold text-blue-800">Expert Tip</p>
+                </div>
+                <p className="text-xs text-blue-600 font-medium leading-relaxed">
+                  Dimension mapping (e.g. "Introversion") allows you to group questions for complex psychological profiling.
+                </p>
               </div>
               
               <div className="pt-4 border-t border-gray-50 space-y-3">
+                <div className="flex items-center gap-2 text-xs font-bold text-gray-400 mb-2 px-1">
+                  <CheckCircle2 className="h-3 w-3" /> AUTO-SAVE READY
+                </div>
                 <button 
                   onClick={() => alert('Feature coming soon: Bulk CSV Import')}
                   className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-gray-600 hover:bg-gray-50 rounded-xl transition-all"
                 >
                   <Plus className="h-4 w-4" /> Bulk Import
-                </button>
-                <button 
-                  onClick={() => alert('JSON Preview ready: check console')}
-                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-gray-600 hover:bg-gray-50 rounded-xl transition-all"
-                >
-                  <Layers className="h-4 w-4" /> Export template
                 </button>
               </div>
             </div>

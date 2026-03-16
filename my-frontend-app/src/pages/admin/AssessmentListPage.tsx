@@ -16,23 +16,12 @@ const AssessmentListPage: React.FC = () => {
 
   const loadAssessments = async () => {
     try {
-      const rawData: any = await assessmentService.getAll();
-      console.log('[AssessmentListPage] API Response:', rawData);
+      const response: any = await assessmentService.getAll();
+      console.log('[AssessmentListPage] API Response:', response);
       
-      let assessmentsArray = [];
-      if (Array.isArray(rawData)) {
-        assessmentsArray = rawData;
-      } else if (rawData && typeof rawData === 'object') {
-        // Handle Spring Boot Page object (content) or custom wrappers (data)
-        // If the response is wrapped by axios response interceptor (as seen in adminAssessmentApi.ts line 27)
-        // rawData is actually the content of the response
-        assessmentsArray = rawData.content || rawData.data || rawData.assessments || [];
-      }
-      
-      if (!Array.isArray(assessmentsArray)) {
-        console.warn('[AssessmentListPage] Expected array but got:', assessmentsArray);
-        assessmentsArray = [];
-      }
+      // Handle ApiResponse wrapper
+      const data = response?.data || response;
+      const assessmentsArray = Array.isArray(data) ? data : (data?.content || []);
       
       setAssessments(assessmentsArray);
     } catch (error) {
