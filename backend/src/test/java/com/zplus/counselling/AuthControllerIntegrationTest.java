@@ -35,6 +35,9 @@ public class AuthControllerIntegrationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @org.springframework.boot.test.mock.mockito.MockBean
+    private org.springframework.data.redis.core.RedisTemplate<String, Object> redisTemplate;
+
     private MockMvc mockMvc;
 
     @BeforeEach

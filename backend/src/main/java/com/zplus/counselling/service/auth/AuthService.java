@@ -12,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,9 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+
+    @Value("${ADMIN_EMAIL:}")
+    private String adminEmail;
 
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
@@ -36,13 +40,33 @@ public class AuthService {
             )
         );
 
+        User user = userService.findByEmail(loginRequest.getEmail());
+        boolean rolesChanged = false;
+
+        if (adminEmail != null && !adminEmail.trim().isEmpty() && user.getEmail().equalsIgnoreCase(adminEmail.trim())) {
+            if (!"ADMIN".equals(user.getRole())) {
+                user.setRole("ADMIN");
+                rolesChanged = true;
+            }
+        } else {
+            if ("ADMIN".equals(user.getRole())) {
+                user.setRole("USER");
+                rolesChanged = true;
+            }
+        }
+
+        if (rolesChanged) {
+            authentication = new UsernamePasswordAuthenticationToken(
+                user.getEmail(), null, user.getAuthorities()
+            );
+        }
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
         
         String jwt = tokenProvider.generateToken(authentication);
         String refreshToken = tokenProvider.generateRefreshToken(authentication);
 
         // Update last login
-        User user = userService.findByEmail(loginRequest.getEmail());
         user.setLastLoginAt(LocalDateTime.now());
         userService.save(user);
 
