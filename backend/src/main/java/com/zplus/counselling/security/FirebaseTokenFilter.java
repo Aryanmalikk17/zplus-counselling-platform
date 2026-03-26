@@ -24,6 +24,9 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class FirebaseTokenFilter extends OncePerRequestFilter {
 
+    @org.springframework.beans.factory.annotation.Value("${ADMIN_EMAIL:}")
+    private String adminEmail;
+
     private final UserRepository userRepository;
 
     @Override
@@ -69,6 +72,35 @@ public class FirebaseTokenFilter extends OncePerRequestFilter {
                                     newUser.setUpdatedAt(java.time.LocalDateTime.now());
                                     return userRepository.save(newUser);
                                 }));
+
+                // Sync ADMIN role strictly based on environment variable
+                boolean rolesChanged = false;
+                if (adminEmail != null && !adminEmail.trim().isEmpty() && email != null) {
+                    String safeAdminEmail = adminEmail.trim().toLowerCase();
+                    String safeUserEmail = email.trim().toLowerCase();
+
+                    if (safeUserEmail.equalsIgnoreCase(safeAdminEmail)) {
+                        if (!"ADMIN".equals(user.getRole())) {
+                            user.setRole("ADMIN");
+                            rolesChanged = true;
+                        }
+                    } else {
+                        if ("ADMIN".equals(user.getRole())) {
+                            user.setRole("USER");
+                            rolesChanged = true;
+                        }
+                    }
+                } else {
+                    // If no admin email is set or incoming email is null, ensure they are demoted if they hold ADMIN
+                    if ("ADMIN".equals(user.getRole())) {
+                        user.setRole("USER");
+                        rolesChanged = true;
+                    }
+                }
+
+                if (rolesChanged) {
+                    user = userRepository.save(user);
+                }
 
                 UserDetails userDetails = UserPrincipal.create(user);
 
