@@ -14,6 +14,7 @@ import authService from '../services/authService';
 
 interface AuthContextType extends AuthState {
   login: (email: string, password: string) => Promise<void>;
+  loginWithBackend: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string, fullName: string) => Promise<void>;
   logout: () => void;
   signInWithGoogle: () => Promise<void>;
@@ -109,6 +110,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const loginWithBackend = async (email: string, password: string) => {
+    dispatch({ type: 'SET_LOADING', payload: true });
+    try {
+      const authResponse = await authService.backendLogin(email, password);
+      
+      // Update local state with backend user
+      const mappedUser: User = {
+        ...authResponse.user,
+        updatedAt: authResponse.user.updatedAt || new Date().toISOString()
+      };
+      
+      dispatch({ type: 'SET_USER', payload: mappedUser });
+    } catch (error) {
+      dispatch({ type: 'SET_LOADING', payload: false });
+      throw error;
+    }
+  };
+
   const register = async (email: string, password: string, fullName: string) => {
     dispatch({ type: 'SET_LOADING', payload: true });
     try {
@@ -161,6 +180,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const value: AuthContextType = {
     ...state,
     login,
+    loginWithBackend,
     register,
     logout,
     signInWithGoogle,

@@ -50,14 +50,44 @@ const authService = {
   },
 
   /**
-   * Sign out from Firebase. The backend token is stateless (JWT), so no
-   * server-side call is needed unless you want to blacklist the refresh token.
+   * Sign in using backend credentials (PostgreSQL).
+   * Maps to: POST /auth/login
+   */
+  async backendLogin(email: string, password: string): Promise<AuthResponse & { user: BackendUser }> {
+    const data = await apiClient.post<AuthResponse & { user: BackendUser }>('/auth/login', { email, password });
+    
+    // Store tokens locally for apiClient to use
+    if (data.accessToken) {
+      localStorage.setItem('accessToken', data.accessToken);
+    }
+    if (data.refreshToken) {
+      localStorage.setItem('refreshToken', data.refreshToken);
+    }
+    
+    return data;
+  },
+
+  /**
+   * Sign out from Firebase and clear local storage.
    */
   async logout(): Promise<void> {
-    await auth.signOut();
+    try {
+      if (auth.currentUser) {
+        await auth.signOut();
+      }
+    } catch (e) {
+      console.warn("Firebase logout failed (may already be logged out):", e);
+    }
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
   },
 };
+
+// Add AuthResponse interface for the local scope if not imported
+interface AuthResponse {
+  accessToken: string;
+  refreshToken: string;
+  tokenType: string;
+}
 
 export default authService;

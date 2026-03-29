@@ -11,7 +11,7 @@ const AdminLogin: React.FC = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
-  const { login, logout, user, isAuthenticated } = useAuth();
+  const { loginWithBackend, logout, user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -35,12 +35,17 @@ const AdminLogin: React.FC = () => {
     setIsLoading(true);
 
     try {
-      await login(email, password);
-      // After login, AuthContext will sync with backend and set user.role
-      // We don't navigate immediately here because we need to verify the role first.
+      await loginWithBackend(email, password);
+      // After login, AuthContext state will be updated directly.
     } catch (err: any) {
       console.error('Admin login failed:', err);
-      setError('Login failed. Please check your credentials.');
+      if (err.response?.status === 401) {
+        setError('Invalid admin credentials. Please check your email and password.');
+      } else if (err.response?.status === 403) {
+        setError('Access denied: You do not have administrator privileges.');
+      } else {
+        setError('Login failed. Please ensure the backend is running and your email is in ADMIN_EMAIL.');
+      }
       setIsLoading(false);
     }
   };
