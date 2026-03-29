@@ -18,6 +18,7 @@ public class AdminSeeder implements CommandLineRunner {
     @org.springframework.beans.factory.annotation.Value("${ADMIN_EMAIL:}")
     private String adminEmail;
 
+    private final UserRepository userRepository;
     private final org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
 
     @Override
