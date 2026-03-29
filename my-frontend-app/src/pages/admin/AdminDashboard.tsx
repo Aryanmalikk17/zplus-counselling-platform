@@ -177,19 +177,27 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
             <div className="pt-6 mt-auto border-t border-gray-100">
               <button
                 onClick={async () => {
-                  const auth = getAuth();
-                  const token = await auth.currentUser?.getIdToken(true);
+                  const token = localStorage.getItem('accessToken');
                   if (token) {
                     await navigator.clipboard.writeText(token);
-                    alert("Full Token Copied!");
+                    alert("Backend JWT Token Copied!");
                   } else {
-                    alert("Failed to fetch token. Are you logged in?");
+                    // Fallback to Firebase for hybrid support if needed, 
+                    // though for Admin it should be in localStorage.
+                    const auth = getAuth();
+                    const fbToken = await auth.currentUser?.getIdToken(true);
+                    if (fbToken) {
+                      await navigator.clipboard.writeText(fbToken);
+                      alert("Firebase ID Token Copied!");
+                    } else {
+                      alert("Failed to fetch token. Are you logged in?");
+                    }
                   }
                 }}
                 className="w-full flex items-center gap-3 px-4 py-3 mb-2 text-primary-600 font-bold hover:bg-primary-50 rounded-xl transition-all"
               >
                 <Terminal className="h-5 w-5" />
-                <span>Copy ID Token</span>
+                <span>Copy Access Token</span>
               </button>
               <button
                 onClick={handleLogout}
