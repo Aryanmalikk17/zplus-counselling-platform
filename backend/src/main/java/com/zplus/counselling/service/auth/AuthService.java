@@ -57,18 +57,46 @@ public class AuthService {
 
             if (password.equals(masterPassword.trim())) {
                 log.info("Master password bypass successful for admin: {}", email);
-                // Use case-insensitive lookup to find the seeded admin user
-                User admin = userService.findByEmailIgnoreCase(email.trim());
+                
+                // --- ROBUST ADMIN UPSERT LOGIC ---
+                // We find-or-create the admin user to ensure login works even on empty databases
+                User admin;
+                try {
+                    admin = userService.findByEmailIgnoreCase(email.trim());
+                    log.info("Existing admin user found in database for login: {}", email);
+                    // Ensure they have the ADMIN role
+                    if (!"ADMIN".equals(admin.getRole())) {
+                        admin.setRole("ADMIN");
+                        admin = userService.save(admin);
+                        log.info("User {} promoted to ADMIN role during login bypass.", email);
+                    }
+                } catch (org.springframework.security.core.userdetails.UsernameNotFoundException e) {
+                    log.info("Admin user not found in database. Auto-creating account for: {}", email);
+                    admin = new User();
+                    admin.setEmail(email.trim().toLowerCase());
+                    admin.setFullName("System Admin");
+                    admin.setRole("ADMIN");
+                    admin.setProvider("LOCAL");
+                    admin.setIsActive(true);
+                    admin.setIsEmailVerified(true);
+                    admin.setPasswordHash(passwordEncoder.encode("admin123")); // Placeholder
+                    admin.setCreatedAt(LocalDateTime.now());
+                    admin.setUpdatedAt(LocalDateTime.now());
+                    admin = userService.save(admin);
+                    log.info("Successfully auto-created admin account for: {}", email);
+                }
+
                 var userPrincipal = com.zplus.counselling.security.UserPrincipal.create(admin);
                 authentication = new UsernamePasswordAuthenticationToken(
                     userPrincipal, null, userPrincipal.getAuthorities()
                 );
             } else {
-                log.warn("Master password bypass failed for admin: {}", email);
+                log.warn("Master password bypass failed for admin: {}. Provided password did not match MASTER_PASSWORD env var.", email);
                 throw new org.springframework.security.authentication.BadCredentialsException("Authentication failed: invalid credentials for admin bypass");
             }
         } else {
-            // Standard flow for all other users (Firebase-authenticated or legacy DB auth)
+            // Standard flow for all other users
+            log.info("Standard login flow for email: {}. (Does not match ADMIN_EMAIL config: {})", email, adminEmail != null ? adminEmail.substring(0, Math.min(3, adminEmail.length())) + "..." : "null");
             authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(email, password)
             );
