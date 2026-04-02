@@ -3,7 +3,15 @@ package com.zplus.counselling.dto.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+/**
+ * AnswerSubmissionRequest — Refactored to use Lombok.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AnswerSubmissionRequest {
     
     @NotBlank(message = "Question ID is required")
@@ -11,10 +19,4 @@ public class AnswerSubmissionRequest {
     
     @NotNull(message = "Answer is required")
     private Object answer;
-
-    public String getQuestionId() { return questionId; }
-    public void setQuestionId(String questionId) { this.questionId = questionId; }
-
-    public Object getAnswer() { return answer; }
-    public void setAnswer(Object answer) { this.answer = answer; }
 }

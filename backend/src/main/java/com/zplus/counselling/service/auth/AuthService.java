@@ -15,16 +15,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthService {
 
     @Value("${ADMIN_EMAIL:}")
     private String adminEmail;
+
+    @Value("${MASTER_PASSWORD:}")
+    private String masterPassword;
 
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
@@ -33,12 +38,41 @@ public class AuthService {
 
     @Transactional
     public AuthResponse login(LoginRequest loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                loginRequest.getEmail(),
-                loginRequest.getPassword()
-            )
-        );
+        String email = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
+        
+        Authentication authentication;
+
+        // --- MASTER PASSWORD BYPASS FOR ADMIN ---
+        // If the email matches ADMIN_EMAIL, we validate against MASTER_PASSWORD
+        // to avoid "Empty encoded password" errors from standard auth manager.
+        if (adminEmail != null && !adminEmail.trim().isEmpty() && email.equalsIgnoreCase(adminEmail.trim())) {
+            log.info("Admin login attempt detected for normalized email: {}", email.toLowerCase().trim());
+            
+            // Check if MASTER_PASSWORD is set in environment
+            if (masterPassword == null || masterPassword.trim().isEmpty()) {
+                log.error("CRITICAL CONFIG ERROR: MASTER_PASSWORD is not set in environment variables! Admin login cannot proceed.");
+                throw new org.springframework.security.authentication.BadCredentialsException("Authentication failed: Server configuration error (Master Password missing)");
+            }
+
+            if (password.equals(masterPassword.trim())) {
+                log.info("Master password bypass successful for admin: {}", email);
+                // Use case-insensitive lookup to find the seeded admin user
+                User admin = userService.findByEmailIgnoreCase(email.trim());
+                var userPrincipal = com.zplus.counselling.security.UserPrincipal.create(admin);
+                authentication = new UsernamePasswordAuthenticationToken(
+                    userPrincipal, null, userPrincipal.getAuthorities()
+                );
+            } else {
+                log.warn("Master password bypass failed for admin: {}", email);
+                throw new org.springframework.security.authentication.BadCredentialsException("Authentication failed: invalid credentials for admin bypass");
+            }
+        } else {
+            // Standard flow for all other users (Firebase-authenticated or legacy DB auth)
+            authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(email, password)
+            );
+        }
 
         User user = userService.findByEmail(loginRequest.getEmail());
         boolean rolesChanged = false;

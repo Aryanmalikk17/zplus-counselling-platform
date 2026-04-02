@@ -196,5 +196,40 @@
     "isActive": true,
     "version": "1.0",
     "instructions": ["Evaluate your general lifestyle and well-being habits."]
+  },
+  {
+    "testType": "aptitude-num",
+    "title": "Numerical Aptitude",
+    "description": "Test your numerical reasoning and mathematical problem-solving skills.",
+    "category": "Aptitude",
+    "estimatedTimeMinutes": 10,
+    "totalQuestions": 2,
+    "isActive": true,
+    "version": "1.0",
+    "instructions": ["Solve the mathematical problems.", "Select the correct option."],
+    "questions": [
+      {
+        "id": "q_num_1",
+        "text": "What is 15% of 200?",
+        "type": "multiple-choice",
+        "points": 5,
+        "options": [
+          { "id": "opt_1_1", "text": "20", "weights": { "Aptitude_Score": 0 } },
+          { "id": "opt_1_2", "text": "30", "weights": { "Aptitude_Score": 1 } },
+          { "id": "opt_1_3", "text": "40", "weights": { "Aptitude_Score": 0 } }
+        ]
+      },
+      {
+        "id": "q_num_2",
+        "text": "Solve for x: 2x + 10 = 30",
+        "type": "multiple-choice",
+        "points": 5,
+        "options": [
+          { "id": "opt_2_1", "text": "5", "weights": { "Aptitude_Score": 0 } },
+          { "id": "opt_2_2", "text": "10", "weights": { "Aptitude_Score": 1 } },
+          { "id": "opt_2_3", "text": "15", "weights": { "Aptitude_Score": 0 } }
+        ]
+      }
+    ]
   }
 ]

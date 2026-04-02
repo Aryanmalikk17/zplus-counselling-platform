@@ -16,6 +16,16 @@
 ehthumbs.db
 Thumbs.db
 
+# Build Artifacts & Repositories
+backend/.m2/
+backend/.gradle/
+backend/build/
+backend/target/
+node_modules/
+dist/
+out/
+.next/
+
 # Logs
 *.log
 logs/
@@ -23,12 +33,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment variables
+# Environment variables & Secrets
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+backend/src/main/resources/serviceAccountKey.json
+backend/src/main/resources/application-local.yml
 
 # Database
 *.db
@@ -39,14 +51,10 @@ yarn-error.log*
 postgres_data/
 mongo_data/
 
-# Backup files
+# Backup and Temporary files
 *.backup
 *.bak
 *.tmp
-# Local Netlify folder
 .netlify
-# Backend build files
-backend/target/
-backend/*.log
-backend/logs/
-backend/src/main/resources/serviceAccountKey.json
+backend/build_output.txt
+my-frontend-app/tsc_errors_new.txt

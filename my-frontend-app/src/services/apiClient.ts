@@ -68,6 +68,11 @@ async function request<T>(
     });
 
     if (response.status === 401) {
+        // If it's a login attempt, return a specific error instead of 'session expired'
+        if (path.includes('/auth/login')) {
+            throw new ApiError(401, 'Invalid email or password. Please try again.');
+        }
+
         // Token expired or invalid — clear local storage and redirect to login.
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');

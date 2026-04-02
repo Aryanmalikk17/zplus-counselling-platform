@@ -80,8 +80,11 @@ export interface TestResult {
   recommendations: string[];
   strengths: string[];
   weaknesses: string[];
-  grade: 'A+' | 'A' | 'B+' | 'B' | 'C+' | 'C' | 'D' | 'F';
+  grade: 'A+' | 'A' | 'B+' | 'B' | 'C+' | 'C' | 'D' | 'F' | 'N/A';
   isPassed: boolean;
+  isAptitudeTest?: boolean;
+  aptitudeScore?: number;
+  maxScore?: number;
   detailedAnswers: {
     questionId: string;
     question: string;

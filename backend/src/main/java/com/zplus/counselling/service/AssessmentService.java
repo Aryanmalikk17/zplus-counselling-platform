@@ -271,7 +271,11 @@ public class AssessmentService {
         testResult.setDurationMinutes(session.getTimeSpentSeconds() != null ? (int) (session.getTimeSpentSeconds() / 60) : 0);
         testResultRepository.save(testResult);
 
-        ResultSummaryDto summary = generateResultSummary(personalityType, template.getTestType());
+        ResultSummaryDto summary = generateResultSummary(personalityType, template.getTestType(), scores);
+
+        boolean isAptitude = scores.containsKey("Aptitude_Score");
+        Integer aptitudeScore = isAptitude ? scores.get("Aptitude_Score") : null;
+        Integer maxScoreValue = isAptitude ? calculateMaxScore(template) : null;
 
         return AssessmentResultDto.builder()
                 .resultId(session.getId().toString())
@@ -280,6 +284,9 @@ public class AssessmentService {
                 .summary(summary)
                 .reportUrl("/api/v1/reports/download/" + session.getId())
                 .completedAt(session.getCompletedAt())
+                .isAptitudeTest(isAptitude)
+                .aptitudeScore(aptitudeScore)
+                .maxScore(maxScoreValue)
                 .build();
     }
 
@@ -306,7 +313,11 @@ public class AssessmentService {
         List<UserAnswer> answers = answerRepository.findBySessionOrderByQuestionNumber(session);
         Map<String, Integer> scores = calculateScores(answers, template);
         String personalityType = determinePersonalityType(scores, template.getTestType());
-        ResultSummaryDto summary = generateResultSummary(personalityType, template.getTestType());
+        ResultSummaryDto summary = generateResultSummary(personalityType, template.getTestType(), scores);
+
+        boolean isAptitude = scores.containsKey("Aptitude_Score");
+        Integer aptitudeScore = isAptitude ? scores.get("Aptitude_Score") : null;
+        Integer maxScoreValue = isAptitude ? calculateMaxScore(template) : null;
 
         return AssessmentResultDto.builder()
                 .resultId(session.getId().toString())
@@ -315,6 +326,9 @@ public class AssessmentService {
                 .summary(summary)
                 .reportUrl("/api/v1/reports/download/" + session.getId())
                 .completedAt(session.getCompletedAt())
+                .isAptitudeTest(isAptitude)
+                .aptitudeScore(aptitudeScore)
+                .maxScore(maxScoreValue)
                 .build();
     }
 
@@ -403,12 +417,58 @@ public class AssessmentService {
                     }
                 }
             }
+        } else {
+            // Check for Aptitude test (Right/Wrong)
+            boolean isAptitude = false;
+            if (template.getCategory() != null && template.getCategory().equalsIgnoreCase("Aptitude")) {
+                isAptitude = true;
+            } else if (template.getQuestions() != null && !template.getQuestions().isEmpty()) {
+                var firstQ = template.getQuestions().get(0);
+                if (firstQ.getOptions() != null && !firstQ.getOptions().isEmpty()) {
+                    var firstOpt = firstQ.getOptions().get(0);
+                    if (firstOpt.getWeights() != null && firstOpt.getWeights().containsKey("Aptitude_Score")) {
+                        isAptitude = true;
+                    }
+                }
+            }
+
+            if (isAptitude) {
+                int totalAptitudeScore = 0;
+                Map<String, AssessmentTemplate.Question> questionMap = template.getQuestions().stream()
+                        .collect(Collectors.toMap(AssessmentTemplate.Question::getId, q -> q));
+
+                for (UserAnswer answer : answers) {
+                    if (answer.getSelectedOptionId() == null) continue;
+                    AssessmentTemplate.Question question = questionMap.get(answer.getQuestionId());
+                    if (question == null || question.getOptions() == null) continue;
+
+                    AssessmentTemplate.Option selectedOption = question.getOptions().stream()
+                            .filter(opt -> answer.getSelectedOptionId().equals(opt.getId()))
+                            .findFirst()
+                            .orElse(null);
+
+                    if (selectedOption != null && selectedOption.getWeights() != null) {
+                        totalAptitudeScore += selectedOption.getWeights().getOrDefault("Aptitude_Score", 0);
+                    }
+                }
+                scores.put("Aptitude_Score", totalAptitudeScore);
+            }
         }
 
         return scores;
     }
 
+    private Integer calculateMaxScore(AssessmentTemplate template) {
+        if (template.getQuestions() == null) return 0;
+        return template.getQuestions().stream()
+                .mapToInt(q -> q.getPoints() != null ? q.getPoints() : 1)
+                .sum();
+    }
+
     private String determinePersonalityType(Map<String, Integer> scores, String testType) {
+        if (scores.containsKey("Aptitude_Score")) {
+            return "N/A";
+        }
         if ("MBTI".equals(testType)) {
             StringBuilder type = new StringBuilder();
             // Tie-breakers using INFP defaults (standard MBTI handling)
@@ -421,7 +481,16 @@ public class AssessmentService {
         return "UNKNOWN";
     }
 
-    private ResultSummaryDto generateResultSummary(String personalityType, String testType) {
+    private ResultSummaryDto generateResultSummary(String personalityType, String testType, Map<String, Integer> scores) {
+        if (scores.containsKey("Aptitude_Score")) {
+            int score = scores.get("Aptitude_Score");
+            return ResultSummaryDto.builder()
+                    .title("Aptitude Assessment Result")
+                    .description("You scored " + score + " in this aptitude test. Detailed breakdown is available below.")
+                    .strengths(List.of("Problem Solving", "Analytical Thinking"))
+                    .careerSuggestions(List.of("Consulting", "Engineering", "Data Science"))
+                    .build();
+        }
         if ("MBTI".equals(testType)) {
             return ResultSummaryDto.builder()
                     .title("Your Personality Type: " + personalityType)

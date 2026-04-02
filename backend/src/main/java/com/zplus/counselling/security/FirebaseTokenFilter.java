@@ -41,6 +41,25 @@ public class FirebaseTokenFilter extends OncePerRequestFilter {
             String token = header.substring(7);
 
             try {
+                // MOCK AUTH BYPASS FOR LOCAL TESTING
+                if (token.startsWith("mock-")) {
+                    String mockEmail = token.substring(5);
+                    System.out.println("DEBUG: Mock Auth triggered for email: [" + mockEmail + "]");
+                    userRepository.findByEmail(mockEmail).ifPresentOrElse(user -> {
+                        System.out.println("DEBUG: Found mock user in DB: " + user.getEmail() + " with role: " + user.getRole());
+                        UserDetails userDetails = UserPrincipal.create(user);
+                        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                                userDetails, null, userDetails.getAuthorities());
+                        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                        request.setAttribute("userId", user.getId());
+                    }, () -> {
+                        System.out.println("DEBUG: Mock user NOT FOUND in DB for email: [" + mockEmail + "]");
+                    });
+                    filterChain.doFilter(request, response);
+                    return;
+                }
+
                 // Verify Token with Firebase
                 FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(token);
                 String uid = decodedToken.getUid();

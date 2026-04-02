@@ -42,6 +42,9 @@ export interface AssessmentResult {
     summary: ResultSummary;
     reportUrl: string;
     completedAt: string;         // ISO-8601 from LocalDateTime serialisation
+    isAptitudeTest?: boolean;
+    aptitudeScore?: number;
+    maxScore?: number;
 }
 
 // --- Mirrors AssessmentSessionDto.java ---

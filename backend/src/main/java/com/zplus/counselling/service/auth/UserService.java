@@ -42,6 +42,11 @@ public class UserService implements UserDetailsService {
             .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
     }
 
+    public User findByEmailIgnoreCase(String email) {
+        return userRepository.findByEmailIgnoreCase(email)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found with email (case-insensitive): " + email));
+    }
+
     public User findById(UUID id) {
         return userRepository.findById(id)
             .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
@@ -49,6 +54,10 @@ public class UserService implements UserDetailsService {
 
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    public boolean existsByEmailIgnoreCase(String email) {
+        return userRepository.existsByEmailIgnoreCase(email);
     }
 
     @Transactional

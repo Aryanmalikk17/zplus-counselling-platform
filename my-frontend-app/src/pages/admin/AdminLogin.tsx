@@ -39,12 +39,17 @@ const AdminLogin: React.FC = () => {
       // After login, AuthContext state will be updated directly.
     } catch (err: any) {
       console.error('Admin login failed:', err);
-      if (err.response?.status === 401) {
-        setError('Invalid admin credentials. Please check your email and password.');
-      } else if (err.response?.status === 403) {
+      // Determine the error message based on the status code
+      const status = err.status || err.response?.status;
+      
+      if (status === 401) {
+        setError('Invalid admin credentials. Check your email and Master Password.');
+      } else if (status === 403) {
         setError('Access denied: You do not have administrator privileges.');
+      } else if (status === 404) {
+        setError('Admin account not found. Please ensure the backend has seeded the ADMIN_EMAIL.');
       } else {
-        setError('Login failed. Please ensure the backend is running and your email is in ADMIN_EMAIL.');
+        setError('Login failed. Please verify that the backend is running and MASTER_PASSWORD/ADMIN_EMAIL are set in Render.');
       }
       setIsLoading(false);
     }

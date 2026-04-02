@@ -183,89 +183,139 @@ Check out Z+ Counselling for comprehensive psychological assessments.`;
               </div>
             </div>
 
+            {/* Aptitude Score Card */}
+            {result.isAptitudeTest && (
+              <div className="bg-white rounded-xl shadow-lg border-2 border-primary-100 p-8 mb-8 text-center">
+                <div className="flex justify-center mb-6">
+                  <div className="relative w-48 h-48">
+                    <svg className="w-full h-full" viewBox="0 0 100 100">
+                      <circle
+                        className="text-gray-200 stroke-current"
+                        strokeWidth="8"
+                        fill="transparent"
+                        r="40"
+                        cx="50"
+                        cy="50"
+                      />
+                      <motion.circle
+                        className="text-primary-500 stroke-current"
+                        strokeWidth="8"
+                        strokeLinecap="round"
+                        fill="transparent"
+                        r="40"
+                        cx="50"
+                        cy="50"
+                        initial={{ strokeDasharray: "0 251.2" }}
+                        animate={{ strokeDasharray: `${(result.aptitudeScore! / result.maxScore!) * 251.2} 251.2` }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="text-4xl font-bold text-gray-900">{result.aptitudeScore}</span>
+                      <span className="text-gray-500 text-sm">out of {result.maxScore}</span>
+                    </div>
+                  </div>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Assessment Score</h2>
+                <div className="flex items-center justify-center space-x-4">
+                  <span className={`px-4 py-1 rounded-full text-sm font-semibold ${result.isPassed ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                    {result.isPassed ? 'Passed' : 'Needs Improvement'}
+                  </span>
+                  <span className="text-gray-400">|</span>
+                  <span className="text-primary-600 font-bold text-lg">
+                    {Math.round(((result.aptitudeScore || 0) / (result.maxScore || 1)) * 100)}%
+                  </span>
+                </div>
+              </div>
+            )}
+
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div className="bg-white rounded-lg p-4 shadow-sm border">
-                <div className="text-2xl font-bold text-blue-600">{result.percentage.toFixed(1)}%</div>
-                <div className="text-sm text-gray-500">Overall Score</div>
+            {!result.isAptitudeTest && (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div className="bg-white rounded-lg p-4 shadow-sm border">
+                  <div className="text-2xl font-bold text-blue-600">{result.percentage.toFixed(1)}%</div>
+                  <div className="text-sm text-gray-500">Overall Score</div>
+                </div>
+                <div className="bg-white rounded-lg p-4 shadow-sm border">
+                  <div className="text-2xl font-bold text-green-600">{result.correctAnswers}</div>
+                  <div className="text-sm text-gray-500">Correct Answers</div>
+                </div>
+                <div className="bg-white rounded-lg p-4 shadow-sm border">
+                  <div className="text-2xl font-bold text-red-600">{result.incorrectAnswers}</div>
+                  <div className="text-sm text-gray-500">Incorrect Answers</div>
+                </div>
+                <div className="bg-white rounded-lg p-4 shadow-sm border">
+                  <div className="text-2xl font-bold text-purple-600">{formatTime(result.timeSpent)}</div>
+                  <div className="text-sm text-gray-500">Time Taken</div>
+                </div>
               </div>
-              <div className="bg-white rounded-lg p-4 shadow-sm border">
-                <div className="text-2xl font-bold text-green-600">{result.correctAnswers}</div>
-                <div className="text-sm text-gray-500">Correct Answers</div>
-              </div>
-              <div className="bg-white rounded-lg p-4 shadow-sm border">
-                <div className="text-2xl font-bold text-red-600">{result.incorrectAnswers}</div>
-                <div className="text-sm text-gray-500">Incorrect Answers</div>
-              </div>
-              <div className="bg-white rounded-lg p-4 shadow-sm border">
-                <div className="text-2xl font-bold text-purple-600">{formatTime(result.timeSpent)}</div>
-                <div className="text-sm text-gray-500">Time Taken</div>
-              </div>
-            </div>
+            )}
           </div>
 
           {/* Charts Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            {/* Performance Pie Chart */}
-            <div className="bg-white rounded-lg p-6 shadow-sm border">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <Target className="h-5 w-5 mr-2" />
-                Answer Distribution
-              </h3>
-              <div className="h-80">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={performanceData}
-                      cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      label={({ name, value, percent }) => `${name}: ${value} (${((percent || 0) * 100).toFixed(0)}%)`}
-                      outerRadius={80}
-                      fill="#8884d8"
-                      dataKey="value"
-                    >
-                      {performanceData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                    <Legend />
-                  </PieChart>
-                </ResponsiveContainer>
+          {!result.isAptitudeTest && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              {/* Performance Pie Chart */}
+              <div className="bg-white rounded-lg p-6 shadow-sm border">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                  <Target className="h-5 w-5 mr-2" />
+                  Answer Distribution
+                </h3>
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={performanceData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={({ name, value, percent }) => `${name}: ${value} (${((percent || 0) * 100).toFixed(0)}%)`}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                        {performanceData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
-            </div>
 
-            {/* Category Performance Bar Chart */}
-            <div className="bg-white rounded-lg p-6 shadow-sm border">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <BarChart className="h-5 w-5 mr-2" />
-                Category Performance
-              </h3>
-              <div className="h-80">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={categoryData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis
-                      dataKey="category"
-                      angle={-45}
-                      textAnchor="end"
-                      height={80}
-                      fontSize={12}
-                    />
-                    <YAxis />
-                    <Tooltip
-                      formatter={(value, name) => [
-                        `${value}${name === 'percentage' ? '%' : ''}`,
-                        name === 'percentage' ? 'Score' : name
-                      ]}
-                    />
-                    <Bar dataKey="percentage" fill={COLORS.primary} />
-                  </BarChart>
-                </ResponsiveContainer>
+              {/* Category Performance Bar Chart */}
+              <div className="bg-white rounded-lg p-6 shadow-sm border">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                  <BarChart className="h-5 w-5 mr-2" />
+                  Category Performance
+                </h3>
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={categoryData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis
+                        dataKey="category"
+                        angle={-45}
+                        textAnchor="end"
+                        height={80}
+                        fontSize={12}
+                      />
+                      <YAxis />
+                      <Tooltip
+                        formatter={(value, name) => [
+                          `${value}${name === 'percentage' ? '%' : ''}`,
+                          name === 'percentage' ? 'Score' : name
+                        ]}
+                      />
+                      <Bar dataKey="percentage" fill={COLORS.primary} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Detailed Analysis */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
@@ -319,76 +369,78 @@ Check out Z+ Counselling for comprehensive psychological assessments.`;
           </div>
 
           {/* Category Details Table */}
-          <div className="bg-white rounded-lg p-6 shadow-sm border mb-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-              <TrendingUp className="h-5 w-5 mr-2" />
-              Detailed Category Analysis
-            </h3>
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Category
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Questions
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Correct
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Incorrect
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Score
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Time
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {result.categoryResults.map((category, index) => (
-                    <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {category.category.replace(/([A-Z])/g, ' $1').trim()}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {category.totalQuestions}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                          {category.correctAnswers}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                          {category.incorrectAnswers}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
-                            <div
-                              className="bg-blue-600 h-2 rounded-full"
-                              style={{ width: `${category.percentage}%` }}
-                            ></div>
-                          </div>
-                          <span className="text-sm font-medium text-gray-900">
-                            {category.percentage.toFixed(1)}%
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {formatTime(category.timeSpent)}
-                      </td>
+          {!result.isAptitudeTest && result.categoryResults && result.categoryResults.length > 0 && (
+            <div className="bg-white rounded-lg p-6 shadow-sm border mb-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                <TrendingUp className="h-5 w-5 mr-2" />
+                Detailed Category Analysis
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Category
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Questions
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Correct
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Incorrect
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Score
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Time
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {result.categoryResults.map((category, index) => (
+                      <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {category.category.replace(/([A-Z])/g, ' $1').trim()}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {category.totalQuestions}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            {category.correctAnswers}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            {category.incorrectAnswers}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                              <div
+                                className="bg-blue-600 h-2 rounded-full"
+                                style={{ width: `${category.percentage}%` }}
+                              ></div>
+                            </div>
+                            <span className="text-sm font-medium text-gray-900">
+                              {category.percentage.toFixed(1)}%
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {formatTime(category.timeSpent)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

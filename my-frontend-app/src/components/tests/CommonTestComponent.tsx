@@ -127,10 +127,10 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
             explanation: answer.explanation || undefined
           })),
           categoryBreakdown: result.categoryResults.map(cat => ({
-            category: (cat as any).category,
-            total: (cat as any).totalQuestions,
-            correct: (cat as any).correctAnswers,
-            percentage: (cat as any).percentage
+            category: (cat as any).category || 'general',
+            total: (cat as any).totalQuestions || 0,
+            correct: (cat as any).correctAnswers || 0,
+            percentage: (cat as any).percentage || 0,
           })),
           recommendations: result.recommendations,
           strengths: result.strengths,
