@@ -75,15 +75,36 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
+    // Initial restoration logic for backend-only sessions (Admins)
+    const restoreBackendSession = async () => {
+      const hasToken = localStorage.getItem('accessToken');
+      if (hasToken && !state.user) {
+        try {
+          const backendUser = await authService.syncUser();
+          dispatch({ 
+            type: 'SET_USER', 
+            payload: { ...backendUser, updatedAt: backendUser.updatedAt || new Date().toISOString() } 
+          });
+        } catch (error) {
+          console.warn("Failed to restore session from token", error);
+          // If token is invalid, clear it
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+        }
+      }
+    };
+
+    restoreBackendSession();
+
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         try {
-          // Get token first to ensure we can make requests
-          await firebaseUser.getIdToken();
-
           // Sync with backend to get full profile
           const backendUser = await authService.syncUser();
-          dispatch({ type: 'SET_USER', payload: { ...backendUser, updatedAt: backendUser.updatedAt || new Date().toISOString() } });
+          dispatch({ 
+            type: 'SET_USER', 
+            payload: { ...backendUser, updatedAt: backendUser.updatedAt || new Date().toISOString() } 
+          });
         } catch (error) {
           console.error("Failed to sync user with backend", error);
           // Fallback to basic Firebase user if backend fails
@@ -91,7 +112,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           dispatch({ type: 'SET_USER', payload: user });
         }
       } else {
-        dispatch({ type: 'SET_USER', payload: null });
+        // Only clear user if no backend token is present.
+        // This protects Admin sessions from being wiped by the Firebase listener.
+        const hasBackendToken = !!localStorage.getItem('accessToken');
+        if (!hasBackendToken) {
+          dispatch({ type: 'SET_USER', payload: null });
+        }
       }
       dispatch({ type: 'SET_LOADING', payload: false });
     });

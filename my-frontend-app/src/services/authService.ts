@@ -29,14 +29,15 @@ async function getFirebaseToken(): Promise<string> {
 
 const authService = {
   /**
-   * Sync Firebase user with backend and return the full profile.
+   * Sync user with backend and return the full profile.
+   * If a Firebase user exists, it uses the Firebase token.
+   * Otherwise, it relies on the accessToken in localStorage.
    * Maps to: GET /auth/me
    */
   async syncUser(): Promise<BackendUser> {
-    const token = await getFirebaseToken();
-    // Use apiClient directly, overriding the Authorization header with Firebase token.
+    // We don't call getFirebaseToken() here because the apiClient's 
+    // getAuthHeader() already handles the priority: Firebase Token > localStorage accessToken.
     const data = await apiClient.get<BackendUser>('/auth/me');
-    void token; // token is managed by apiClient via localStorage — Firebase token must be stored first.
     return data;
   },
 

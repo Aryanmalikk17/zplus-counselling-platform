@@ -36,7 +36,8 @@ const AdminLogin: React.FC = () => {
 
     try {
       await loginWithBackend(email, password);
-      // After login, AuthContext state will be updated directly.
+      // Success! Reset loading so if navigation is slow, user sees it's done.
+      setIsLoading(false);
     } catch (err: any) {
       console.error('Admin login failed:', err);
       // Determine the error message based on the status code
