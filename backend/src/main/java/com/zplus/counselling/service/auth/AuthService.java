@@ -275,6 +275,7 @@ public class AuthService {
             .isActive(user.getIsActive())
             .createdAt(user.getCreatedAt())
             .lastLoginAt(user.getLastLoginAt())
+            .role(user.getRole())
             .build();
     }
 }
