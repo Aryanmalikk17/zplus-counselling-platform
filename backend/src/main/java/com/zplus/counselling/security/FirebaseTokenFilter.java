@@ -35,6 +35,12 @@ public class FirebaseTokenFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain)
             throws ServletException, IOException {
 
+        // If already authenticated by JwtAuthenticationFilter, skip Firebase logic
+        if (org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication() != null) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         String header = request.getHeader("Authorization");
 
         if (header != null && header.startsWith("Bearer ")) {

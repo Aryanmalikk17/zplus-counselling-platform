@@ -38,6 +38,8 @@ public class SecurityConfig {
     @Lazy
     private final FirebaseTokenFilter firebaseTokenFilter;
     @Lazy
+    private final com.zplus.counselling.security.JwtAuthenticationFilter jwtAuthenticationFilter;
+    @Lazy
     private final UserService userService;
 
     @Value("${app.cors.allowed-origins}")
@@ -99,7 +101,8 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .authenticationProvider(authenticationProvider())
-            .addFilterBefore(firebaseTokenFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterAfter(firebaseTokenFilter, com.zplus.counselling.security.JwtAuthenticationFilter.class)
             .build();
     }
 
