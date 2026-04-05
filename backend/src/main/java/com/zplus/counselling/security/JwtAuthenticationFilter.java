@@ -34,10 +34,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
                 String userId = tokenProvider.getUserIdFromJWT(jwt);
+                String userRole = tokenProvider.getRoleFromJWT(jwt);
 
                 UserDetails userDetails = userService.loadUserById(UUID.fromString(userId));
+                
+                // Prioritize role from JWT claims
+                java.util.Collection<? extends org.springframework.security.core.GrantedAuthority> authorities = userDetails.getAuthorities();
+                if (org.springframework.util.StringUtils.hasText(userRole)) {
+                    String finalRole = userRole.startsWith("ROLE_") ? userRole : "ROLE_" + userRole;
+                    authorities = java.util.Collections.singletonList(new org.springframework.security.core.authority.SimpleGrantedAuthority(finalRole));
+                }
+
                 UsernamePasswordAuthenticationToken authentication = 
-                    new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);

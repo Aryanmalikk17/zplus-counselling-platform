@@ -33,9 +33,15 @@ public class JwtTokenProvider {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         Date expiryDate = new Date(System.currentTimeMillis() + jwtExpirationInMs);
 
+        String role = authentication.getAuthorities().stream()
+                .findFirst()
+                .map(org.springframework.security.core.GrantedAuthority::getAuthority)
+                .orElse("ROLE_USER");
+
         return Jwts.builder()
                 .subject(userPrincipal.getEmail())
                 .claim("userId", userPrincipal.getId().toString())
+                .claim("role", role)
                 .issuedAt(new Date())
                 .expiration(expiryDate)
                 .signWith(getSigningKey())
@@ -46,9 +52,15 @@ public class JwtTokenProvider {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         Date expiryDate = new Date(System.currentTimeMillis() + jwtRefreshExpirationInMs);
 
+        String role = authentication.getAuthorities().stream()
+                .findFirst()
+                .map(org.springframework.security.core.GrantedAuthority::getAuthority)
+                .orElse("ROLE_USER");
+
         return Jwts.builder()
                 .subject(userPrincipal.getEmail())
                 .claim("userId", userPrincipal.getId().toString())
+                .claim("role", role)
                 .issuedAt(new Date())
                 .expiration(expiryDate)
                 .signWith(getSigningKey())
@@ -63,6 +75,16 @@ public class JwtTokenProvider {
                 .getPayload();
 
         return claims.get("userId", String.class);
+    }
+
+    public String getRoleFromJWT(String token) {
+        Claims claims = Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+        return claims.get("role", String.class);
     }
 
     public String getUsernameFromToken(String token) {

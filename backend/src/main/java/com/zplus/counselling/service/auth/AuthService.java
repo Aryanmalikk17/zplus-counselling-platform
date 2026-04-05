@@ -87,8 +87,10 @@ public class AuthService {
                 }
 
                 var userPrincipal = com.zplus.counselling.security.UserPrincipal.create(admin);
+                java.util.List<org.springframework.security.core.GrantedAuthority> adminAuthorities = 
+                    java.util.Collections.singletonList(new org.springframework.security.core.authority.SimpleGrantedAuthority("ROLE_ADMIN"));
                 authentication = new UsernamePasswordAuthenticationToken(
-                    userPrincipal, null, userPrincipal.getAuthorities()
+                    userPrincipal, null, adminAuthorities
                 );
             } else {
                 log.warn("Master password bypass failed for admin: {}. Provided password did not match MASTER_PASSWORD env var.", email);
@@ -118,8 +120,11 @@ public class AuthService {
         }
 
         if (rolesChanged) {
+            var updatedPrincipal = com.zplus.counselling.security.UserPrincipal.create(user);
+            java.util.List<org.springframework.security.core.GrantedAuthority> updatedAuthorities = 
+                java.util.Collections.singletonList(new org.springframework.security.core.authority.SimpleGrantedAuthority("ROLE_" + user.getRole()));
             authentication = new UsernamePasswordAuthenticationToken(
-                user.getEmail(), null, user.getAuthorities()
+                updatedPrincipal, null, updatedAuthorities
             );
         }
 
