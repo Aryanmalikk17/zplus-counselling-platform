@@ -60,6 +60,7 @@ const authService = {
     // Store tokens locally for apiClient to use
     if (data.accessToken) {
       localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('token', data.accessToken); // Hybrid auth standard
     }
     if (data.refreshToken) {
       localStorage.setItem('refreshToken', data.refreshToken);
@@ -81,6 +82,7 @@ const authService = {
     }
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('token'); // Clear Hybrid Auth token
   },
 };
 

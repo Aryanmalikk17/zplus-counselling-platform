@@ -34,6 +34,13 @@ import { auth } from '../config/firebase'; // The initialized Firebase app
  * Note: Since this is async, we modify the fetch wrapping rather than a sync fn.
  */
 async function getAuthHeader(): Promise<Record<string, string>> {
+    // HYBRID AUTH: Priority 1 - Native Token (Admin Bypass)
+    const nativeToken = localStorage.getItem('token') || localStorage.getItem('accessToken');
+    if (nativeToken) {
+        return { Authorization: `Bearer ${nativeToken}` };
+    }
+
+    // HYBRID AUTH: Priority 2 - Firebase Token (Regular Users)
     const user = auth.currentUser;
     if (user) {
         try {
@@ -43,9 +50,8 @@ async function getAuthHeader(): Promise<Record<string, string>> {
             console.error("Failed to get Firebase token", error);
         }
     }
-    // Fallback to local storage (e.g. for non-Firebase tokens if previously supported)
-    const token = localStorage.getItem('accessToken');
-    return token ? { Authorization: `Bearer ${token}` } : {};
+    
+    return {};
 }
 
 /**
