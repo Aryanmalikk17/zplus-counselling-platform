@@ -39,6 +39,7 @@ const TestsPage: React.FC = () => {
       case 'personality': return Brain;
       case 'career': return Briefcase;
       case 'psychology': return Target;
+      case 'aptitude': return Calculator;
       case 'education': return BookOpen;
       case 'wellness': return Heart;
       case 'emotional': return Activity;
@@ -46,7 +47,7 @@ const TestsPage: React.FC = () => {
     }
   };
 
-  const categories = ['All', 'Personality', 'Psychology', 'Career', 'Education', 'Emotional', 'Wellness'];
+  const categories = ['All', 'Personality', 'Psychology', 'Career', 'Aptitude', 'Education', 'Emotional', 'Wellness'];
   const difficulties = ['All Levels', 'Beginner', 'Intermediate', 'Advanced'];
   const durations = ['All Durations', 'Quick (< 15 min)', 'Medium (15-30 min)', 'Long (> 30 min)'];
 
@@ -85,6 +86,7 @@ const TestsPage: React.FC = () => {
       'Personality': 'bg-blue-100 text-blue-600',
       'Psychology': 'bg-purple-100 text-purple-600',
       'Career': 'bg-green-100 text-green-600',
+      'Aptitude': 'bg-indigo-100 text-indigo-600',
       'Education': 'bg-orange-100 text-orange-600',
       'Emotional': 'bg-pink-100 text-pink-600',
       'Wellness': 'bg-teal-100 text-teal-600'

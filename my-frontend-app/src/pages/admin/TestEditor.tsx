@@ -189,7 +189,7 @@ const TestEditor: React.FC = () => {
     }
   };
 
-  const categories = ['Personality', 'Career', 'Psychology', 'Education', 'Emotional', 'Wellness'];
+  const categories = ['Personality', 'Career', 'Psychology', 'Aptitude', 'Education', 'Emotional', 'Wellness'];
 
   return (
     <AdminLayout title={id === 'new' ? 'New Assessment' : 'Edit Assessment'}>
