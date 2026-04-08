@@ -2,6 +2,7 @@ import { User, Menu, X, Brain, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import logoSrc from '../../assets/zplusecounselling-logo.jpeg';
 import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
@@ -48,8 +49,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <Brain className="h-8 w-8 text-accent-600" />
-            <span className="text-2xl font-bold text-gray-900">ZPluse Counselling</span>
+            <img src={logoSrc} alt="ZPluse Counselling Logo" className="h-14 w-auto object-contain mix-blend-multiply" />
           </Link>
 
           {/* Desktop Navigation */}
