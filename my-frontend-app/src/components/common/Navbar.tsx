@@ -2,7 +2,7 @@ import { User, Menu, X, Brain, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import logoSrc from '../../assets/zplusecounselling-logo.jpeg';
+import logoSrc from '../../assets/zplusecounselling-logo (2).png';
 import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
