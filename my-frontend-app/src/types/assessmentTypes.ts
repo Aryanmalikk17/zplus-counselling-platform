@@ -83,6 +83,7 @@ export interface SubmitAnswerResponse {
 
 // --- Mirrors AvailableAssessmentDto.java ---
 export interface AvailableAssessment {
+    id?: string;
     testType: string;
     title: string;
     description: string;

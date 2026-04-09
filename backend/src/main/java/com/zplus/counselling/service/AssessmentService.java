@@ -43,9 +43,11 @@ public class AssessmentService {
      * Get assessment template by test type
      */
     @Transactional(readOnly = true)
-    public AssessmentTemplate getAssessmentTemplateByType(String testType) {
-        return templateRepository.findByTestTypeAndIsActiveTrue(testType)
-                .orElseThrow(() -> new ResourceNotFoundException("Assessment template not found for type: " + testType));
+    public AssessmentTemplate getAssessmentTemplateByType(String testTypeOrId) {
+        return templateRepository.findByTestTypeAndIsActiveTrue(testTypeOrId)
+                .orElseGet(() -> templateRepository.findById(testTypeOrId)
+                        .filter(AssessmentTemplate::getIsActive)
+                        .orElseThrow(() -> new ResourceNotFoundException("Assessment template not found for: " + testTypeOrId)));
     }
 
     /**
@@ -79,6 +81,7 @@ public class AssessmentService {
 
         return templates.stream()
                 .map(template -> AvailableAssessmentDto.builder()
+                        .id(template.getId())
                         .testType(template.getTestType())
                         .title(template.getTitle())
                         .description(template.getDescription())
@@ -103,6 +106,7 @@ public class AssessmentService {
         return templateRepository.findAll().stream()
                 .filter(template -> template.getIsActive() != null && template.getIsActive())
                 .map(template -> AvailableAssessmentDto.builder()
+                        .id(template.getId())
                         .testType(template.getTestType())
                         .title(template.getTitle())
                         .description(template.getDescription())

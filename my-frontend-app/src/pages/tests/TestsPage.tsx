@@ -18,7 +18,7 @@ const TestsPage: React.FC = () => {
         
         const mappedTests = data.map((test: any) => ({
           ...test,
-          id: test.testType,
+          id: test.id || test.testType,
           popularity: 5,
           features: ['Scientifically Validated', 'Immediate Results', 'Career Insights'],
           icon: getIconForCategory(test.category)

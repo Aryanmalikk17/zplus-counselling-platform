@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AvailableAssessmentDto {
+    private String id;
     private String testType;
     private String title;
     private String description;
