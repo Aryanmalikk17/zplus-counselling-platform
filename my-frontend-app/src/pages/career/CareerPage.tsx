@@ -1,6 +1,7 @@
 import React, { useState, Suspense } from 'react';
 
 import Loading from '../../components/common/Loading';
+import { BackButton } from '../../components/common/BackButton';
 
 // Eager load Hero to prevent LCP delay
 import HeroSection from './components/HeroSection';
@@ -20,7 +21,10 @@ const CareerPage: React.FC = () => {
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className="min-h-screen bg-transparent relative">
+      <div className="absolute top-4 left-4 z-50">
+        <BackButton fallbackPath="/" label="Back" className="bg-white/80 shadow-md" />
+      </div>
       <HeroSection onStartAssessment={() => setIsAssessmentOpen(true)} />
 
       <Suspense fallback={<div className="h-96 flex items-center justify-center"><Loading /></div>}>

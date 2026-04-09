@@ -2,7 +2,7 @@
 
 # ZPlus Counselling - Production API Audit Script (Non-Blocking)
 # Purpose: Verify CRUD lifecycle of Assessments on the live server.
-# Usage: ./admin_api_test.sh "YOUR_FIREBASE_ID_TOKEN"
+# Usage: ./admin_api_test.sh "YOUR_NATIVE_JWT_TOKEN"
 
 # --- CONFIGURATION ---
 BASE_URL="https://zplus-counselling-platform.onrender.com/api/v1"
@@ -22,7 +22,7 @@ echo "====================================================" | tee -a "$LOG_FILE"
 # Check Authentication
 if [ -z "$ADMIN_TOKEN" ]; then
     log_output "❌ ERROR: No Bearer token provided."
-    log_output "Usage: ./admin_api_test.sh \"YOUR_ID_TOKEN\""
+    log_output "Usage: ./admin_api_test.sh \"YOUR_NATIVE_JWT_TOKEN\""
     exit 1
 fi
 

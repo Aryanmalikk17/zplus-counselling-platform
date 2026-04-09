@@ -6,6 +6,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { TestConfig, TestAnswer, TestSession, TestResult } from '../../types/testTypes';
 import { testHistoryService } from '../../services/testHistoryService';
 import { useAuth } from '../../context/AuthContext';
+import { BackButton } from '../common/BackButton';
 
 interface CommonTestComponentProps {
   testConfig: TestConfig;
@@ -437,6 +438,7 @@ export const CommonTestComponent: React.FC<CommonTestComponentProps> = ({
           <div className="card mb-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-4">
+                <BackButton onClick={onTestExit} label="Exit" className="!p-2 -ml-2" />
                 <h2 className="text-xl font-semibold text-gray-900">{testConfig.name}</h2>
                 <div className="flex items-center text-gray-500">
                   <Clock className="h-4 w-4 mr-1" />

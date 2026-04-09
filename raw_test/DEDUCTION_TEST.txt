@@ -1,0 +1,319 @@
+DEDUCTION TEST
+(50 QUESTIONS)
+
+Section A: Syllogism (1–15)
+Directions: Choose the correct conclusion.
+1. All doctors are educated. Some educated are rich.
+A) All doctors are rich
+B) Some doctors are rich
+C) Some educated are doctors
+D) Cannot say
+
+2. All cats are animals. All animals are living beings.
+A) All cats are living beings
+B) Some cats are living beings
+C) No cat is living
+D) Cannot say
+
+3. Some students are athletes. All athletes are fit.
+A) All students are fit
+B) Some students are fit
+C) No student is fit
+D) Cannot say
+
+4. All pens are blue. Some blue are costly.
+A) All pens are costly
+B) Some pens are costly
+C) No pen is costly
+D) Cannot say
+
+5. Some cars are electric. All electric are costly.
+A) All cars are costly
+B) Some cars are costly
+C) No cars are costly
+D) Cannot say
+
+6. All A are B. No B is C.
+A) No A is C
+B) Some A is C
+C) All A is C
+D) Cannot say
+
+7. Some teachers are strict. All strict are disciplined.
+A) All teachers disciplined
+B) Some teachers disciplined
+C) No teacher disciplined
+D) Cannot say
+
+8. All flowers are beautiful. Some beautiful are rare.
+A) All flowers rare
+B) Some flowers rare
+C) No flower rare
+D) Cannot say
+
+9. Some books are interesting. No interesting are boring.
+A) Some books not boring
+B) All books are boring
+C) No book is interesting
+D) Cannot say
+
+10. All parks are green. No parks are polluted.
+A) All green are polluted
+B) Some green are not polluted
+C) No green is polluted
+D) Cannot say
+
+11. Some men are tall. All tall are strong.
+A) Some men strong
+B) All men strong
+C) No men strong
+D) Cannot say
+
+12. All oranges are fruit. All fruit are sweet.
+A) Some sweet are oranges
+B) No sweet are orange
+C) All oranges are sweet
+D) Cannot say
+
+13. Some cats are black. All black are mysterious.
+A) All cats are mysterious
+B) Some cats are mysterious
+C) No cat is mysterious
+D) Cannot say
+
+14. All A are B. Some B are C.
+A) All A are C
+B) Some A are C
+C) No A is C
+D) Cannot say
+
+15. Some birds fly. No birds are fish.
+A) No flying are fish
+B) Some flying are not fish
+C) All fish can fly
+D) Cannot say
+
+Section B: Statement & Conclusion (16–30)
+16. Statement: Hard work leads to success.
+A) All successful work hard
+B) Some success from hard work
+C) No success without work
+D) Cannot say
+
+17. Statement: Smoking is harmful.
+A) Smokers are unhealthy
+B) Avoid smoking
+C) Smoking is good
+D) Cannot say
+
+18. Statement: Education improves life.
+A) All educated successful
+B) Education helps growth
+C) No need education
+D) Cannot say
+
+19. Statement: Exercise improves health.
+A) Exercise necessary
+B) Health without exercise
+C) Exercise harmful
+D) Cannot say
+
+20. Statement: Time is valuable.
+A) Waste time
+B) Use time wisely
+C) Time useless
+D) Cannot say
+
+21. Statement: Discipline leads to success.
+A) Undisciplined succeed
+B) Discipline important
+C) No success
+D) Cannot say
+
+22. Statement: Reading books builds knowledge.
+A) Knowledge from books
+B) Books are useless
+C) No book read
+D) Cannot say
+
+23. Statement: Confidence leads to performance.
+A) Performed better
+B) Low performance
+C) Perform better with confidence
+D) Cannot say
+
+24. Statement: Pollution affects health.
+A) Health better in polluted
+B) Environment matters
+C) No effect
+D) Cannot say
+
+25. Statement: Practice improves skills.
+A) Practice useless
+B) Skilled without practice
+C) Skills improve with practice
+D) Cannot say
+
+26. Statement: Technology improves life.
+A) Technology harmful
+B) Technology useful
+C) No impact
+D) Cannot say
+
+27. Statement: Leadership needs confidence.
+A) No confidence
+B) Confidence important
+C) Leadership useless
+D) Cannot say
+
+28. Statement: Reading increases knowledge.
+A) Reading useful
+B) Reading useless
+C) No effect
+D) Cannot say
+
+29. Statement: Communication builds relations.
+A) Communicate for relation
+B) Communication useless
+C) No relation
+D) Cannot say
+
+30. Statement: Planning leads to success.
+A) Planning useless
+B) Success planning
+C) Succeed with planning
+D) Cannot say
+
+Section C: Analytical Deduction (31–40)
+31. A > B, B > C →
+A) A > C
+B) C > A
+C) Equal
+D) Cannot say
+
+32. If all leaders are confident →
+A) Some confident leaders
+B) All leaders confident
+C) No leader confident
+D) Cannot say
+
+33. If some students study →
+A) All study
+B) Some not study
+C) Cannot say
+D) None study
+
+34. If no dogs are cats →
+A) Dogs ≠ cats
+B) All dogs cats
+C) Some dogs cats
+D) Cannot say
+
+35. If all fruits sweet →
+A) Some fruits sweet
+B) All fruits sweet
+C) No fruit sweet
+D) Cannot say
+
+36. If A = B, B = C →
+A) A = C
+B) A ≠ C
+C) Cannot say
+D) None
+
+37. If some cars fast →
+A) All cars fast
+B) Some cars not fast
+C) Cannot say
+D) None
+
+38. If all teachers educated →
+A) Some teachers educated
+B) All teachers educated
+C) No teacher educated
+D) Cannot say
+
+39. If no student lazy →
+A) All active
+B) Some lazy
+C) Cannot say
+D) None
+
+40. If some birds fly →
+A) All birds fly
+B) Some birds not fly
+C) Cannot say
+D) None
+
+Section D: Critical Deduction (41–50)
+41. Good leaders listen →
+A) Listening important
+B) Ignore others
+C) No listening
+D) Cannot say
+
+42. Honest people gain trust →
+A) Honesty useful
+B) Dishonesty useful
+C) No trust
+D) Cannot say
+
+43. Practice makes perfect →
+A) Practice important
+B) Practice useless
+C) No perfection
+D) Cannot say
+
+44. Knowledge is power →
+A) Knowledge useful
+B) Knowledge useless
+C) Power useless
+D) Cannot say
+
+45. Time management improves success →
+A) Manage time
+B) Waste time
+C) No success
+D) Cannot say
+
+46. Hard work beats talent →
+A) Work important
+B) Talent useless
+C) No effect
+D) Cannot say
+
+47. Confidence builds personality →
+A) Confidence important
+B) No personality
+C) Ignore confidence
+D) Cannot say
+
+48. Teamwork leads to success →
+A) Team important
+B) Work alone
+C) No success
+D) Cannot say
+
+49. Discipline builds character →
+A) Discipline important
+B) No character
+C) Ignore discipline
+D) Cannot say
+
+50. Learning never stops →
+A) Keep learning
+B) Stop learning
+C) No learning
+D) Cannot say
+
+ANSWER KEY
+1-D, 2-A, 3-B, 4-D, 5-B
+6-A, 7-B, 8-D, 9-A, 10-A
+11-C, 12-A, 13-C, 14-A, 15-A
+16-B, 17-B, 18-B, 19-A, 20-B
+21-B, 22-B, 23-B, 24-A, 25-B
+26-B, 27-B, 28-A, 29-A, 30-A
+31-A, 32-B, 33-C, 34-A, 35-B
+36-A, 37-C, 38-B, 39-A, 40-C
+41-A, 42-A, 43-A, 44-A, 45-A
+46-A, 47-A, 48-A, 49-A, 50-A

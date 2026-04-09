@@ -1,6 +1,7 @@
 import { Search, Calendar, User, BookOpen, Filter } from 'lucide-react';
 import { motion } from 'framer-motion';
 import React, { useState, useMemo } from 'react';
+import { BackButton } from '../../components/common/BackButton';
 
 
 // Sample blog posts - in real app, these would come from your API
@@ -160,7 +161,10 @@ const BlogPage: React.FC = () => {
   }, [searchTerm, selectedCategory]);
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen py-12 relative">
+      <div className="absolute top-4 left-4 md:top-8 md:left-8 z-10">
+        <BackButton fallbackPath="/" />
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

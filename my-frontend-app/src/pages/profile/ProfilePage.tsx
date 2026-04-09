@@ -9,6 +9,7 @@ import { TestHistoryComponent } from '../../components/profile/TestHistoryCompon
 import TestStatsDashboard from '../../components/profile/TestStatsDashboard';
 import { UserTestHistory, testHistoryService } from '../../services/testHistoryService';
 import { EducationalQualification } from '../../types';
+import { BackButton } from '../../components/common/BackButton';
 
 const ProfilePage: React.FC = () => {
   const { user, updateProfile } = useAuth();
@@ -154,13 +155,18 @@ const ProfilePage: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Your Profile
-            </h1>
-            <p className="text-xl text-gray-600">
-              Manage your account and view your test results
-            </p>
+          <div className="relative text-center mb-12 flex justify-center items-center">
+            <div className="absolute left-0 top-1/2 -translate-y-1/2">
+              <BackButton fallbackPath="/" label="Back to Home" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                Your Profile
+              </h1>
+              <p className="text-xl text-gray-600">
+                Manage your account and view your test results
+              </p>
+            </div>
           </div>
 
           {/* Profile Dashboard */}
